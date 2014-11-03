@@ -1,0 +1,15 @@
+coverage/
+artifacts/
+**/npm-debug.log
+**/ynpm-debug.log
+.DS_Store
+*~
+test/
+tests/
+docs/
+examples/
+screwdriver/
+Makefile
+.idea/
+junit.xml
+tap.txt

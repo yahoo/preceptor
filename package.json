@@ -1,0 +1,54 @@
+{
+  "name": "preceptor",
+  "version": "0.9.0",
+  "description": "Preceptor testrunner and aggregator",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "preceptor": "bin/preceptor"
+  },
+  "scripts": {
+    "test": "istanbul cover -- _mocha --reporter spec",
+    "docs": "yuidoc ."
+  },
+  "homepage": "https://github.com/yahoo/preceptor",
+  "bugs": "https://github.com/yahoo/preceptor/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yahoo/preceptor.git"
+  },
+  "keywords": [
+    "testing",
+    "preceptor",
+    "testrunner",
+    "aggregator",
+    "mocha",
+    "cucumber",
+    "kobold"
+  ],
+  "author": {
+    "name": "Marcel Erz",
+    "email": "erz@yahoo-inc.com"
+  },
+  "dependencies": {
+    "glob": "3.2.3",
+    "istanbul": "0.3.2",
+    "log4js": "0.6.20",
+    "minimatch": "1.0.0",
+    "mkdirp": "0.5.0",
+    "preceptor-core": "~0.9.0",
+    "preceptor-reporter": "~0.9.0",
+    "promise": "6.0.0",
+    "underscore": "1.7.0",
+    "uuid": "2.0.1"
+  },
+  "devDependencies": {
+    "chai": "1.9.1",
+    "cucumber": "0.4.2",
+    "mocha": "1.21.4",
+    "cabbie": "git+ssh://git@github.com:marcelerz/cabbie.git#master",
+    "kobold": "~0.9.0",
+    "preceptor-webdriver": "~0.9.0",
+    "yuidocjs": "0.3.50"
+  }
+}
