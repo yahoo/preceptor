@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/manager.js - preceptor</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="preceptor"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.9.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractClient.html">AbstractClient</a></li>
+            
+                <li><a href="../classes/AbstractClientDecorator.html">AbstractClientDecorator</a></li>
+            
+                <li><a href="../classes/AbstractForkTask.html">AbstractForkTask</a></li>
+            
+                <li><a href="../classes/AbstractTask.html">AbstractTask</a></li>
+            
+                <li><a href="../classes/AbstractTaskDecorator.html">AbstractTaskDecorator</a></li>
+            
+                <li><a href="../classes/Client.html">Client</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Coverage.html">Coverage</a></li>
+            
+                <li><a href="../classes/CucumberClient.html">CucumberClient</a></li>
+            
+                <li><a href="../classes/CucumberTask.html">CucumberTask</a></li>
+            
+                <li><a href="../classes/GroupTask.html">GroupTask</a></li>
+            
+                <li><a href="../classes/GroupTaskDecorator.html">GroupTaskDecorator</a></li>
+            
+                <li><a href="../classes/IdentifierTaskDecorator.html">IdentifierTaskDecorator</a></li>
+            
+                <li><a href="../classes/KoboldClient.html">KoboldClient</a></li>
+            
+                <li><a href="../classes/KoboldTask.html">KoboldTask</a></li>
+            
+                <li><a href="../classes/MochaClient.html">MochaClient</a></li>
+            
+                <li><a href="../classes/MochaTask.html">MochaTask</a></li>
+            
+                <li><a href="../classes/NodeClient.html">NodeClient</a></li>
+            
+                <li><a href="../classes/NodeTask.html">NodeTask</a></li>
+            
+                <li><a href="../classes/PlainClientDecorator.html">PlainClientDecorator</a></li>
+            
+                <li><a href="../classes/PreceptorManager.html">PreceptorManager</a></li>
+            
+                <li><a href="../classes/ShellTask.html">ShellTask</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/manager.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+// Copyright 2014, Yahoo! Inc.
+// Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
+
+var Base = require(&#x27;preceptor-core&#x27;).Base;
+var utils = require(&#x27;preceptor-core&#x27;).utils;
+var ReportManager = require(&#x27;preceptor-reporter&#x27;);
+var Promise = require(&#x27;promise&#x27;);
+var _ = require(&#x27;underscore&#x27;);
+var log4js = require(&#x27;log4js&#x27;);
+var path = require(&#x27;path&#x27;);
+var istanbul = require(&#x27;istanbul&#x27;);
+var mkdirp = require(&#x27;mkdirp&#x27;);
+var fs = require(&#x27;fs&#x27;);
+
+var Config = require(&#x27;./config&#x27;);
+var GroupTask = require(&#x27;./task/group&#x27;);
+
+var defaultShared = require(&#x27;./defaults/defaultShared&#x27;);
+
+var logger = log4js.getLogger(__filename);
+
+/**
+ * @class PreceptorManager
+ * @extends Base
+ *
+ * @property {object} _options
+ * @property {Config} _configuration
+ *
+ * @property {object} _taskDecoratorList
+ * @property {object} _clientDecoratorList
+ * @property {object} _taskList
+ *
+ * @property {ReportManager} _reportManager
+ *
+ * @property {Collector} _coverageCollector
+ */
+var PreceptorManager = Base.extend(
+
+	/**
+	 * Web-driver server constructor
+	 *
+	 * @param {object} options
+	 * @constructor
+	 */
+	function (options) {
+		this.__super();
+
+		log4js.setGlobalLogLevel(&#x27;INFO&#x27;);
+		this._options = options || {};
+
+		this._taskDecoratorList = {};
+		this._clientDecoratorList = {};
+		this._taskList = {};
+
+		this._reportManager = null;
+
+		this._coverageCollector = new istanbul.Collector();
+
+		this.initialize();
+	},
+
+	{
+		/**
+		 * Initializes the instance
+		 *
+		 * @method initialize
+		 */
+		initialize: function () {
+
+			// Initialize registries
+			this._initializeTaskDecoratorRegistry();
+			this._initializeClientDecoratorRegistry();
+			this._initializeTaskRegistry();
+
+			// Make sure the configuration has the correct structure
+			this.validate();
+
+			// Augment options with outside data
+			this.augment();
+
+			// Create config object
+			this._configuration = new Config(this._options.configuration);
+			if (this.getConfig().isVerbose()) {
+				log4js.setGlobalLogLevel(&#x27;DEBUG&#x27;);
+			}
+
+			// Set-up the report-manager
+			this._reportManager = new ReportManager(this.getConfig().getReportManager());
+
+			// Load custom plugins
+			_.each(this.getConfig().getPlugins(), function (pluginPath) {
+				var Plugin = require(pluginPath);
+
+				if (Plugin.loader &amp;&amp; _.isFunction(Plugin.loader)) {
+					Plugin.loader(this);
+				} else {
+					throw new Error(&quot;The plugin &quot; + pluginPath + &quot; doesn&#x27;t have a loader.&quot;);
+				}
+			}, this);
+		},
+
+		/**
+		 * Initializes the options-decorator registry
+		 *
+		 * @method _initializeTaskDecoratorRegistry
+		 * @private
+		 */
+		_initializeTaskDecoratorRegistry: function () {
+			var defaultElements = [
+				{ name: &#x27;group&#x27;, fileName: &#x27;group&#x27; },
+				{ name: &#x27;identifier&#x27;, fileName: &#x27;identifier&#x27; }
+			];
+
+			_.each(defaultElements, function (entry) {
+				entry.path = path.join(__dirname, &#x27;taskDecorator&#x27;, entry.fileName);
+				entry.fn = require(entry.path);
+			}, this);
+
+			this.registerTaskDecoratorRange(defaultElements);
+		},
+
+		/**
+		 * Initializes the client-decorator registry
+		 *
+		 * @method _initializeClientDecoratorRegistry
+		 * @private
+		 */
+		_initializeClientDecoratorRegistry: function () {
+			var defaultElements = [
+				{ name: &#x27;plain&#x27;, fileName: &#x27;plain&#x27; }
+			];
+
+			_.each(defaultElements, function (entry) {
+				entry.path = path.join(__dirname, &#x27;clientDecorator&#x27;, entry.fileName);
+			}, this);
+
+			this.registerClientDecoratorRange(defaultElements);
+		},
+
+		/**
+		 * Initializes the task registry
+		 *
+		 * @method _initializeTaskRegistry
+		 * @private
+		 */
+		_initializeTaskRegistry: function () {
+			var defaultElements = [
+				{ name: &#x27;cucumber&#x27;, fileName: &#x27;cucumber&#x27; },
+				{ name: &#x27;group&#x27;, fileName: &#x27;group&#x27; },
+				{ name: &#x27;kobold&#x27;, fileName: &#x27;kobold&#x27; },
+				{ name: &#x27;mocha&#x27;, fileName: &#x27;mocha&#x27; },
+				{ name: &#x27;node&#x27;, fileName: &#x27;node&#x27; },
+				{ name: &#x27;shell&#x27;, fileName: &#x27;shell&#x27; }
+			];
+
+			_.each(defaultElements, function (entry) {
+				entry.path = path.join(__dirname, &#x27;task&#x27;, entry.fileName);
+				entry.fn = require(entry.path);
+			}, this);
+
+			this.registerTaskRange(defaultElements);
+		},
+
+
+		/**
+		 * Gets the options
+		 *
+		 * @method getOptions
+		 * @return {object}
+		 */
+		getOptions: function () {
+			return this._options;
+		},
+
+		/**
+		 * Gets the configuration object
+		 *
+		 * @method getConfig
+		 * @return {Config}
+		 */
+		getConfig: function () {
+			return this._configuration;
+		},
+
+		/**
+		 * Gets all the shared options for tasks
+		 *
+		 * @method getSharedTaskOptions
+		 * @return {object}
+		 */
+		getSharedTaskOptions: function () {
+			return this.getOptions().shared || {};
+		},
+
+		/**
+		 * Gets a list of task options
+		 *
+		 * @method getTasks
+		 * @return {object[]}
+		 */
+		getTasks: function () {
+			return this.getOptions().tasks || [];
+		},
+
+
+		/**
+		 * Gets the report-manager
+		 *
+		 * @method getReportManager
+		 * @return {ReportManager}
+		 */
+		getReportManager: function () {
+			return this._reportManager;
+		},
+
+
+		/**
+		 * Validate data given
+		 *
+		 * @method validate
+		 */
+		validate: function () {
+			if (!_.isObject(this.getOptions())) {
+				throw new Error(&#x27;The options parameter is not an object.&#x27;);
+			}
+			if (!_.isObject(this.getSharedTaskOptions())) {
+				throw new Error(&#x27;The shared section is not an object.&#x27;);
+			}
+			if (!_.isArray(this.getTasks()) &amp;&amp; !_.isObject(this.getTasks())) {
+				throw new Error(&#x27;The shared section is not an object or array.&#x27;);
+			}
+		},
+
+		/**
+		 * Augment data with default values
+		 *
+		 * @method augment
+		 */
+		augment: function () {
+
+			// Inject default values
+			this.getOptions().shared = utils.deepExtend({}, [defaultShared, this.getSharedTaskOptions()]);
+			logger.debug(&#x27;Augmented options&#x27;, this._options);
+		},
+
+
+		/**
+		 * Gets a dictionary of registered options-decorator
+		 *
+		 * @method getTaskDecoratorList
+		 * @return {object}
+		 */
+		getTaskDecoratorList: function () {
+			return this._taskDecoratorList;
+		},
+
+		/**
+		 * Checks if a options-decorator is registered
+		 *
+		 * @method hasTaskDecorator
+		 * @param {string} name
+		 * @return {boolean}
+		 */
+		hasTaskDecorator: function (name) {
+			return !!this._taskDecoratorList[name];
+		},
+
+		/**
+		 * Gets a specific registered options-decorator
+		 *
+		 * @method getTaskDecorator
+		 * @param {string} name
+		 * @return {function}
+		 */
+		getTaskDecorator: function (name) {
+			return this._taskDecoratorList[name];
+		},
+
+		/**
+		 * Registers a options-decorator
+		 *
+		 * @method registerTaskDecorator
+		 * @param {string} name
+		 * @param {function} contr
+		 */
+		registerTaskDecorator: function (name, contr) {
+			this._taskDecoratorList[name] = contr;
+		},
+
+		/**
+		 * Registers a list of options-decorators
+		 *
+		 * @method registerTaskDecoratorRange
+		 * @param {object[]} list &#x60;{ name: &lt;string&gt;, fn: &lt;function&gt; }&#x60;
+		 */
+		registerTaskDecoratorRange: function (list) {
+			_.each(list, function (entry) {
+				this.registerTaskDecorator(entry.name, entry.fn);
+			}, this);
+		},
+
+
+		/**
+		 * Gets a dictionary of registered client-decorator
+		 *
+		 * @method getClientDecoratorList
+		 * @return {object}
+		 */
+		getClientDecoratorList: function () {
+			return this._clientDecoratorList;
+		},
+
+		/**
+		 * Checks if a client-decorator is registered
+		 *
+		 * @method hasClientDecorator
+		 * @param {string} name
+		 * @return {boolean}
+		 */
+		hasClientDecorator: function (name) {
+			return !!this._clientDecoratorList[name];
+		},
+
+		/**
+		 * Gets a specific registered client-decorator
+		 *
+		 * @method getClientDecorator
+		 * @param {string} name
+		 * @return {function}
+		 */
+		getClientDecorator: function (name) {
+			return this._clientDecoratorList[name];
+		},
+
+		/**
+		 * Registers a client-decorator
+		 *
+		 * @method registerClientDecorator
+		 * @param {string} name
+		 * @param {string} path
+		 */
+		registerClientDecorator: function (name, path) {
+			this._clientDecoratorList[name] = path;
+		},
+
+		/**
+		 * Registers a list of client-decorators
+		 *
+		 * @method registerClientDecoratorRange
+		 * @param {object[]} list &#x60;{ name: &lt;string&gt;, path: &lt;string&gt; }&#x60;
+		 */
+		registerClientDecoratorRange: function (list) {
+			_.each(list, function (entry) {
+				this.registerClientDecorator(entry.name, entry.path);
+			}, this);
+		},
+
+
+		/**
+		 * Gets a dictionary of registered tasks
+		 *
+		 * @method getTaskList
+		 * @return {object}
+		 */
+		getTaskList: function () {
+			return this._taskList;
+		},
+
+		/**
+		 * Checks if a task is registered
+		 *
+		 * @method hasTask
+		 * @param {string} name
+		 * @return {boolean}
+		 */
+		hasTask: function (name) {
+			return !!this._taskList[name];
+		},
+
+		/**
+		 * Gets a specific registered task
+		 *
+		 * @method getTask
+		 * @param {string} name
+		 * @return {function}
+		 */
+		getTask: function (name) {
+			return this._taskList[name];
+		},
+
+		/**
+		 * Registers a task
+		 *
+		 * @method registerTask
+		 * @param {string} name
+		 * @param {function} contr
+		 */
+		registerTask: function (name, contr) {
+			this._taskList[name] = contr;
+		},
+
+		/**
+		 * Registers a list of task
+		 *
+		 * @method registerTaskRange
+		 * @param {object[]} list &#x60;{ name: &lt;string&gt;, fn: &lt;function&gt; }&#x60;
+		 */
+		registerTaskRange: function (list) {
+			_.each(list, function (entry) {
+				this.registerTask(entry.name, entry.fn);
+			}, this);
+		},
+
+
+		/**
+		 * Run the preceptor application
+		 *
+		 * @method run
+		 * @return {Promise}
+		 */
+		run: function () {
+			var promise = Promise.resolve(),
+				config = this.getConfig(),
+				reportManager = this.getReportManager(),
+				coverageCollector = this._coverageCollector,
+				eventReporter;
+
+			logger.debug(&#x27;Shared&#x27;, this.getSharedTaskOptions());
+			logger.debug(&#x27;Config&#x27;, config.toObject());
+			logger.debug(&#x27;Tasks&#x27;, this.getTasks());
+
+			logger.debug(&#x27;Create reporter&#x27;);
+			eventReporter = reportManager.addReporter(&quot;Event&quot;); // Needed to forward it to the client-decorator
+			reportManager.addReporterRange(config.getReporter());
+			reportManager.addListenerRange(config.getListener());
+
+			// Output events from reporter
+			eventReporter.on(&#x27;message&#x27;, function (areaType, messageType, params) {
+				logger.debug(&#x27;Event-Reporter: [&#x27; + areaType + &#x27;] &#x27; + messageType, params);
+			});
+
+			// Start reporter
+			reportManager.message().start();
+
+			// Run task
+			promise = promise.then(function () {
+
+				var task = new GroupTask(config, coverageCollector, reportManager, {
+					taskDecorator: this.getTaskDecoratorList(),
+					clientDecorator: this.getClientDecoratorList(),
+					task: this.getTaskList()
+				}, {
+					type: &#x27;group&#x27;,
+					taskId: &#x27;root-task&#x27;,
+					name: &#x27;Root Task&#x27;,
+					title: &#x27;Preceptor&#x27;,
+					configuration: {
+						parallel: false,
+						tasks: this.getTasks()
+					}
+				});
+				return task.run(undefined);
+
+			}.bind(this));
+
+			// Stop reporter before leaving
+			promise = promise.then(function () {
+				reportManager.message().stop();
+				reportManager.message().complete();
+				if (this.getConfig().getCoverage().isActive()) {
+					this._writeCoverage(this.getConfig().getCoverage());
+				}
+			}.bind(this), function (err) {
+				reportManager.message().stop();
+				reportManager.message().complete();
+				if (this.getConfig().getCoverage().isActive()) {
+					this._writeCoverage(this.getConfig().getCoverage());
+				}
+				throw err;
+			}.bind(this));
+
+			return promise;
+		},
+
+		/**
+		 * Write the coverage report collected
+		 *
+		 * @method _writeCoverage
+		 * @param {object} coverageConfiguration
+		 * @private
+		 */
+		_writeCoverage: function (coverageConfiguration) {
+			var istanbulOverride, istanbulConfiguration, reporter, reportingDir, coverageFile, coverage, reports;
+
+			// Setup configuration
+			istanbulOverride = {
+				&quot;instrumentation&quot;: {
+					&quot;root&quot;: coverageConfiguration.getRoot()
+				},
+				&quot;reporting&quot;: {
+					&quot;dir&quot;: coverageConfiguration.getPath()
+				}
+			};
+			istanbulConfiguration = istanbul.config.loadObject(null, istanbulOverride);
+
+			// Get configuration options
+			reportingDir = path.resolve(istanbulConfiguration.reporting.dir());
+			coverageFile = path.resolve(reportingDir, &#x27;coverage.json&#x27;);
+			reports = coverageConfiguration.getReports() || [];
+
+			// Create folder for reporting if not exists
+			mkdirp.sync(reportingDir);
+
+			if (reports.indexOf(&#x27;file&#x27;) !== -1) {
+
+				// Write JSON file
+				coverage = this._coverageCollector.getFinalCoverage();
+				fs.writeFileSync(coverageFile, JSON.stringify(coverage, 4));
+
+				// Filter &quot;file&quot;-report
+				reports = reports.filter(function (entry) {
+					return entry !== &#x27;file&#x27;;
+				});
+			}
+
+			// Write report
+			reporter = new istanbul.Reporter(istanbulConfiguration);
+			reporter.addAll(reports);
+			reporter.write(this._coverageCollector, true, function () {});
+		}
+	},
+
+	{
+		/**
+		 * @property TYPE
+		 * @type {string}
+		 * @static
+		 */
+		TYPE: &#x27;Preceptor&#x27;
+	});
+
+// Expose plugin interfaces
+
+/**
+ * @property AbstractClient
+ * @type {AbstractClient}
+ * @static
+ */
+PreceptorManager.AbstractClient = require(&#x27;./abstractClient&#x27;);
+
+/**
+ * @property AbstractClientDecorator
+ * @type {AbstractClientDecorator}
+ * @static
+ */
+PreceptorManager.AbstractClientDecorator = require(&#x27;./abstractClientDecorator&#x27;);
+
+/**
+ * @property AbstractForkTask
+ * @type {AbstractForkTask}
+ * @static
+ */
+PreceptorManager.AbstractForkTask = require(&#x27;./abstractForkTask&#x27;);
+
+/**
+ * @property AbstractTaskDecorator
+ * @type {AbstractTaskDecorator}
+ * @static
+ */
+PreceptorManager.AbstractTaskDecorator = require(&#x27;./abstractTaskDecorator&#x27;);
+
+/**
+ * @property AbstractTask
+ * @type {AbstractTask}
+ * @static
+ */
+PreceptorManager.AbstractTask = require(&#x27;./abstractTask&#x27;);
+
+/**
+ * @property version
+ * @type {string}
+ * @static
+ */
+PreceptorManager.version = require(&#x27;../package.json&#x27;).version;
+
+module.exports = PreceptorManager;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

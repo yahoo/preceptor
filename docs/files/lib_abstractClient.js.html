@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/abstractClient.js - preceptor</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="preceptor"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.9.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractClient.html">AbstractClient</a></li>
+            
+                <li><a href="../classes/AbstractClientDecorator.html">AbstractClientDecorator</a></li>
+            
+                <li><a href="../classes/AbstractForkTask.html">AbstractForkTask</a></li>
+            
+                <li><a href="../classes/AbstractTask.html">AbstractTask</a></li>
+            
+                <li><a href="../classes/AbstractTaskDecorator.html">AbstractTaskDecorator</a></li>
+            
+                <li><a href="../classes/Client.html">Client</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Coverage.html">Coverage</a></li>
+            
+                <li><a href="../classes/CucumberClient.html">CucumberClient</a></li>
+            
+                <li><a href="../classes/CucumberTask.html">CucumberTask</a></li>
+            
+                <li><a href="../classes/GroupTask.html">GroupTask</a></li>
+            
+                <li><a href="../classes/GroupTaskDecorator.html">GroupTaskDecorator</a></li>
+            
+                <li><a href="../classes/IdentifierTaskDecorator.html">IdentifierTaskDecorator</a></li>
+            
+                <li><a href="../classes/KoboldClient.html">KoboldClient</a></li>
+            
+                <li><a href="../classes/KoboldTask.html">KoboldTask</a></li>
+            
+                <li><a href="../classes/MochaClient.html">MochaClient</a></li>
+            
+                <li><a href="../classes/MochaTask.html">MochaTask</a></li>
+            
+                <li><a href="../classes/NodeClient.html">NodeClient</a></li>
+            
+                <li><a href="../classes/NodeTask.html">NodeTask</a></li>
+            
+                <li><a href="../classes/PlainClientDecorator.html">PlainClientDecorator</a></li>
+            
+                <li><a href="../classes/PreceptorManager.html">PreceptorManager</a></li>
+            
+                <li><a href="../classes/ShellTask.html">ShellTask</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/abstractClient.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+// Copyright 2014, Yahoo! Inc.
+// Copyrights licensed under the Mit License. See the accompanying LICENSE file for terms.
+
+var Base = require(&#x27;preceptor-core&#x27;).Base;
+var utils = require(&#x27;preceptor-core&#x27;).utils;
+var ReportManager = require(&#x27;preceptor-reporter&#x27;);
+var _ = require(&#x27;underscore&#x27;);
+var Promise = require(&#x27;promise&#x27;);
+
+var defaultClient = require(&#x27;./defaults/defaultClient&#x27;);
+
+/**
+ * @class AbstractClient
+ * @extends Base
+ *
+ * @property {object} _options
+ * @property {AbstractClientDecorator[]} _decorator
+ * @property {ReportManager} _reportManager
+ * @property {EventReporter} _eventReporter
+ */
+var AbstractClient = Base.extend(
+
+	/**
+	 * Abstract client constructor
+	 *
+	 * @param {object[]} decorator
+	 * @param {object} decoratorPlugins
+	 * @param {object} options
+	 * @constructor
+	 */
+	function (decorator, decoratorPlugins, options) {
+		this.__super();
+
+		this._reportManager = new ReportManager({ collect: false });
+		this._eventReporter = this._reportManager.addReporter(&#x27;Event&#x27;);
+		this._eventReporter.on(&#x27;message&#x27;, function (areaType, messageType, data) {
+			// Make sure not to forward admin messages; this should stay in the client
+			if ([&quot;admin&quot;].indexOf(areaType) === -1) {
+				this.emit(&#x27;reportMessage&#x27;, messageType, data);
+			}
+		}.bind(this));
+
+		this._options = utils.deepExtend({}, [defaultClient, options || {}]);
+		this._decorator = this._setupDecorator(this._eventReporter, decorator, decoratorPlugins);
+
+		this.initialize();
+	},
+
+	{
+		/**
+		 * Setup decorator plugins
+		 *
+		 * @method _setupDecorator
+		 * @param {EventReporter} eventReporter
+		 * @param {object[]} decorator
+		 * @param {object} decoratorPlugins
+		 * @return {AbstractClientDecorator[]}
+		 * @private
+		 */
+		_setupDecorator: function (eventReporter, decorator, decoratorPlugins) {
+
+			var decoratorList = [];
+
+			_.each(decorator, function (currentDecorator) {
+
+				var decoratorPlugin = decoratorPlugins[currentDecorator.type],
+					DecoratorClass,
+					decoratorInstance;
+
+				if (!decoratorPlugin) {
+					throw new Error(&#x27;Unknown decorator: &#x27; + currentDecorator.type);
+				}
+
+				DecoratorClass = require(decoratorPlugin);
+				decoratorInstance = new DecoratorClass(eventReporter, currentDecorator);
+				decoratorList.push(decoratorInstance);
+
+			}, this);
+
+			return decoratorList;
+		},
+
+
+		/**
+		 * Processes the begin of the testing environment
+		 *
+		 * @method processBefore
+		 * @return {Promise}
+		 */
+		processBefore: function () {
+
+			var promise = Promise.resolve();
+
+			_.each(this._decorator, function (decorator) {
+				promise = promise.then(function () {
+					return decorator.processBefore();
+				})
+			}, this);
+
+			return promise;
+		},
+
+		/**
+		 * Processes the end of the testing environment
+		 *
+		 * @method processAfter
+		 * @return {Promise}
+		 */
+		processAfter: function () {
+
+			var promise = Promise.resolve();
+
+			_.each(this._decorator, function (decorator) {
+				promise = promise.then(function () {
+					return decorator.processAfter();
+				})
+			}, this);
+
+			return promise;
+		},
+
+		/**
+		 * Processes the beginning of a test
+		 *
+		 * @method processBeforeTest
+		 * @return {Promise}
+		 */
+		processBeforeTest: function () {
+
+			var promise = Promise.resolve();
+
+			_.each(this._decorator, function (decorator) {
+				promise = promise.then(function () {
+					return decorator.processBeforeTest();
+				})
+			}, this);
+
+			return promise;
+		},
+
+		/**
+		 * Processes the ending of a test
+		 *
+		 * @method processAfterTest
+		 * @return {Promise}
+		 */
+		processAfterTest: function () {
+
+			var promise = Promise.resolve();
+
+			_.each(this._decorator, function (decorator) {
+				promise = promise.then(function () {
+					return decorator.processAfterTest();
+				})
+			}, this);
+
+			return promise;
+		},
+
+
+		/**
+		 * Gets the options
+		 *
+		 * @method getOptions
+		 * @return {object}
+		 */
+		getOptions: function () {
+			return this._options;
+		},
+
+		/**
+		 * Gets the decorator
+		 *
+		 * @method getDecorator
+		 * @return {AbstractClientDecorator[]}
+		 */
+		getDecorator: function () {
+			return this._decorator;
+		},
+
+
+		/**
+		 * Gets the report-manager
+		 *
+		 * @method getReportManager
+		 * @return {ReportManager}
+		 */
+		getReportManager: function () {
+			return this._reportManager;
+		},
+
+		/**
+		 * Gets the event-reporter
+		 *
+		 * @method getEventReporter
+		 * @return {EventReporter}
+		 */
+		getEventReporter: function () {
+			return this._eventReporter;
+		},
+
+
+		/**
+		 * Will be called when the client begins
+		 *
+		 * @method run
+		 * @return {Promise}
+		 */
+		run: function () {
+			throw new Error(&#x27;Unimplemented method &quot;run&quot; in the client.&#x27;);
+		}
+	},
+
+	{
+		/**
+		 * @property TYPE
+		 * @type {string}
+		 * @static
+		 */
+		TYPE: &#x27;AbstractClient&#x27;
+	});
+
+module.exports = AbstractClient;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

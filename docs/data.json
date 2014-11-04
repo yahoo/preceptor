@@ -1,0 +1,3923 @@
+{
+    "project": {
+        "name": "preceptor",
+        "description": "Preceptor testrunner and aggregator",
+        "version": "0.9.0"
+    },
+    "files": {
+        "lib/clientDecorator/plain.js": {
+            "name": "lib/clientDecorator/plain.js",
+            "modules": {},
+            "classes": {
+                "PlainClientDecorator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/client/cucumber.js": {
+            "name": "lib/task/client/cucumber.js",
+            "modules": {},
+            "classes": {
+                "CucumberClient": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/client/kobold.js": {
+            "name": "lib/task/client/kobold.js",
+            "modules": {},
+            "classes": {
+                "KoboldClient": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/client/mocha.js": {
+            "name": "lib/task/client/mocha.js",
+            "modules": {},
+            "classes": {
+                "MochaClient": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/client/node.js": {
+            "name": "lib/task/client/node.js",
+            "modules": {},
+            "classes": {
+                "NodeClient": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/cucumber.js": {
+            "name": "lib/task/cucumber.js",
+            "modules": {},
+            "classes": {
+                "CucumberTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/group.js": {
+            "name": "lib/task/group.js",
+            "modules": {},
+            "classes": {
+                "GroupTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/kobold.js": {
+            "name": "lib/task/kobold.js",
+            "modules": {},
+            "classes": {
+                "KoboldTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/mocha.js": {
+            "name": "lib/task/mocha.js",
+            "modules": {},
+            "classes": {
+                "MochaTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/node.js": {
+            "name": "lib/task/node.js",
+            "modules": {},
+            "classes": {
+                "NodeTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/task/shell.js": {
+            "name": "lib/task/shell.js",
+            "modules": {},
+            "classes": {
+                "ShellTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/taskDecorator/group.js": {
+            "name": "lib/taskDecorator/group.js",
+            "modules": {},
+            "classes": {
+                "GroupTaskDecorator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/taskDecorator/identifier.js": {
+            "name": "lib/taskDecorator/identifier.js",
+            "modules": {},
+            "classes": {
+                "IdentifierTaskDecorator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/abstractClient.js": {
+            "name": "lib/abstractClient.js",
+            "modules": {},
+            "classes": {
+                "AbstractClient": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/abstractClientDecorator.js": {
+            "name": "lib/abstractClientDecorator.js",
+            "modules": {},
+            "classes": {
+                "AbstractClientDecorator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/abstractForkTask.js": {
+            "name": "lib/abstractForkTask.js",
+            "modules": {},
+            "classes": {
+                "AbstractForkTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/abstractTask.js": {
+            "name": "lib/abstractTask.js",
+            "modules": {},
+            "classes": {
+                "AbstractTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/abstractTaskDecorator.js": {
+            "name": "lib/abstractTaskDecorator.js",
+            "modules": {},
+            "classes": {
+                "AbstractTaskDecorator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/client.js": {
+            "name": "lib/client.js",
+            "modules": {},
+            "classes": {
+                "Client": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/config.js": {
+            "name": "lib/config.js",
+            "modules": {},
+            "classes": {
+                "Config": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/coverage.js": {
+            "name": "lib/coverage.js",
+            "modules": {},
+            "classes": {
+                "Coverage": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/manager.js": {
+            "name": "lib/manager.js",
+            "modules": {},
+            "classes": {
+                "PreceptorManager": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "PlainClientDecorator": {
+            "name": "PlainClientDecorator",
+            "shortname": "PlainClientDecorator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/clientDecorator/plain.js",
+            "line": 7,
+            "extends": "AbstractClientDecorator",
+            "is_constructor": 1
+        },
+        "CucumberClient": {
+            "name": "CucumberClient",
+            "shortname": "CucumberClient",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/client/cucumber.js",
+            "line": 9,
+            "extends": "AbstractClient",
+            "is_constructor": 1
+        },
+        "KoboldClient": {
+            "name": "KoboldClient",
+            "shortname": "KoboldClient",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/client/kobold.js",
+            "line": 7,
+            "extends": "MochaClient",
+            "is_constructor": 1
+        },
+        "MochaClient": {
+            "name": "MochaClient",
+            "shortname": "MochaClient",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/client/mocha.js",
+            "line": 16,
+            "extends": "AbstractClient",
+            "is_constructor": 1
+        },
+        "NodeClient": {
+            "name": "NodeClient",
+            "shortname": "NodeClient",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/client/node.js",
+            "line": 8,
+            "extends": "AbstractClient",
+            "is_constructor": 1
+        },
+        "CucumberTask": {
+            "name": "CucumberTask",
+            "shortname": "CucumberTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/cucumber.js",
+            "line": 9,
+            "extends": "AbstractForkTask",
+            "is_constructor": 1
+        },
+        "GroupTask": {
+            "name": "GroupTask",
+            "shortname": "GroupTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/group.js",
+            "line": 12,
+            "extends": "AbstractTask",
+            "is_constructor": 1
+        },
+        "KoboldTask": {
+            "name": "KoboldTask",
+            "shortname": "KoboldTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/kobold.js",
+            "line": 9,
+            "extends": "MochaTask",
+            "is_constructor": 1
+        },
+        "MochaTask": {
+            "name": "MochaTask",
+            "shortname": "MochaTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/mocha.js",
+            "line": 9,
+            "extends": "AbstractForkTask",
+            "is_constructor": 1
+        },
+        "NodeTask": {
+            "name": "NodeTask",
+            "shortname": "NodeTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/node.js",
+            "line": 8,
+            "extends": "AbstractForkTask",
+            "is_constructor": 1
+        },
+        "ShellTask": {
+            "name": "ShellTask",
+            "shortname": "ShellTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/shell.js",
+            "line": 10,
+            "extends": "AbstractTask",
+            "is_constructor": 1
+        },
+        "GroupTaskDecorator": {
+            "name": "GroupTaskDecorator",
+            "shortname": "GroupTaskDecorator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/taskDecorator/group.js",
+            "line": 7,
+            "extends": "AbstractTaskDecorator",
+            "is_constructor": 1,
+            "itemtype": "property",
+            "type": "Driver"
+        },
+        "IdentifierTaskDecorator": {
+            "name": "IdentifierTaskDecorator",
+            "shortname": "IdentifierTaskDecorator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/taskDecorator/identifier.js",
+            "line": 6,
+            "extends": "AbstractTaskDecorator",
+            "is_constructor": 1,
+            "itemtype": "property",
+            "type": "Driver"
+        },
+        "AbstractClient": {
+            "name": "AbstractClient",
+            "shortname": "AbstractClient",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/abstractClient.js",
+            "line": 12,
+            "extends": "Base",
+            "itemtype": "property",
+            "type": "Object",
+            "params": [
+                {
+                    "name": "_decorator",
+                    "description": "",
+                    "type": "AbstractClientDecorator[]"
+                },
+                {
+                    "name": "_reportManager",
+                    "description": "",
+                    "type": "ReportManager"
+                },
+                {
+                    "name": "_eventReporter",
+                    "description": "",
+                    "type": "EventReporter"
+                }
+            ]
+        },
+        "AbstractClientDecorator": {
+            "name": "AbstractClientDecorator",
+            "shortname": "AbstractClientDecorator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/abstractClientDecorator.js",
+            "line": 11,
+            "extends": "Base",
+            "itemtype": "property",
+            "type": "Object",
+            "params": [
+                {
+                    "name": "_eventReporter",
+                    "description": "",
+                    "type": "EventReporter"
+                }
+            ]
+        },
+        "AbstractForkTask": {
+            "name": "AbstractForkTask",
+            "shortname": "AbstractForkTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/abstractForkTask.js",
+            "line": 12,
+            "extends": "AbstractTask",
+            "is_constructor": 1
+        },
+        "AbstractTask": {
+            "name": "AbstractTask",
+            "shortname": "AbstractTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/abstractTask.js",
+            "line": 13,
+            "extends": "Base",
+            "itemtype": "property",
+            "type": "ReportManager"
+        },
+        "AbstractTaskDecorator": {
+            "name": "AbstractTaskDecorator",
+            "shortname": "AbstractTaskDecorator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/abstractTaskDecorator.js",
+            "line": 10,
+            "extends": "Base",
+            "itemtype": "property",
+            "type": "Object"
+        },
+        "Client": {
+            "name": "Client",
+            "shortname": "Client",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/client.js",
+            "line": 9,
+            "description": "Runs the client",
+            "itemtype": "method",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "send",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "access": "private",
+            "tagname": ""
+        },
+        "Config": {
+            "name": "Config",
+            "shortname": "Config",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/config.js",
+            "line": 12,
+            "extends": "Base",
+            "itemtype": "property",
+            "type": "Object"
+        },
+        "Coverage": {
+            "name": "Coverage",
+            "shortname": "Coverage",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/coverage.js",
+            "line": 10,
+            "extends": "Base",
+            "itemtype": "property",
+            "type": "Object"
+        },
+        "PreceptorManager": {
+            "name": "PreceptorManager",
+            "shortname": "PreceptorManager",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/manager.js",
+            "line": 22,
+            "extends": "Base",
+            "itemtype": "property",
+            "type": "Object",
+            "params": [
+                {
+                    "name": "_configuration",
+                    "description": "",
+                    "type": "Config"
+                },
+                {
+                    "name": "_taskDecoratorList",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "_clientDecoratorList",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "_taskList",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "_reportManager",
+                    "description": "",
+                    "type": "ReportManager"
+                },
+                {
+                    "name": "_coverageCollector",
+                    "description": "",
+                    "type": "Collector"
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 15,
+            "description": "Called when reporting starts",
+            "itemtype": "method",
+            "name": "start",
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 24,
+            "description": "Called when reporting stops",
+            "itemtype": "method",
+            "name": "stop",
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 34,
+            "description": "Reporting is completed",
+            "itemtype": "method",
+            "name": "complete",
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 44,
+            "description": "Called when any item has custom data",
+            "itemtype": "method",
+            "name": "itemData",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "json",
+                    "description": "JSON-data",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 55,
+            "description": "Called when any item has a custom message",
+            "itemtype": "method",
+            "name": "itemMessage",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "message",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 67,
+            "description": "Called when suite starts",
+            "itemtype": "method",
+            "name": "suiteStart",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "suiteName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 79,
+            "description": "Called when suite ends",
+            "itemtype": "method",
+            "name": "suiteEnd",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 90,
+            "description": "Called when test starts",
+            "itemtype": "method",
+            "name": "testStart",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "testName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 103,
+            "description": "Called when test fails",
+            "itemtype": "method",
+            "name": "testFailed",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "message",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                },
+                {
+                    "name": "reason",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 115,
+            "description": "Called when test has an error",
+            "itemtype": "method",
+            "name": "testError",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "message",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                },
+                {
+                    "name": "reason",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 127,
+            "description": "Called when test has passed",
+            "itemtype": "method",
+            "name": "testPassed",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 137,
+            "description": "Called when test is undefined",
+            "itemtype": "method",
+            "name": "testUndefined",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 147,
+            "description": "Called when test is skipped",
+            "itemtype": "method",
+            "name": "testSkipped",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "reason",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 158,
+            "description": "Called when test is incomplete",
+            "itemtype": "method",
+            "name": "testIncomplete",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 169,
+            "description": "Processes the begin of the testing environment",
+            "itemtype": "method",
+            "name": "processBefore",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 180,
+            "description": "Processes the end of the testing environment",
+            "itemtype": "method",
+            "name": "processAfter",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 191,
+            "description": "Processes the beginning of a test",
+            "itemtype": "method",
+            "name": "processBeforeTest",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/clientDecorator/plain.js",
+            "line": 202,
+            "description": "Processes the ending of a test",
+            "itemtype": "method",
+            "name": "processAfterTest",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "PlainClientDecorator"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 17,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 63,
+            "description": "Gets the cucumber configuration\nOverwrite this function if the cucumber configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "getCucumberConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 74,
+            "description": "Sets the cucumber configuration\nOverwrite this function if the cucumber configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "setCucumberConfiguration",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 86,
+            "description": "Gets the path to the text files\nCucumber Option: <Last parameter>",
+            "itemtype": "method",
+            "name": "getPath",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 97,
+            "description": "Gets the tags to include/exclude\nCucumber Option: tags",
+            "itemtype": "method",
+            "name": "getTags",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 108,
+            "description": "Gets the required file before running the tests\nCucumber Option: require",
+            "itemtype": "method",
+            "name": "getRequires",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 119,
+            "description": "Gets the functions to execute as part of files to execute\nCucumber Option: <does not exist>",
+            "itemtype": "method",
+            "name": "getFunctions",
+            "return": {
+                "description": "",
+                "type": "Function[]"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 130,
+            "description": "Should output in coffee-script?\nCucumber Option: coffee",
+            "itemtype": "method",
+            "name": "shouldOutputCoffeeScript",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 141,
+            "description": "Gets the output format for cucumber\nCucumber Option: format",
+            "itemtype": "method",
+            "name": "getFormat",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 153,
+            "description": "Execute client",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/cucumber.js",
+            "line": 190,
+            "description": "Runs the cucumber tests, self-contained",
+            "itemtype": "method",
+            "name": "_runCucumber",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "path",
+                            "description": "",
+                            "type": "String"
+                        },
+                        {
+                            "name": "tags",
+                            "description": "",
+                            "type": "String[]",
+                            "optional": true
+                        },
+                        {
+                            "name": "require",
+                            "description": "",
+                            "type": "String[]",
+                            "optional": true
+                        },
+                        {
+                            "name": "functions",
+                            "description": "",
+                            "type": "Function[]",
+                            "optional": true
+                        },
+                        {
+                            "name": "format",
+                            "description": "",
+                            "type": "String",
+                            "optional": true
+                        },
+                        {
+                            "name": "coffeeScript",
+                            "description": "",
+                            "type": "Boolean",
+                            "optional": true
+                        }
+                    ]
+                },
+                {
+                    "name": "success",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "failure",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "CucumberClient"
+        },
+        {
+            "file": "lib/task/client/kobold.js",
+            "line": 15,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "KoboldClient"
+        },
+        {
+            "file": "lib/task/client/kobold.js",
+            "line": 33,
+            "description": "Gets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "getMochaConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "KoboldClient"
+        },
+        {
+            "file": "lib/task/client/kobold.js",
+            "line": 44,
+            "description": "Sets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "setMochaConfiguration",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "KoboldClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 24,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 68,
+            "description": "Gets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "getMochaConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 79,
+            "description": "Sets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "setMochaConfiguration",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 91,
+            "description": "Gets the reporter\nMocha Option: reporter",
+            "itemtype": "method",
+            "name": "getReporter",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 102,
+            "description": "Gets the UI interface ('tdd', 'bdd')\nMocha Option: ui",
+            "itemtype": "method",
+            "name": "getUi",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 113,
+            "description": "Should colors be used in output?\nMocha Option: colors",
+            "itemtype": "method",
+            "name": "useColors",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 124,
+            "description": "Output inline diffs\nMocha Option: inline-diffs",
+            "itemtype": "method",
+            "name": "useInlineDiffs",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 135,
+            "description": "Gets the threshold for slow tests\nMocha Option: slow",
+            "itemtype": "method",
+            "name": "getSlowThreshold",
+            "return": {
+                "description": "",
+                "type": "Int"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 146,
+            "description": "Should time-outs be observed?\nMocha Option: [no-]timeouts",
+            "itemtype": "method",
+            "name": "useTimeOuts",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 157,
+            "description": "Gets the threshold for too slow test-suites\nMocha Option: timeout",
+            "itemtype": "method",
+            "name": "getTimeOut",
+            "return": {
+                "description": "",
+                "type": "Int"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 168,
+            "description": "Should mocha bail on first error?\nMocha Option: bail",
+            "itemtype": "method",
+            "name": "shouldBail",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 179,
+            "description": "Gets the test filter\nMocha Option: grep",
+            "itemtype": "method",
+            "name": "getGrep",
+            "return": {
+                "description": "",
+                "type": "String|boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 190,
+            "description": "Should the test sequence inverted?\nMocha Option: invert",
+            "itemtype": "method",
+            "name": "shouldInvert",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 201,
+            "description": "Should mocha check for leaks\nMocha Option: check-leaks",
+            "itemtype": "method",
+            "name": "shouldCheckLeaks",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 212,
+            "description": "Gets the reporter\nMocha Option: async-only",
+            "itemtype": "method",
+            "name": "useAsyncOnly",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 223,
+            "description": "Gets the list of defined globals\nMocha Option: globals",
+            "itemtype": "method",
+            "name": "getGlobals",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 234,
+            "description": "Gets the path of all tests\nMocha Option: <last parameters>",
+            "itemtype": "method",
+            "name": "getPaths",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 245,
+            "description": "Gets a list of functions to execute before the tests\nMocha Option: <does not exist>",
+            "itemtype": "method",
+            "name": "getFunctions",
+            "return": {
+                "description": "",
+                "type": "Function[]"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 256,
+            "description": "Should the test-search be recursive?\nMocha Option: recursive",
+            "itemtype": "method",
+            "name": "getRecursive",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 267,
+            "description": "List of files to be required before the tests are run\nMocha Option: require",
+            "itemtype": "method",
+            "name": "getRequire",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 278,
+            "description": "Should tests be sorted after gathering and before executing?\nMocha Option: sort",
+            "itemtype": "method",
+            "name": "shouldSort",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 290,
+            "description": "Execute client",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 325,
+            "description": "Runs mocha tests, self-contained",
+            "itemtype": "method",
+            "name": "_runMocha",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "reporter",
+                            "description": "",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ui",
+                            "description": "",
+                            "type": "String"
+                        },
+                        {
+                            "name": "colors",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "inlineDiffs",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "slow",
+                            "description": "",
+                            "type": "Int"
+                        },
+                        {
+                            "name": "timeOuts",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "timeOut",
+                            "description": "",
+                            "type": "Int"
+                        },
+                        {
+                            "name": "bail",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "grep",
+                            "description": "",
+                            "type": "Boolean|string"
+                        },
+                        {
+                            "name": "invert",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "checkLeaks",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "asyncOnly",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "globals",
+                            "description": "",
+                            "type": "String[]"
+                        },
+                        {
+                            "name": "paths",
+                            "description": "",
+                            "type": "String[]",
+                            "optional": true,
+                            "optdefault": "['test'"
+                        },
+                        {
+                            "name": "functions",
+                            "description": "",
+                            "type": "Functions[]"
+                        },
+                        {
+                            "name": "recursive",
+                            "description": "",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "require",
+                            "description": "",
+                            "type": "String|string[]"
+                        },
+                        {
+                            "name": "sort",
+                            "description": "",
+                            "type": "Boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "success",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "failure",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/mocha.js",
+            "line": 489,
+            "description": "Lookup all files in the path given",
+            "itemtype": "method",
+            "name": "lookupFiles",
+            "params": [
+                {
+                    "name": "currentPath",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "recursive",
+                    "description": "",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MochaClient"
+        },
+        {
+            "file": "lib/task/client/node.js",
+            "line": 16,
+            "description": "Gets the path of the file to require",
+            "itemtype": "method",
+            "name": "getPath",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "NodeClient"
+        },
+        {
+            "file": "lib/task/client/node.js",
+            "line": 27,
+            "description": "Execute client",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "NodeClient"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 17,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 39,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 68,
+            "description": "Gets the cucumber configuration\nOverwrite this function if the cucumber configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "getCucumberConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 79,
+            "description": "Sets the cucumber configuration\nOverwrite this function if the cucumber configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "setCucumberConfiguration",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 91,
+            "description": "Gets the path to the text files\nCucumber Option: <Last parameter>",
+            "itemtype": "method",
+            "name": "getPath",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 102,
+            "description": "Gets the tags to include/exclude\nCucumber Option: tags",
+            "itemtype": "method",
+            "name": "getTags",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 113,
+            "description": "Gets the required file before running the tests\nCucumber Option: require",
+            "itemtype": "method",
+            "name": "getRequires",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 124,
+            "description": "Gets the functions to execute as part of files to execute\nCucumber Option: <does not exist>",
+            "itemtype": "method",
+            "name": "getFunctions",
+            "return": {
+                "description": "",
+                "type": "Function[]"
+            },
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 135,
+            "description": "Should output in coffee-script?\nCucumber Option: coffee",
+            "itemtype": "method",
+            "name": "shouldOutputCoffeeScript",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 146,
+            "description": "Gets the output format for cucumber\nCucumber Option: format",
+            "itemtype": "method",
+            "name": "getFunctions",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/cucumber.js",
+            "line": 158,
+            "description": "Run the client",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "CucumberTask"
+        },
+        {
+            "file": "lib/task/group.js",
+            "line": 20,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "GroupTask"
+        },
+        {
+            "file": "lib/task/group.js",
+            "line": 44,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "GroupTask"
+        },
+        {
+            "file": "lib/task/group.js",
+            "line": 64,
+            "description": "Run the tasks in parallel?",
+            "itemtype": "method",
+            "name": "isParallel",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "GroupTask"
+        },
+        {
+            "file": "lib/task/group.js",
+            "line": 74,
+            "description": "Gets the tasks assigned to this group",
+            "itemtype": "method",
+            "name": "getTasks",
+            "return": {
+                "description": "",
+                "type": "Object[]"
+            },
+            "class": "GroupTask"
+        },
+        {
+            "file": "lib/task/group.js",
+            "line": 84,
+            "description": "Bail execution when encountering the first error",
+            "itemtype": "method",
+            "name": "shouldBail",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "GroupTask"
+        },
+        {
+            "file": "lib/task/group.js",
+            "line": 95,
+            "description": "Applies all decorators",
+            "itemtype": "method",
+            "name": "applyTaskDecorators",
+            "params": [
+                {
+                    "name": "tasks",
+                    "description": "",
+                    "type": "Object[]"
+                },
+                {
+                    "name": "decoratorList",
+                    "description": "",
+                    "type": "AbstractTaskDecorator[]"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object[]"
+            },
+            "class": "GroupTask"
+        },
+        {
+            "file": "lib/task/group.js",
+            "line": 135,
+            "description": "Run the client",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "GroupTask"
+        },
+        {
+            "file": "lib/task/kobold.js",
+            "line": 17,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "KoboldTask"
+        },
+        {
+            "file": "lib/task/kobold.js",
+            "line": 56,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "KoboldTask"
+        },
+        {
+            "file": "lib/task/kobold.js",
+            "line": 70,
+            "description": "Gets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "getMochaConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "KoboldTask"
+        },
+        {
+            "file": "lib/task/kobold.js",
+            "line": 81,
+            "description": "Sets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "setMochaConfiguration",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "KoboldTask"
+        },
+        {
+            "file": "lib/task/kobold.js",
+            "line": 93,
+            "description": "Run the client",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "KoboldTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 17,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 51,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 116,
+            "description": "Gets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "getMochaConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 127,
+            "description": "Sets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
+            "itemtype": "method",
+            "name": "setMochaConfiguration",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 139,
+            "description": "Gets the reporter\nMocha Option: reporter",
+            "itemtype": "method",
+            "name": "getReporter",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 150,
+            "description": "Gets the UI interface ('tdd', 'bdd')\nMocha Option: ui",
+            "itemtype": "method",
+            "name": "getUi",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 161,
+            "description": "Should colors be used in output?\nMocha Option: colors",
+            "itemtype": "method",
+            "name": "useColors",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 172,
+            "description": "Output inline diffs\nMocha Option: inline-diffs",
+            "itemtype": "method",
+            "name": "useInlineDiffs",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 183,
+            "description": "Gets the threshold for slow tests\nMocha Option: slow",
+            "itemtype": "method",
+            "name": "getSlowThreshold",
+            "return": {
+                "description": "",
+                "type": "Int"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 194,
+            "description": "Should time-outs be observed?\nMocha Option: [no-]timeouts",
+            "itemtype": "method",
+            "name": "useTimeOuts",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 205,
+            "description": "Gets the threshold for too slow test-suites\nMocha Option: timeout",
+            "itemtype": "method",
+            "name": "getTimeOut",
+            "return": {
+                "description": "",
+                "type": "Int"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 216,
+            "description": "Should mocha bail on first error?\nMocha Option: bail",
+            "itemtype": "method",
+            "name": "shouldBail",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 227,
+            "description": "Gets the test filter\nMocha Option: grep",
+            "itemtype": "method",
+            "name": "getGrep",
+            "return": {
+                "description": "",
+                "type": "String|boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 238,
+            "description": "Should the test sequence inverted?\nMocha Option: invert",
+            "itemtype": "method",
+            "name": "shouldInvert",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 249,
+            "description": "Should mocha check for leaks\nMocha Option: check-leaks",
+            "itemtype": "method",
+            "name": "shouldCheckLeaks",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 260,
+            "description": "Gets the reporter\nMocha Option: async-only",
+            "itemtype": "method",
+            "name": "useAsyncOnly",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 271,
+            "description": "Gets the list of defined globals\nMocha Option: globals",
+            "itemtype": "method",
+            "name": "getGlobals",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 282,
+            "description": "Gets the path of all tests\nMocha Option: <last parameters>",
+            "itemtype": "method",
+            "name": "getPaths",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 293,
+            "description": "Gets a list of functions to execute before the tests\nMocha Option: <does not exist>",
+            "itemtype": "method",
+            "name": "getFunctions",
+            "return": {
+                "description": "",
+                "type": "Function[]"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 304,
+            "description": "Should the test-search be recursive?\nMocha Option: recursive",
+            "itemtype": "method",
+            "name": "getRecursive",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 315,
+            "description": "List of files to be required before the tests are run\nMocha Option: require",
+            "itemtype": "method",
+            "name": "getRequire",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 326,
+            "description": "Should tests be sorted after gathering and before executing?\nMocha Option: sort",
+            "itemtype": "method",
+            "name": "shouldSort",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/mocha.js",
+            "line": 338,
+            "description": "Run the client",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MochaTask"
+        },
+        {
+            "file": "lib/task/node.js",
+            "line": 16,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "NodeTask"
+        },
+        {
+            "file": "lib/task/node.js",
+            "line": 30,
+            "description": "Gets the path of the file to require",
+            "itemtype": "method",
+            "name": "getPath",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "NodeTask"
+        },
+        {
+            "file": "lib/task/node.js",
+            "line": 41,
+            "description": "Run the client",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "NodeTask"
+        },
+        {
+            "file": "lib/task/shell.js",
+            "line": 18,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "ShellTask"
+        },
+        {
+            "file": "lib/task/shell.js",
+            "line": 37,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "ShellTask"
+        },
+        {
+            "file": "lib/task/shell.js",
+            "line": 57,
+            "description": "Get command to execute",
+            "itemtype": "method",
+            "name": "getCommand",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "ShellTask"
+        },
+        {
+            "file": "lib/task/shell.js",
+            "line": 67,
+            "description": "Get the environment variables set for the shell",
+            "itemtype": "method",
+            "name": "getEnv",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "ShellTask"
+        },
+        {
+            "file": "lib/task/shell.js",
+            "line": 77,
+            "description": "Get the current working directory",
+            "itemtype": "method",
+            "name": "getCwd",
+            "return": {
+                "description": "",
+                "type": "String|null"
+            },
+            "class": "ShellTask"
+        },
+        {
+            "file": "lib/task/shell.js",
+            "line": 88,
+            "description": "Run the client",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "ShellTask"
+        },
+        {
+            "file": "lib/taskDecorator/group.js",
+            "line": 17,
+            "description": "Run the decorator",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "taskOptions",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "taskIndex",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "class": "GroupTaskDecorator"
+        },
+        {
+            "file": "lib/taskDecorator/group.js",
+            "line": 33,
+            "description": "Processes an object without type when one is given",
+            "itemtype": "method",
+            "name": "_processWhenObject",
+            "params": [
+                {
+                    "name": "taskOptions",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "GroupTaskDecorator"
+        },
+        {
+            "file": "lib/taskDecorator/group.js",
+            "line": 66,
+            "description": "Processes an array when one is given",
+            "itemtype": "method",
+            "name": "_processWhenArray",
+            "params": [
+                {
+                    "name": "taskOptions",
+                    "description": "",
+                    "type": "Object|array"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "GroupTaskDecorator"
+        },
+        {
+            "file": "lib/taskDecorator/identifier.js",
+            "line": 16,
+            "description": "Run the decorator",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "taskOptions",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "taskIndex",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "class": "IdentifierTaskDecorator"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 23,
+            "description": "Abstract client constructor",
+            "params": [
+                {
+                    "name": "decorator",
+                    "description": "",
+                    "type": "Object[]"
+                },
+                {
+                    "name": "decoratorPlugins",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 50,
+            "description": "Setup decorator plugins",
+            "itemtype": "method",
+            "name": "_setupDecorator",
+            "params": [
+                {
+                    "name": "eventReporter",
+                    "description": "",
+                    "type": "EventReporter"
+                },
+                {
+                    "name": "decorator",
+                    "description": "",
+                    "type": "Object[]"
+                },
+                {
+                    "name": "decoratorPlugins",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "AbstractClientDecorator[]"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 84,
+            "description": "Processes the begin of the testing environment",
+            "itemtype": "method",
+            "name": "processBefore",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 103,
+            "description": "Processes the end of the testing environment",
+            "itemtype": "method",
+            "name": "processAfter",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 122,
+            "description": "Processes the beginning of a test",
+            "itemtype": "method",
+            "name": "processBeforeTest",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 141,
+            "description": "Processes the ending of a test",
+            "itemtype": "method",
+            "name": "processAfterTest",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 161,
+            "description": "Gets the options",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 171,
+            "description": "Gets the decorator",
+            "itemtype": "method",
+            "name": "getDecorator",
+            "return": {
+                "description": "",
+                "type": "AbstractClientDecorator[]"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 182,
+            "description": "Gets the report-manager",
+            "itemtype": "method",
+            "name": "getReportManager",
+            "return": {
+                "description": "",
+                "type": "ReportManager"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 192,
+            "description": "Gets the event-reporter",
+            "itemtype": "method",
+            "name": "getEventReporter",
+            "return": {
+                "description": "",
+                "type": "EventReporter"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 203,
+            "description": "Will be called when the client begins",
+            "itemtype": "method",
+            "name": "run",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClient.js",
+            "line": 215,
+            "itemtype": "property",
+            "name": "TYPE",
+            "type": "{string}",
+            "static": 1,
+            "class": "AbstractClient"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 20,
+            "description": "Abstract client-decorator constructor",
+            "params": [
+                {
+                    "name": "eventReporter",
+                    "description": "",
+                    "type": "EventReporter"
+                },
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 38,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 52,
+            "description": "Gets the options",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 62,
+            "description": "Gets the client-decorator configuration",
+            "itemtype": "method",
+            "name": "getConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 73,
+            "description": "Gets the event-reporter",
+            "itemtype": "method",
+            "name": "getEventReporter",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 84,
+            "description": "Processes the begin of the testing environment",
+            "itemtype": "method",
+            "name": "processBefore",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 94,
+            "description": "Processes the end of the testing environment",
+            "itemtype": "method",
+            "name": "processAfter",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 104,
+            "description": "Processes the beginning of a test",
+            "itemtype": "method",
+            "name": "processBeforeTest",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 114,
+            "description": "Processes the ending of a test",
+            "itemtype": "method",
+            "name": "processAfterTest",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractClientDecorator.js",
+            "line": 126,
+            "itemtype": "property",
+            "name": "TYPE",
+            "type": "{string}",
+            "static": 1,
+            "class": "AbstractClientDecorator"
+        },
+        {
+            "file": "lib/abstractForkTask.js",
+            "line": 20,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "AbstractForkTask"
+        },
+        {
+            "file": "lib/abstractForkTask.js",
+            "line": 33,
+            "description": "Should task fail on error?",
+            "itemtype": "method",
+            "name": "shouldFailOnError",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractForkTask"
+        },
+        {
+            "file": "lib/abstractForkTask.js",
+            "line": 43,
+            "description": "Runs the client in a forked environment",
+            "itemtype": "method",
+            "name": "runClient",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "clientPath",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractForkTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 25,
+            "description": "Abstract task constructor",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "coverageCollector",
+                    "description": "",
+                    "type": "Collector"
+                },
+                {
+                    "name": "reportManager",
+                    "description": "",
+                    "type": "ReportManager"
+                },
+                {
+                    "name": "plugins",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "taskDecorator",
+                            "description": "",
+                            "type": "Object"
+                        },
+                        {
+                            "name": "clientDecorator",
+                            "description": "",
+                            "type": "Object"
+                        },
+                        {
+                            "name": "task",
+                            "description": "",
+                            "type": "Object"
+                        }
+                    ]
+                },
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 51,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 66,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 110,
+            "description": "Augments the data with default values",
+            "itemtype": "method",
+            "name": "augment",
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 120,
+            "description": "Gets the options",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 130,
+            "description": "Gets the client configuration",
+            "itemtype": "method",
+            "name": "getConfiguration",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 140,
+            "description": "Gets the decorator",
+            "itemtype": "method",
+            "name": "getDecorator",
+            "return": {
+                "description": "",
+                "type": "Object[]"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 150,
+            "description": "Gets the global configuration",
+            "itemtype": "method",
+            "name": "getGlobalConfig",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 160,
+            "description": "Gets the coverage collector",
+            "itemtype": "method",
+            "name": "getCoverageCollector",
+            "return": {
+                "description": "",
+                "type": "Collector"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 170,
+            "description": "Gets the type of the preceptor task",
+            "itemtype": "method",
+            "name": "getType",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 180,
+            "description": "Gets a unique id for the task",
+            "itemtype": "method",
+            "name": "getTaskId",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 190,
+            "description": "Gets the name of the preceptor task",
+            "itemtype": "method",
+            "name": "getName",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 200,
+            "description": "Gets the title of the preceptor task",
+            "itemtype": "method",
+            "name": "getTitle",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 210,
+            "description": "Run tasks in a suite?",
+            "itemtype": "method",
+            "name": "isSuite",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 220,
+            "description": "Is the task in debug-mode?",
+            "itemtype": "method",
+            "name": "inDebug",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 230,
+            "description": "Is the task active?",
+            "itemtype": "method",
+            "name": "isActive",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 240,
+            "description": "Is the task verbose?",
+            "itemtype": "method",
+            "name": "isVerbose",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 250,
+            "description": "Echo std-out output of child-process?",
+            "itemtype": "method",
+            "name": "shouldEchoStdOut",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 260,
+            "description": "Echo std-err output of child-process?",
+            "itemtype": "method",
+            "name": "shouldEchoStdErr",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 271,
+            "description": "Gets all plugins",
+            "itemtype": "method",
+            "name": "getPlugins",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 281,
+            "description": "Gets all options-decorator plugins",
+            "itemtype": "method",
+            "name": "getTaskDecoratorPlugins",
+            "return": {
+                "description": "",
+                "type": "AbstractTaskDecorator[]"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 291,
+            "description": "Gets all client-decorator plugins",
+            "itemtype": "method",
+            "name": "getClientDecoratorPlugins",
+            "return": {
+                "description": "",
+                "type": "Object[]"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 301,
+            "description": "Gets a specific task plugin",
+            "itemtype": "method",
+            "name": "getTaskPlugin",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "AbstractTask"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 313,
+            "description": "Gets the report manager",
+            "itemtype": "method",
+            "name": "getReportManager",
+            "return": {
+                "description": "",
+                "type": "ReportManager"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 324,
+            "description": "Gets the label of the task",
+            "itemtype": "method",
+            "name": "getLabel",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 335,
+            "description": "Run the task",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 376,
+            "description": "Run the task",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 390,
+            "itemtype": "property",
+            "name": "TYPE",
+            "type": "{string}",
+            "static": 1,
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTaskDecorator.js",
+            "line": 18,
+            "description": "Abstract task-decorator constructor",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": "AbstractTaskDecorator"
+        },
+        {
+            "file": "lib/abstractTaskDecorator.js",
+            "line": 34,
+            "description": "Initializes the instance",
+            "class": "AbstractTaskDecorator"
+        },
+        {
+            "file": "lib/abstractTaskDecorator.js",
+            "line": 42,
+            "description": "Gets the options",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "AbstractTaskDecorator"
+        },
+        {
+            "file": "lib/abstractTaskDecorator.js",
+            "line": 53,
+            "description": "Run the decorator",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "taskOptions",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "taskIndex",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void|object|object[]"
+            },
+            "class": "AbstractTaskDecorator"
+        },
+        {
+            "file": "lib/abstractTaskDecorator.js",
+            "line": 67,
+            "itemtype": "property",
+            "name": "TYPE",
+            "type": "{string}",
+            "static": 1,
+            "class": "AbstractTaskDecorator"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 20,
+            "description": "Config constructor",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 36,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 51,
+            "description": "Gets the options",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 62,
+            "description": "Validates the data given",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 92,
+            "description": "Augments the data with default values",
+            "itemtype": "method",
+            "name": "augment",
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 102,
+            "description": "Is application in debug mode?\n\nNote: In debug mode, the clients are run in the same process.",
+            "itemtype": "method",
+            "name": "isDebug",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 114,
+            "description": "Is application in verbose mode?",
+            "itemtype": "method",
+            "name": "isVerbose",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 124,
+            "description": "Gets the report-manager configuration",
+            "itemtype": "method",
+            "name": "getReportManager",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 134,
+            "description": "Gets the reporter configuration",
+            "itemtype": "method",
+            "name": "getReporter",
+            "return": {
+                "description": "",
+                "type": "Object[]"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 144,
+            "description": "Gets the listener configuration",
+            "itemtype": "method",
+            "name": "getListener",
+            "return": {
+                "description": "",
+                "type": "Object[]"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 154,
+            "description": "Gets the coverage options",
+            "itemtype": "method",
+            "name": "getCoverage",
+            "return": {
+                "description": "",
+                "type": "Coverage"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 164,
+            "description": "Gets the plugins configuration",
+            "itemtype": "method",
+            "name": "getPlugins",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 175,
+            "description": "Exports data to an object",
+            "itemtype": "method",
+            "name": "toObject",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Config"
+        },
+        {
+            "file": "lib/config.js",
+            "line": 189,
+            "itemtype": "property",
+            "name": "TYPE",
+            "type": "{string}",
+            "static": 1,
+            "class": "Config"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 18,
+            "description": "Coverage constructor",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 33,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 43,
+            "description": "Gets the client-driver instance",
+            "itemtype": "method",
+            "name": "getInstance",
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 53,
+            "description": "Gets the options",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 64,
+            "description": "Is coverage active?",
+            "itemtype": "method",
+            "name": "isActive",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 74,
+            "description": "Get path to where the coverage data should be written to",
+            "itemtype": "method",
+            "name": "getPath",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 84,
+            "description": "Gets the root-directory",
+            "itemtype": "method",
+            "name": "getRoot",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 94,
+            "description": "Gets the type of reports to create",
+            "itemtype": "method",
+            "name": "getReports",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 104,
+            "description": "Get includes for coverage",
+            "itemtype": "method",
+            "name": "getIncludes",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 114,
+            "description": "Get excludes for coverage",
+            "itemtype": "method",
+            "name": "getExcludes",
+            "return": {
+                "description": "",
+                "type": "String[]"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 125,
+            "description": "Exports data to an object",
+            "itemtype": "method",
+            "name": "toObject",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/coverage.js",
+            "line": 137,
+            "itemtype": "property",
+            "name": "TYPE",
+            "type": "{string}",
+            "static": 1,
+            "class": "Coverage"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 39,
+            "description": "Web-driver server constructor",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 63,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 102,
+            "description": "Initializes the options-decorator registry",
+            "itemtype": "method",
+            "name": "_initializeTaskDecoratorRegistry",
+            "access": "private",
+            "tagname": "",
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 122,
+            "description": "Initializes the client-decorator registry",
+            "itemtype": "method",
+            "name": "_initializeClientDecoratorRegistry",
+            "access": "private",
+            "tagname": "",
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 140,
+            "description": "Initializes the task registry",
+            "itemtype": "method",
+            "name": "_initializeTaskRegistry",
+            "access": "private",
+            "tagname": "",
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 165,
+            "description": "Gets the options",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 175,
+            "description": "Gets the configuration object",
+            "itemtype": "method",
+            "name": "getConfig",
+            "return": {
+                "description": "",
+                "type": "Config"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 185,
+            "description": "Gets all the shared options for tasks",
+            "itemtype": "method",
+            "name": "getSharedTaskOptions",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 195,
+            "description": "Gets a list of task options",
+            "itemtype": "method",
+            "name": "getTasks",
+            "return": {
+                "description": "",
+                "type": "Object[]"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 206,
+            "description": "Gets the report-manager",
+            "itemtype": "method",
+            "name": "getReportManager",
+            "return": {
+                "description": "",
+                "type": "ReportManager"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 217,
+            "description": "Validate data given",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 234,
+            "description": "Augment data with default values",
+            "itemtype": "method",
+            "name": "augment",
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 247,
+            "description": "Gets a dictionary of registered options-decorator",
+            "itemtype": "method",
+            "name": "getTaskDecoratorList",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 257,
+            "description": "Checks if a options-decorator is registered",
+            "itemtype": "method",
+            "name": "hasTaskDecorator",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 268,
+            "description": "Gets a specific registered options-decorator",
+            "itemtype": "method",
+            "name": "getTaskDecorator",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 279,
+            "description": "Registers a options-decorator",
+            "itemtype": "method",
+            "name": "registerTaskDecorator",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "contr",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 290,
+            "description": "Registers a list of options-decorators",
+            "itemtype": "method",
+            "name": "registerTaskDecoratorRange",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "`{ name: <string>, fn: <function> }`",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 303,
+            "description": "Gets a dictionary of registered client-decorator",
+            "itemtype": "method",
+            "name": "getClientDecoratorList",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 313,
+            "description": "Checks if a client-decorator is registered",
+            "itemtype": "method",
+            "name": "hasClientDecorator",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 324,
+            "description": "Gets a specific registered client-decorator",
+            "itemtype": "method",
+            "name": "getClientDecorator",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 335,
+            "description": "Registers a client-decorator",
+            "itemtype": "method",
+            "name": "registerClientDecorator",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "path",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 346,
+            "description": "Registers a list of client-decorators",
+            "itemtype": "method",
+            "name": "registerClientDecoratorRange",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "`{ name: <string>, path: <string> }`",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 359,
+            "description": "Gets a dictionary of registered tasks",
+            "itemtype": "method",
+            "name": "getTaskList",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 369,
+            "description": "Checks if a task is registered",
+            "itemtype": "method",
+            "name": "hasTask",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 380,
+            "description": "Gets a specific registered task",
+            "itemtype": "method",
+            "name": "getTask",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 391,
+            "description": "Registers a task",
+            "itemtype": "method",
+            "name": "registerTask",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "contr",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 402,
+            "description": "Registers a list of task",
+            "itemtype": "method",
+            "name": "registerTaskRange",
+            "params": [
+                {
+                    "name": "list",
+                    "description": "`{ name: <string>, fn: <function> }`",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 415,
+            "description": "Run the preceptor application",
+            "itemtype": "method",
+            "name": "run",
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 485,
+            "description": "Write the coverage report collected",
+            "itemtype": "method",
+            "name": "_writeCoverage",
+            "params": [
+                {
+                    "name": "coverageConfiguration",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 534,
+            "itemtype": "property",
+            "name": "TYPE",
+            "type": "{string}",
+            "static": 1,
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 544,
+            "itemtype": "property",
+            "name": "AbstractClient",
+            "type": "{AbstractClient}",
+            "static": 1,
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 551,
+            "itemtype": "property",
+            "name": "AbstractClientDecorator",
+            "type": "{AbstractClientDecorator}",
+            "static": 1,
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 558,
+            "itemtype": "property",
+            "name": "AbstractForkTask",
+            "type": "{AbstractForkTask}",
+            "static": 1,
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 565,
+            "itemtype": "property",
+            "name": "AbstractTaskDecorator",
+            "type": "{AbstractTaskDecorator}",
+            "static": 1,
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 572,
+            "itemtype": "property",
+            "name": "AbstractTask",
+            "type": "{AbstractTask}",
+            "static": 1,
+            "class": "PreceptorManager"
+        },
+        {
+            "file": "lib/manager.js",
+            "line": 579,
+            "itemtype": "property",
+            "name": "version",
+            "type": "{string}",
+            "static": 1,
+            "class": "PreceptorManager"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib/abstractTask.js:150"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib/abstractTask.js:160"
+        },
+        {
+            "message": "Missing item type\nAbstract client constructor",
+            "line": " lib/abstractClient.js:23"
+        },
+        {
+            "message": "Missing item type\nAbstract client-decorator constructor",
+            "line": " lib/abstractClientDecorator.js:20"
+        },
+        {
+            "message": "Missing item type\nAbstract task constructor",
+            "line": " lib/abstractTask.js:25"
+        },
+        {
+            "message": "Missing item type\nAbstract task-decorator constructor",
+            "line": " lib/abstractTaskDecorator.js:18"
+        },
+        {
+            "message": "Missing item type\nInitializes the instance",
+            "line": " lib/abstractTaskDecorator.js:34"
+        },
+        {
+            "message": "Missing item type\nConfig constructor",
+            "line": " lib/config.js:20"
+        },
+        {
+            "message": "Missing item type\nCoverage constructor",
+            "line": " lib/coverage.js:18"
+        },
+        {
+            "message": "Missing item type\nWeb-driver server constructor",
+            "line": " lib/manager.js:39"
+        }
+    ]
+}

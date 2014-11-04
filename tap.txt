@@ -1,0 +1,10 @@
+1..6
+ok 1  Root Everything should know the answer to life, the universe, and everything
+ok 2  Root Everything The End should print something
+not ok 3  Root Calculations should find all there is
+ok 4  Root Calculations should calculate the worst first million years for marvin
+ok 5  Root Phrasing should not panic
+ok 6  Root Phrasing should panic
+# tests 6
+# fail 1
+# passed 5
