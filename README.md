@@ -3,6 +3,46 @@ Preceptor
 
 Preceptor is a test-runner and test-aggregator that runs multiple tests and testing frameworks in parallel, sequential, or a combination there of, aggregating all of the test-results and coverage-reports.
 
+
+[![Build Status](https://secure.travis-ci.org/yahoo/preceptor.png)](http://travis-ci.org/yahoo/preceptor)
+[![npm version](https://badge.fury.io/js/preceptor.svg)](http://badge.fury.io/js/preceptor)
+
+[![NPM](https://nodei.co/npm/preceptor.png?downloads=true)](https://nodei.co/npm/preceptor/)
+
+
+**Table of Contents**
+* [Installation](#installation)
+* [What is Preceptor?](#what-is-preceptor)
+* [Getting Started](#getting-started)
+* [Usage](#usage)
+    * [Testing Lifecycle](#testing-lifecycle)
+        * [Administrative states](#administrative-states)
+        * [Suite management](#suite-management)
+        * [Test management](#test-management)
+    * [Configuration](#configuration)
+        * [Global configuration](#global-configuration)
+            * [Reporting](#reporting)
+            * [Coverage](#coverage)
+            * [Plugins](#plugins)
+        * [Shared configuration](#shared-configuration)
+    * [Tasks](#tasks)
+        * [General configuration](#general-configuration)
+        * [Cucumber Task](#cucumber-task)
+        * [Mocha Task](#mocha-task)
+        * [Kobold Task](#kobold-task)
+        * [Node Task](#node-task)
+        * [Shell Task](#shell-task)
+        * [Group Task](#group-task)
+    * [Task Decorators](#task-decorators)
+    * [Client Decorators](#client-decorators)
+    * [Client Runner](#client-runner)
+    * [Plugin Naming](#plugin-naming)
+* [API-Documentation](#api-documentation)
+* [Tests](#tests)
+* [Third-party libraries](#third-party-libraries)
+* [License](#license)
+
+
 ##Installation
 
 Install this module with the following command:
@@ -639,7 +679,7 @@ Preceptors task-independent behavior is configured in this section. It has the f
 * ```coverage``` - Coverage option
 * ```plugins``` - List of plugin modules to load
 
-######Report Manager
+######Reporting
 The report manager describes what reporters should be used and what it should listen for to receive testing lifecycle events from unsupported clients.
 See the ```preceptor-reporter``` project documentation for more information on the ```reportManager``` property.
 
@@ -657,6 +697,8 @@ This feature uses Istanbul for collecting and merging coverage reports. See the 
 __Additional Reports__
 Preceptor adds the ```file``` report to the list of reports to be able to disable the export of the JSON data. The ```file``` value will not be given to Istanbul since it is not available there.
 
+####Shared configuration
+Any value that is assigned to the 'shared' object in the configuration root will be assigned as default for all task options. Task options then can overwrite these values. This gives a developer the opportunity to set own default values for properties, overwriting the default values that were given by the system.
 
 ######Plugins
 The Preceptor system supports the loading of custom plugins by installing the modules through NPM, and by adding the module name to this list. Preceptor then tries to load each of these modules by executing the ```loader``` function on the exported module interface, giving it the instance of Preceptor itself. The plugin can then register itself to Preceptor. See the ```preceptor-webdriver``` project for an example.
