@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Preceptor : Test runner and aggregator">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Preceptor</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/yahoo/preceptor">View on GitHub</a>
+
+          <h1 id="project_title">Preceptor</h1>
+          <h2 id="project_tagline">Test runner and aggregator</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/yahoo/preceptor/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/yahoo/preceptor/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="preceptor" class="anchor" href="#preceptor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preceptor</h1>
+
+<p>Preceptor is a test-runner and test-aggregator that runs multiple tests and testing frameworks in parallel, sequential, or a combination there of, aggregating all of the test-results and coverage-reports.</p>
+
+<p><a href="http://travis-ci.org/yahoo/preceptor"><img src="https://secure.travis-ci.org/yahoo/preceptor.png" alt="Build Status"></a>
+<a href="http://badge.fury.io/js/preceptor"><img src="https://badge.fury.io/js/preceptor.svg" alt="npm version"></a></p>
+
+<p><a href="https://nodei.co/npm/preceptor/"><img src="https://nodei.co/npm/preceptor.png?downloads=true" alt="NPM"></a></p>
+
+<p><strong>Table of Contents</strong></p>
+
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#what-is-preceptor">What is Preceptor?</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li>
+<a href="#usage">Usage</a>
+
+<ul>
+<li>
+<a href="#testing-lifecycle">Testing Lifecycle</a>
+
+<ul>
+<li><a href="#administrative-states">Administrative states</a></li>
+<li><a href="#suite-management">Suite management</a></li>
+<li><a href="#test-management">Test management</a></li>
+</ul>
+</li>
+<li>
+<a href="#configuration">Configuration</a>
+
+<ul>
+<li>
+<a href="#global-configuration">Global configuration</a>
+
+<ul>
+<li><a href="#reporting">Reporting</a></li>
+<li><a href="#coverage">Coverage</a></li>
+<li><a href="#plugins">Plugins</a></li>
+</ul>
+</li>
+<li><a href="#shared-configuration">Shared configuration</a></li>
+</ul>
+</li>
+<li>
+<a href="#tasks">Tasks</a>
+
+<ul>
+<li><a href="#general-configuration">General configuration</a></li>
+<li><a href="#cucumber-task">Cucumber Task</a></li>
+<li><a href="#mocha-task">Mocha Task</a></li>
+<li><a href="#kobold-task">Kobold Task</a></li>
+<li><a href="#node-task">Node Task</a></li>
+<li><a href="#shell-task">Shell Task</a></li>
+<li><a href="#group-task">Group Task</a></li>
+</ul>
+</li>
+<li><a href="#task-decorators">Task Decorators</a></li>
+<li><a href="#client-decorators">Client Decorators</a></li>
+<li><a href="#client-runner">Client Runner</a></li>
+<li><a href="#plugin-naming">Plugin Naming</a></li>
+</ul>
+</li>
+<li><a href="#api-documentation">API-Documentation</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#third-party-libraries">Third-party libraries</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Install this module with the following command:</p>
+
+<div class="highlight highlight-shell"><pre>npm install preceptor
+</pre></div>
+
+<p>Or install it globally:</p>
+
+<div class="highlight highlight-shell"><pre>npm install -g preceptor
+</pre></div>
+
+<p>To add the module to your <code>package.json</code> dependencies:</p>
+
+<div class="highlight highlight-shell"><pre>npm install --save preceptor
+</pre></div>
+
+<p>To add the module to your <code>package.json</code> dev-dependencies:</p>
+
+<div class="highlight highlight-shell"><pre>npm install --save-dev preceptor
+</pre></div>
+
+<h2>
+<a id="what-is-preceptor" class="anchor" href="#what-is-preceptor" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Preceptor?</h2>
+
+<p>Today, there are a lot of testing frameworks out there, many of which are optimized for testing specific areas. A couple of these frameworks are:</p>
+
+<ul>
+<li>
+<em>Mocha</em> - The most popular unit-testing tool (according to NPM downloads), testing each individual unit/component of a system in isolation.</li>
+<li>
+<em>Cucumber</em> - A high-level acceptance testing tool that tests features through scenarios, giving product owners and teams a higher degree of collaboration, and management a deeper understanding of the systems and to what extend it is tested.</li>
+<li>
+<em>Kobold</em> - A visual regression testing tool, making sure that any visual changes are recognized before the code goes out.</li>
+<li>...</li>
+</ul>
+
+<p>All of these testing-frameworks produce their own test results - often in different output formats. Additional testing tools, like Selenium, create even more results, generating the results for tests that were run in multiple browsers. CI systems help here a bit since they can usually handle multiple results, but all the results are usually plugged into one root-node, making it hard to organize and analyse the test-results. Some engineers spend a good amount of time aggregating all of these results in a reasonable manner, creating often one-off hacks to merge all the results. Others just manually parse through the results, determining if any kind of problems were encountered during the most recent test-run, loosing the ability to have a one-look green/red summary.</p>
+
+<p>Code-coverage metrics pose a similar problem: code-coverage reports are created independently and in isolation of tests that run for the same system in different testing frameworks or in separate tests (unit, component, integration, functional, acceptance, ...). It is challenging to have a complete overview of all coverage metrics as there is never only one coverage-report for all the tests. What is usually the case is that only some tests have coverage reports, possibly having only a subset of the metrics that could have been collected - most testing systems, for example, are not collecting client-side coverage-reports when running integration tests with Selenium; these are valuable coverage results.</p>
+
+<p>In addition, all of these tools need to be coordinated, running sequentially, in parallel, or even a combination thereof. However, many testing tools do not have this capability build-in, resulting in third-party developers create their own solutions which are quite often not much more than a hack, having also quite possibly inconsistent interfaces as they are usually not created by the same people. All of this coordination can easily turn the code-base into an unmaintainable mess, quite possibly triggering false-positives due to flaky testing infrastructure and code.</p>
+
+<p>Preceptor tries to solve all of these problems by using a consistent way of configuring the tools, managing the workflow within a single configuration file, and aggregating the test-results and code-coverage reports in one place. In addition, it adds a flexible and extensible plugin infrastructure to the test-runner, introducing even more features like a Selenium / WebDriver integration, injecting client/server code in setup/teardown methods of different testing frameworks, keeping the test-code free of glue-code.</p>
+
+<p>Preceptor comes with the following features out of the box:</p>
+
+<ul>
+<li>Test-report aggregation, combining all of the test-results in one place, supporting a big list of commonly used reporters, including display reporters such as “Spec” and “Dot” and file-format reporters such as “JUnit” and “TAP”, all of which can be used at the same time.</li>
+<li>Centralized collection of code-coverage metrics for every test that ran, merging all of the results in one place, giving the developers, testers, and managers a complete picture of what has been tested, and what might need more tests.</li>
+<li>Coordination of tests, queuing them, running them in parallel, or composing them - any way the developer needs or wants them to run.</li>
+<li>Support of multiple commonly used testing frameworks including: Mocha, Cucumber, and Kobold. Support for other frameworks and test-runners like Jasmine and Karma are a WIP.</li>
+<li>Report listeners to parse results from unsupported testing-framework through the usage of commonly used protocols like the TeamCity test-result protocol that is used by the IntelliJ IDEs.</li>
+</ul>
+
+<p>As mentioned, plugins add even more features, including:</p>
+
+<ul>
+<li>Selenium test management, starting-up and tearing-down Selenium servers transparently for the developers and testers, injecting code to the test-client, reducing with it the boilerplate code needed to run Selenium tests. This will also help simplify the configuration of the Selenium test system.</li>
+<li>Client-side code-coverage collection, merging the code-coverage reports of an application that ran in a browser.</li>
+</ul>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Preceptor comes with a command-line tool that takes a configuration file that defines what sequence the task should run, what data needs to be collected, and how some tasks affect others.</p>
+
+<p>Let's have a look at some examples that uses Mocha as sole testing tool. Preceptor can be used to mix multiple testing frameworks and independent tests at the same time, however, I will only use Mocha for the next examples.</p>
+
+<p>To get started, create the following file with the name <code>config.js</code>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="c1">// Task</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span> <span class="c1">// Just giving the task a title</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>This configuration adds a Mocha task and two reports:</p>
+
+<ul>
+<li>
+<code>Spec</code> - A detailed console report that is very similar to Mocha's <code>spec</code> reporter.</li>
+<li>
+<code>List</code> - Comprehensive list of all problems encountered which will be printed add the end of all test-runs.</li>
+</ul>
+
+<p>As SUT, add the following <code>lib.js</code> file to the same folder:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Mostly Harmless'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="nx">answerToLifeTheUniverseAndEverything</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">42</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="nx">whatToDo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">phrase</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">phrase</span> <span class="o">==</span> <span class="s2">"don't panic"</span><span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="nx">allThereIs</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="nx">worstFirstMillionYears</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="p">},</span>
+
+  <span class="nx">message</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"So Long, and Thanks for All the Fish."</span><span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="nx">startInfiniteImprobabilityDriver</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"infinitely improbable"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>The tests live in a subfolder with the name <code>mocha</code>. For now, let's add a couple of simple tests that give you a glimpse on how test-results will look.</p>
+
+<p>Copy the following content into <code>mocha/test1.js</code>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">lib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">);</span>
+
+<span class="nx">it</span><span class="p">(</span><span class="s1">'should know the answer to life, the universe, and everything'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">answerToLifeTheUniverseAndEverything</span><span class="p">(),</span> <span class="mi">42</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">'The End'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'should print something'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">lib</span><span class="p">.</span><span class="nx">message</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>Preceptor adds a command-line tool that can be executed by calling <code>preceptor</code> in the shell (when installed globally). Run Preceptor with the above created configuration file:</p>
+
+<div class="highlight highlight-shell"><pre>preceptor config.js
+</pre></div>
+
+<p>The result should look something like this (colors are not shown):</p>
+
+<div class="highlight highlight-shell"><pre>  ✓ should know the answer to life, the universe, and everything
+
+  The End
+    ✓ should print something
+</pre></div>
+
+<p>You can see that the output that was created in <code>lib.js</code> isn't visible anywhere. By default, Preceptor will hide any output created by tests, the SUT, and the testing-framework, displaying only the output of loaded reporters. This behavior can be changed by modifying values in the task-options for each individual tasks. For more information on how to do this, please refer to the API documentation or see below.</p>
+
+<p>Now, to show some of the features, let's add two more test files:</p>
+
+<p><strong>mocha/test2.js</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">lib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">);</span>
+
+<span class="nx">it</span><span class="p">(</span><span class="s1">'should find all there is'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">allThereIs</span><span class="p">(),</span> <span class="mi">42</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">it</span><span class="p">(</span><span class="s1">'should calculate the worst first million years for marvin'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">worstFirstMillionYears</span><span class="p">(),</span> <span class="mi">30</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<p><strong>mocha/test3.js</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">lib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">);</span>
+
+<span class="nx">it</span><span class="p">(</span><span class="s1">'should not panic'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">whatToDo</span><span class="p">(</span><span class="s2">"don't panic"</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">it</span><span class="p">(</span><span class="s1">'should panic'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="o">!</span><span class="nx">lib</span><span class="p">.</span><span class="nx">whatToDo</span><span class="p">(</span><span class="s2">"do not panic"</span><span class="p">));</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>Let's run them all sequentially. Simply add them to the task-list:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Calculations"</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test2.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Phrasing"</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test3.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>Run Preceptor:</p>
+
+<div class="highlight highlight-shell"><pre>  ✓ should know the answer to life, the universe, and everything
+
+  The End
+    ✓ should print something
+  1<span class="o">)</span> should find all there is
+  ✓ should calculate the worst first million years <span class="k">for</span> marvin
+  ✓ should not panic
+  ✓ should panic
+
+  1<span class="o">)</span> Root should find all there is
+     <span class="nv">54</span> <span class="o">==</span> 42
+AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
+    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
+    ... // Abbreviated
+</pre></div>
+
+<p>This example shows a failed test, displaying some details and the stack-trace that is abbreviated here in the output for our examples. Let's keep this failing test around for now.</p>
+
+<p>Great! However, now, the tests appear to run all in the same top-level test-suite - we cannot easily distinguish which tests were run in which task. Let's change this. Add a <code>suite:true</code> to each task, turning each task into a virtual test-suite that creates a new level of test-suites in the test-results using the <code>title</code> given.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span>
+            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Calculations"</span><span class="p">,</span>
+            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test2.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Phrasing"</span><span class="p">,</span>
+            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test3.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>The output for this configuration is:</p>
+
+<div class="highlight highlight-shell"><pre>  Everything
+    ✓ should know the answer to life, the universe, and everything
+
+    The End
+      ✓ should print something
+
+  Calculations
+    1<span class="o">)</span> should find all there is
+    ✓ should calculate the worst first million years <span class="k">for</span> marvin
+
+  Phrasing
+    ✓ should not panic
+    ✓ should panic
+
+  1<span class="o">)</span> Calculations should find all there is
+     <span class="nv">54</span> <span class="o">==</span> 42
+AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
+    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
+    ... // Abbreviated
+</pre></div>
+
+<p>Great! That looks already a lot better.</p>
+
+<p>But now, I want to run the first tests in parallel, and the last test should run when the first two tests are both completed. Simply wrap the first two tasks in an array literal. This will group the tasks together.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">[{</span> <span class="c1">// &lt;-----</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span>
+            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Calculations"</span><span class="p">,</span>
+            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test2.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}],</span> <span class="c1">// &lt;-----</span>
+        <span class="p">{</span>
+            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Phrasing"</span><span class="p">,</span>
+            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test3.js"</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">};</span>
+
+</pre></div>
+
+<p>Let's run it again:</p>
+
+<div class="highlight highlight-shell"><pre>  Everything
+
+  Calculations
+    ✓ should know the answer to life, the universe, and everything
+
+    The End
+      ✓ should print something
+    1<span class="o">)</span> should find all there is
+    ✓ should calculate the worst first million years <span class="k">for</span> marvin
+
+  Phrasing
+    ✓ should not panic
+    ✓ should panic
+
+  1<span class="o">)</span> Calculations should find all there is
+     <span class="nv">54</span> <span class="o">==</span> 42
+AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
+    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
+    ... // Abbreviated
+</pre></div>
+
+<p>You can see that the tests are running in parallel now. However, the <code>Spec</code> reporter prints the test-results as soon as it receives them from the test-clients, turning the output into a mess. This is the default behavior of most of the console reporters. We can change this behavior by setting the <code>progress</code> property to <code>false</code>. When this flag is set to <code>false</code>, the reporter will organize all test-results in a tree, printing them in an ordered manner just when Preceptor completes all tests.</p>
+
+<p>To make it a little bit more interesting, let's add also the <code>Duration</code> reporter; it will print the total duration. The value of <code>progress</code> for the <code>Duration</code> reporter is by default <code>false</code>, so no need to set this explicitly.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Duration"</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>The output is now:</p>
+
+<div class="highlight highlight-shell"><pre>  Everything
+    ✓ should know the answer to life, the universe, and everything
+
+    The End
+      ✓ should print something
+
+  Calculations
+    1<span class="o">)</span> should find all there is
+    ✓ should calculate the worst first million years <span class="k">for</span> marvin
+
+  Phrasing
+    ✓ should not panic
+    ✓ should panic
+
+  1<span class="o">)</span> Calculations should find all there is
+     <span class="nv">54</span> <span class="o">==</span> 42
+AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
+    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
+    ... // Abbreviated
+
+Time: <span class="m">531</span> milliseconds
+</pre></div>
+
+<p>The test-results are printed correctly now. Also, the duration is printed just as we wanted it.</p>
+
+<p>With Preceptor, you can add as many reporters as you want, all of which are run at the same time - no matter if they are console or file reporters.</p>
+
+<p>Let's add some file reporters: JUnit and TAP</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Duration"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Junit"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"junit.xml"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Tap"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"tap.txt"</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>When running this configuration, two files will be created in the current working directory called <code>junit.xml</code> and <code>tap.txt</code>, holding JUnit and TAP results respectively.</p>
+
+<p>Now, I want to collect code-coverage reports from all the tests that were run. For that, add a <code>coverage</code> section to the global Preceptor configuration, activating it with <code>active:true</code>, and may be supply additional configuration options.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Duration"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Junit"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"junit.xml"</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Tap"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"tap.txt"</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">"coverage"</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">"active"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// Activate coverage</span>
+
+            <span class="s2">"path"</span><span class="o">:</span> <span class="s2">"./coverage"</span> <span class="c1">// This is the default path</span>
+
+            <span class="c1">// Add here any other coverage options.</span>
+            <span class="c1">// See below for more information</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>The output is now:</p>
+
+<div class="highlight highlight-shell"><pre>Everything
+  ✓ should know the answer to life, the universe, and everything
+
+  The End
+    ✓ should print something
+
+Calculations
+  1<span class="o">)</span> should find all there is
+  ✓ should calculate the worst first million years <span class="k">for</span> marvin
+
+Phrasing
+  ✓ should not panic
+  ✓ should panic
+
+1<span class="o">)</span> Calculations should find all there is
+   <span class="nv">54</span> <span class="o">==</span> 42
+AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
+  at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
+  ... // Abbreviated
+
+Time: <span class="m">572</span> <span class="nv">milliseconds</span>
+
+
+<span class="o">===============================</span> Coverage <span class="nv">summary</span> <span class="o">===============================</span>
+Statements   : 96.3% <span class="o">(</span> 26/27 <span class="o">)</span>
+Branches     : 100% <span class="o">(</span> 0/0 <span class="o">)</span>
+Functions    : 92.31% <span class="o">(</span> 12/13 <span class="o">)</span>
+Lines        : 96.3% <span class="o">(</span> 26/27 <span class="o">)</span>
+<span class="o">================================================================================</span>
+</pre></div>
+
+<p>By default, the coverage reporter creates three reports:</p>
+
+<ul>
+<li>
+<code>text-summary</code> - The short coverage summary in the console</li>
+<li>
+<code>file</code> - JSON file holding all coverage details, created in the <code>path</code> directory</li>
+<li>
+<code>lcov</code> - HTML report in the <code>path</code> directory</li>
+</ul>
+
+<p>This concludes the introduction of Preceptor. Please read the general overview that follows, or refer to the API documentation that is included with this module.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="testing-lifecycle" class="anchor" href="#testing-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing Lifecycle</h3>
+
+<p>To understand how Preceptor works, we have to understand first what the testing lifecycle is. Tests are run usually through a common set of states that can be defined as the testing lifecycle.</p>
+
+<p>This include:</p>
+
+<ul>
+<li>start of all tests (not all frameworks support this)</li>
+<li>start of test suites</li>
+<li>start of tests</li>
+<li>end of tests (with different types of results)</li>
+<li>end of test suites</li>
+<li>end of all tests  (not all frameworks support this)</li>
+</ul>
+
+<p>Each individual state will be triggered in Preceptor so that plugins can react on these state changes. This includes the reporter, the client, the client decorators, the tasks, and Preceptor itself.</p>
+
+<p>Preceptor breaks them (and some additional states) into 4 groups:</p>
+
+<ul>
+<li>Admin - Administrative states</li>
+<li>Suite - Suite management</li>
+<li>Test - Test management</li>
+<li>Item - Item management for parts of a test</li>
+</ul>
+
+<p>Let's describe them in more detail by describing their function and what information in conveyed.</p>
+
+<h4>
+<a id="administrative-states" class="anchor" href="#administrative-states" aria-hidden="true"><span class="octicon octicon-link"></span></a>Administrative states</h4>
+
+<p>Administrative states will be triggered for events that change the collection and run behavior of Preceptor itself.</p>
+
+<h5>
+<a id="state-start" class="anchor" href="#state-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Start</h5>
+
+<p>The <code>start</code> state will be triggered just when Preceptor starts to run.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>none</strong></li>
+</ul>
+
+<h5>
+<a id="state-stop" class="anchor" href="#state-stop" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Stop</h5>
+
+<p>The <code>stop</code> state will be triggered just when Preceptor completes all tests.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>none</strong></li>
+</ul>
+
+<h5>
+<a id="state-complete" class="anchor" href="#state-complete" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Complete</h5>
+
+<p>The <code>complete</code> state will be triggered when Preceptor completed all the export jobs.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>none</strong></li>
+</ul>
+
+<h4>
+<a id="suite-management" class="anchor" href="#suite-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Suite management</h4>
+
+<p>These states handle any changes to test-suites.</p>
+
+<h5>
+<a id="state-suite-start" class="anchor" href="#state-suite-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Suite Start</h5>
+
+<p>The <code>suiteStart</code> state will be triggered when a new test-suite starts. Please be aware that it is possible to have test-suites within other test-suites.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test-suite. Preceptor creates a unique identifier for each state to be able to identifier related state changes.</li>
+<li>
+<code>parentId</code> - Parent identifier of parent test-suite. This makes it possible for Preceptor to create a tree of tests and test-suites. For the first test-suite, this will be the id of the <code>start</code> event.</li>
+<li>
+<code>suiteName</code> - Name of the suite that should be used for reporting.</li>
+</ul>
+
+<h5>
+<a id="state-suite-end" class="anchor" href="#state-suite-end" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Suite End</h5>
+
+<p>The <code>suiteEnd</code> state will be triggered when a test-suite completed.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test-suite, the same identifier that was given to <code>suiteStart</code>.</li>
+</ul>
+
+<h4>
+<a id="test-management" class="anchor" href="#test-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test management</h4>
+
+<p>Test management states are states that transmit test and test-result information.</p>
+
+<h5>
+<a id="state-test-start" class="anchor" href="#state-test-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Test Start</h5>
+
+<p>The <code>testStart</code> state will be triggered when a new test starts.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test. Preceptor creates a unique identifier for each state to be able to identifier related state changes.</li>
+<li>
+<code>parentId</code> - Parent identifier of parent test-suite. This makes it possible for Preceptor to create a tree of tests and test-suites. For the first test without a parent test-suite, this will be the id of the <code>start</code> event.</li>
+<li>
+<code>testName</code> - Name of the test that should be used for reporting.</li>
+</ul>
+
+<h5>
+<a id="state-test-passed" class="anchor" href="#state-test-passed" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Test Passed</h5>
+
+<p>The <code>testPassed</code> state will be triggered when a test has passed.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test that was given to the related <code>testStart</code>.</li>
+</ul>
+
+<h5>
+<a id="state-test-failed" class="anchor" href="#state-test-failed" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Test Failed</h5>
+
+<p>The <code>testFailed</code> state will be triggered when a test has failed. A failure is an unexpected test-result, often triggered by assertions.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test that was given to the related <code>testStart</code>.</li>
+<li>
+<code>message</code> - Short description of the failure</li>
+<li>
+<code>reason</code> - Detailed description of the failure (often with stack-trace)</li>
+</ul>
+
+<h5>
+<a id="state-test-error" class="anchor" href="#state-test-error" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Test Error</h5>
+
+<p>The <code>testError</code> state will be triggered when a test had an error. An error is an unexpected exception that was not triggered by an assertion.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test that was given to the related <code>testStart</code>.</li>
+<li>
+<code>message</code> - Short description of the error</li>
+<li>
+<code>reason</code> - Detailed description of the error (often with stack-trace)</li>
+</ul>
+
+<h5>
+<a id="state-test-undefined" class="anchor" href="#state-test-undefined" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Test Undefined</h5>
+
+<p>The <code>testUndefined</code> state will be triggered when a test hasn't been defined. This is triggered when the testing-framework recognizes a test, but could not find the test-implementation. Not all testing frameworks support this state.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test that was given to the related <code>testStart</code>.</li>
+</ul>
+
+<h5>
+<a id="state-test-skipped" class="anchor" href="#state-test-skipped" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Test Skipped</h5>
+
+<p>The <code>testSkipped</code> state will be triggered when a test has been skipped. Tests are usually skipped when for example sub-systems that are dependencies for test are not available.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test that was given to the related <code>testStart</code>.</li>
+<li>
+<code>reason</code> - Reason for skipping this test.</li>
+</ul>
+
+<h5>
+<a id="state-test-incomplete" class="anchor" href="#state-test-incomplete" aria-hidden="true"><span class="octicon octicon-link"></span></a>State: Test Incomplete</h5>
+
+<p>The <code>testIncomplete</code> state will be triggered when a test is available, but incomplete. This happens when tests are written, but are not completed yet.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>
+<code>id</code> - Identifier of test that was given to the related <code>testStart</code>.</li>
+</ul>
+
+<h3>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p>The configuration file has three top-level properties:</p>
+
+<ul>
+<li>
+<code>configuration</code> - Global Preceptor configuration that describes Preceptor behavior.</li>
+<li>
+<code>shared</code> - Shared task options.</li>
+<li>
+<code>tasks</code> - Individual task options which are run by default in sequence.</li>
+</ul>
+
+<h4>
+<a id="global-configuration" class="anchor" href="#global-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Global configuration</h4>
+
+<p>Preceptors task-independent behavior is configured in this section. It has the following properties:</p>
+
+<ul>
+<li>
+<code>verbose</code> - Flag for verbose output (default: false)</li>
+<li>
+<code>reportManager</code> - Reporting configuration</li>
+<li>
+<code>reportManager.reporter</code> - List of loaded reporters</li>
+<li>
+<code>reportManager.listener</code> - List of loaded listeners</li>
+<li>
+<code>coverage</code> - Coverage option</li>
+<li>
+<code>plugins</code> - List of plugin modules to load</li>
+</ul>
+
+<h6>
+<a id="reporting" class="anchor" href="#reporting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reporting</h6>
+
+<p>The report manager describes what reporters should be used and what it should listen for to receive testing lifecycle events from unsupported clients.
+See the <code>preceptor-reporter</code> project documentation for more information on the <code>reportManager</code> property.</p>
+
+<h6>
+<a id="coverage" class="anchor" href="#coverage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coverage</h6>
+
+<p>Coverage report collection can be configured in this section. It has the following options:</p>
+
+<ul>
+<li>
+<code>active</code> - Flag that turns coverage collection on or off (default: false - off)</li>
+<li>
+<code>root</code> - Root of coverage data. This is used to reduce depth of coverage paths.</li>
+<li>
+<code>path</code> - Path to where the file coverage reports should be exported to.</li>
+<li>
+<code>reports</code> - List of reports to export to. (default: ['file', 'lcov', 'text-summary'])</li>
+<li>
+<code>includes</code> - List of patterns for files to include scripts into the coverage report. (default: ['**/*.js'])</li>
+<li>
+<code>excludes</code> - List of patterns to exclude files and directories of scripts that were previously whitelisted with the <code>includes</code> option. (default: ['<strong>/node_modules/</strong>', '<strong>/test/</strong>', '<strong>/tests/</strong>'])</li>
+</ul>
+
+<p>This feature uses Istanbul for collecting and merging coverage reports. See the Istanbul project <a href="https://github.com/gotwarlost/istanbul">website</a> for more information.</p>
+
+<p><strong>Additional Reports</strong>
+Preceptor adds the <code>file</code> report to the list of reports to be able to disable the export of the JSON data. The <code>file</code> value will not be given to Istanbul since it is not available there.</p>
+
+<h4>
+<a id="shared-configuration" class="anchor" href="#shared-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shared configuration</h4>
+
+<p>Any value that is assigned to the 'shared' object in the configuration root will be assigned as default for all task options. Task options then can overwrite these values. This gives a developer the opportunity to set own default values for properties, overwriting the default values that were given by the system.</p>
+
+<h6>
+<a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugins</h6>
+
+<p>The Preceptor system supports the loading of custom plugins by installing the modules through NPM, and by adding the module name to this list. Preceptor then tries to load each of these modules by executing the <code>loader</code> function on the exported module interface, giving it the instance of Preceptor itself. The plugin can then register itself to Preceptor. See the <code>preceptor-webdriver</code> project for an example.</p>
+
+<h3>
+<a id="tasks" class="anchor" href="#tasks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tasks</h3>
+
+<p>The following tasks for testing-frameworks are supported by default:</p>
+
+<ul>
+<li>Cucumber - Cucumber.js testing framework</li>
+<li>Mocha - Mocha unit testing framework</li>
+<li>Kobold - Kobold visual regression testing framework</li>
+</ul>
+
+<p>Preceptor implements also some general purpose tasks:</p>
+
+<ul>
+<li>Node - Running node scripts</li>
+<li>Shell - Running shell scripts</li>
+<li>Group - Grouping tasks</li>
+</ul>
+
+<p>The following sections describe the configuration and usage of these tasks</p>
+
+<h4>
+<a id="general-configuration" class="anchor" href="#general-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>General Configuration</h4>
+
+<p>Tasks have a common set of configuration options that can be set on the root of the task. Any custom configuration option, that will be listed for each task below, should be set on the <code>configuration</code> object instead of the root (see "Object and List Configuration"). The reason for this separation is flexibility for new features in future version of Preceptor without breaking any task or custom task that might add similar  named options.</p>
+
+<h5>
+<a id="value-configuration" class="anchor" href="#value-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Value Configuration</h5>
+
+<ul>
+<li>
+<code>taskId</code> - Identifier of task. If none is given, then Preceptor will assign an identifier and may use it in error reports.</li>
+<li>
+<code>type</code> - Identifier for task-plugin. For example, <code>type:'mocha'</code> will use the Mocha task-plugin.</li>
+<li>
+<code>name</code> - Name of task. This is a more user friendly version of <code>taskId</code>. If none is given, then it uses the <code>taskId</code> value.</li>
+<li>
+<code>title</code> - Description of task that might be used in test-results.</li>
+</ul>
+
+<h5>
+<a id="object-and-list-configuration" class="anchor" href="#object-and-list-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object and List Configuration</h5>
+
+<ul>
+<li>
+<code>configuration</code> - Custom configuration for task-specific options. See below for the task options.</li>
+<li>
+<code>decorator</code> - List of client decorators that should be loaded on the client. See "Client Decorators" section for more information.</li>
+</ul>
+
+<h5>
+<a id="flag-configuration" class="anchor" href="#flag-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flag Configuration</h5>
+
+<ul>
+<li>
+<code>active</code> - Flag that defines if task is active or inactive. Inactive tasks will be ignored by Preceptor, skipping any tests and results from the task. (default: true)</li>
+<li>
+<code>suite</code> - Flag that defines if task should be used as a virtual test-suite. A virtual test-suite injects itself into the test-results. This makes it possible to compose the test-results however it is needed. (default: false)</li>
+<li>
+<code>debug</code> - Flag that defines if task is run in debug mode. In debug-mode, the client is run directly in the Preceptor process. Output is not caught by Preceptor and directly printed to std-out, and a breakpoint will stop the Preceptor process. Avoid using this flag long-term. (default: false)</li>
+<li>
+<code>verbose</code> - Prints every step taken by Preceptor. This adds a lot of output and might be overwhelming at first. (default: false)</li>
+<li>
+<code>failOnError</code> - Flag that defines if task should skip all other tests and fail Preceptor. (default: false)</li>
+<li>
+<code>echoStdOut</code> - Flag that defines if task should echo all std-out data.</li>
+<li>
+<code>echoStdIn</code> - Flag that defines if task should echo all std-err data.</li>
+</ul>
+
+<h4>
+<a id="cucumber-task" class="anchor" href="#cucumber-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cucumber Task</h4>
+
+<p>The <code>type</code>-value for this task is <code>cucumber</code>.</p>
+
+<p>Task options:</p>
+
+<ul>
+<li>
+<code>path</code> - Path to the tests (required)</li>
+<li>
+<code>tags</code> - List of tags to accept. These can be strings with one tag, or an array of tags. These tags should have an '@' and may be the '~' if required. See Cucumber.js documentation for more information.</li>
+<li>
+<code>format</code> - Output format for test results (default: 'progress')</li>
+<li>
+<code>functions</code> - A list of functions to import (still WIP). The function can have a <code>name</code> property to be used in verbose logging.</li>
+<li>
+<code>coffeScript</code> - Flag that defines that output should be in coffee-script.</li>
+</ul>
+
+<h4>
+<a id="mocha-task" class="anchor" href="#mocha-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mocha Task</h4>
+
+<p>The <code>type</code>-value for this task is <code>mocha</code>.</p>
+
+<p>Task options:</p>
+
+<ul>
+<li>
+<code>reporters</code> - Reporter to use (default: 'spec')</li>
+<li>
+<code>ui</code> - API interface to use (default: 'bdd')</li>
+<li>
+<code>colors</code> - Use colors in output (default: true)</li>
+<li>
+<code>inlineDiff</code> - Inline-diff support (default: false)</li>
+<li>
+<code>slow</code> - Defines how many milliseconds is considered as a slow test (default: 75)</li>
+<li>
+<code>timeOuts</code> - Specifies if time-outs should be enforced (default: true)</li>
+<li>
+<code>timeOut</code> - Describes when a test is considered to be in time-out (in milliseconds) (default: 2000)</li>
+<li>
+<code>bail</code> - Stop execution on the first error (default: false)</li>
+<li>
+<code>grep</code> - Filter to use for tests (default: false - off)</li>
+<li>
+<code>invert</code> - Invert <code>grep</code> filter (default: false)</li>
+<li>
+<code>checkLeaks</code> - Checks for memory leaks (default: false)</li>
+<li>
+<code>asyncOnly</code> - Enforce all tests to be asynchronous (default: false)</li>
+<li>
+<code>globals</code> - List of defined globals</li>
+<li>
+<code>paths</code> - A list of paths to the tests (default: ['test'])</li>
+<li>
+<code>functions</code> - A list of functions to import as tests. The function can have a <code>name</code> property to be used in verbose logging.</li>
+<li>
+<code>recursive</code> - Recursive search in the test paths (default: false)</li>
+<li>
+<code>require</code> - List of files to be require'd before tests run.</li>
+<li>
+<code>sort</code> - Sort tests before running the tests (default: false)</li>
+</ul>
+
+<h4>
+<a id="kobold-task" class="anchor" href="#kobold-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kobold Task</h4>
+
+<p>The <code>type</code>-value for this task is <code>kobold</code>.</p>
+
+<p>Task options:</p>
+
+<ul>
+<li>
+<code>verbose</code> - Verbose output (default: true)</li>
+<li>
+<code>failForOrphans</code> - Flag that defines if Kobold should fail tests when Orphans are encountered. Orphans are screens that were previously approved, but are missing in the most recent test-run. This can be the case when tests are removed, or when the testing-framework was interrupted. (default: true)</li>
+<li>
+<code>failOnAdditions</code> - Flag that defines if Kobold should fail tests when Additions are encountered. Additions are screens that have never been seen (approved) before, but that are available during the most recent test-run. These usually happen when tests are added; these screens should be reviewed before approving. (default: true)</li>
+<li>
+<code>build</code> - Identifier for the current build. This can be an identifier from a CI or a random generated one. This value is used to distinguish multiple test-runs from each-other, and is given to the remote storage. (default: process.env.BUILD_NUMBER or process.env.USER + )</li>
+<li>
+<code>blinkDiff</code> - Configuration for the blink-diff tool.</li>
+<li>
+<code>mocha</code> - Mocha options for Kobold tests since it is build on-top of Mocha. (See above)</li>
+<li>
+<code>storage</code> - Storage configuration for Kobold. See the project website for more information.</li>
+<li>
+<code>source</code> - Source of screens. Uses <code>storage</code> as default. See the project website for more information.</li>
+<li>
+<code>destination</code> - Destination for screens. Uses <code>storage</code> as default. See the project website for more information.</li>
+</ul>
+
+<p>The storage configuration has also the following values by default:</p>
+
+<ul>
+<li>
+<code>type</code> - 'File'</li>
+<li>
+<code>options.approvedFolderName</code> - 'approved'</li>
+<li>
+<code>options.buildFolderName</code> - 'build'</li>
+<li>
+<code>options.highlightFolderName</code> - 'highlight'</li>
+</ul>
+
+<h4>
+<a id="node-task" class="anchor" href="#node-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Node Task</h4>
+
+<p>The <code>type</code>-value for this task is <code>node</code>.</p>
+
+<p>Task options:</p>
+
+<ul>
+<li>
+<code>path</code> - Path to JavaScript file that should be executed. The JavaScript file will be running in its own process.</li>
+</ul>
+
+<h4>
+<a id="shell-task" class="anchor" href="#shell-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shell Task</h4>
+
+<p>The <code>type</code>-value for this task is <code>shell</code>.</p>
+
+<p>Task options:</p>
+
+<ul>
+<li>
+<code>cwd</code> - Defines the current working directory for the script.</li>
+<li>
+<code>env</code> - List of key-value pairs (in an object) of environment variables set for the shell script. (default: {})</li>
+<li>
+<code>cmd</code> - Command to be executed in shell. The command will be run in its own process.</li>
+</ul>
+
+<h4>
+<a id="group-task" class="anchor" href="#group-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Group Task</h4>
+
+<p>The <code>type</code>-value for this task is <code>group</code>.</p>
+
+<p>Task options:</p>
+
+<ul>
+<li>
+<code>parallel</code> - Flag that defines if tasks should be run in parallel (default: false)</li>
+<li>
+<code>tasks</code> - List of task-options that should be run within this group.</li>
+</ul>
+
+<p>The <code>group</code> Task Decorator uses this task to add the array-literal feature to the configuration.</p>
+
+<h3>
+<a id="task-decorators" class="anchor" href="#task-decorators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Task Decorators</h3>
+
+<p>A task decorator is a plugin that can modify task-options before they are applied. This makes the configuration very flexible as the whole configuration scheme can be changed with these plugins.</p>
+
+<p>The following task decorators are build-in:</p>
+
+<ul>
+<li>
+<code>group</code> - Adds the array-literal feature for running tasks in parallel. It replaces the array-literal with a group that has the <code>parallel</code> flag set, injecting all the tasks into the <code>task</code> options of the group-task.</li>
+<li>
+<code>identifier</code> - Makes sure that identifiers are given for <code>taskId</code>, <code>name</code>, and <code>title</code>. <code>taskId</code> will receive an unique id if not given, and all others might inherit the value if they are also missing - <code>name</code> from <code>taskId</code> and <code>title</code> from <code>name</code>.</li>
+</ul>
+
+<h3>
+<a id="client-decorators" class="anchor" href="#client-decorators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Client Decorators</h3>
+
+<p>Client decorators are "tasks" that will be run in the client process by the client-runner. The decorators attach themselves to test-hooks that are triggered during the testing lifecycle (see above).</p>
+
+<p>There are two types of hooks:</p>
+
+<ul>
+<li>Event hooks - Events that trigger without the possibility to halt the testing framework. Event hooks are triggered for all events during the testing lifecycle (see above).</li>
+<li>Activity hooks - Methods that are triggered that should return a Promise. This gives the client decorator the possibility to halt the testing framework for a while to execute some other tasks first.</li>
+</ul>
+
+<p>There are four activity hooks:</p>
+
+<ul>
+<li>
+<code>processBefore</code> - Triggered once before a suite of tests.</li>
+<li>
+<code>processBeforeEach</code> - Triggered before each test-case.</li>
+<li>
+<code>processAfterEach</code> - Triggered after each test-case.</li>
+<li>
+<code>processAfter</code> - Triggered once after a suite of tests.</li>
+</ul>
+
+<p>Out of the box, Preceptor supports the following client decorators:</p>
+
+<ul>
+<li>
+<code>plain</code> - Prints each of the triggers to the console. This client-decorator should be used for debugging purposes when creating client-decorators.</li>
+</ul>
+
+<p>The <code>preceptor-webdriver</code> plugin adds the WebDriver client-decorator for injecting Selenium setup/tear-down code into the client.</p>
+
+<p>Client decorators can be added to every task that supports the testing lifecycle events (generally all testing frameworks), and it is added through the <code>decorators</code> list in the task-options.</p>
+
+<h4>
+<a id="configuration-1" class="anchor" href="#configuration-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p>Client decorators has the following common options:</p>
+
+<ul>
+<li>
+<code>type</code> - Name of the plugin for client decorators</li>
+<li>
+<code>configuration</code> - Client decorator specific configuration</li>
+</ul>
+
+<p>The general client decoration configuration namespace is reserved for future changes to all client decorators. Client decorator specific configuration should be described in <code>configuration</code>.</p>
+
+<h3>
+<a id="client-runner" class="anchor" href="#client-runner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Client Runner</h3>
+
+<p>Clients are generally run in its own process. Each of these processes communicates with Preceptor, making it also possible to instruct the client to run client decorators in its process. For this to work, each testing-framework needs a client-runner. This is abstracted away, but is required when writing a plugin. The following client-runners are available:</p>
+
+<ul>
+<li>
+<code>cucumber</code> - Runs Cucumber.js</li>
+<li>
+<code>mocha</code> - Runs Mocha</li>
+<li>
+<code>kobold</code> - Runs Kobold. Uses internally the <code>mocha</code> client-runner.</li>
+<li>
+<code>node</code> - Runs Node.JS scripts</li>
+</ul>
+
+<p>Please see the above files in the source-code for details on how to implement these. Much of the common behavior and the communication is implemented in the <code>client.js</code> file.</p>
+
+<h3>
+<a id="plugin-naming" class="anchor" href="#plugin-naming" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin Naming</h3>
+
+<p>The plugin module naming should follow the Grunt plugin naming convention. Plugins contributed by the community should have "contrib" in the module name (example: <code>preceptor-contrib-hello-world</code>). Plugins that are supported by the Preceptor team will be named without the "contrib" keyword (example: <code>preceptor-webdriver</code>).</p>
+
+<h2>
+<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API-Documentation</h2>
+
+<p>Generate the documentation with following command:</p>
+
+<div class="highlight highlight-shell"><pre>npm run docs
+</pre></div>
+
+<p>The documentation will be generated in the <code>docs</code> folder of the module root.</p>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>Run the tests with the following command:</p>
+
+<div class="highlight highlight-shell"><pre>npm run <span class="nb">test</span>
+</pre></div>
+
+<p>The code-coverage will be written to the <code>coverage</code> folder in the module root.</p>
+
+<h2>
+<a id="third-party-libraries" class="anchor" href="#third-party-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Third-party libraries</h2>
+
+<p>The following third-party libraries are used by this module:</p>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<ul>
+<li>glob: <a href="https://github.com/isaacs/node-glob">https://github.com/isaacs/node-glob</a>
+</li>
+<li>istanbul: <a href="https://github.com/gotwarlost/istanbul">https://github.com/gotwarlost/istanbul</a>
+</li>
+<li>log4js: <a href="https://github.com/nomiddlename/log4js-node">https://github.com/nomiddlename/log4js-node</a>
+</li>
+<li>minimatch: <a href="https://github.com/isaacs/minimatch">https://github.com/isaacs/minimatch</a>
+</li>
+<li>mkdirp: <a href="https://github.com/substack/node-mkdirp">https://github.com/substack/node-mkdirp</a>
+</li>
+<li>preceptor-core: <a href="https://github.com/yahoo/preceptor-core">https://github.com/yahoo/preceptor-core</a>
+</li>
+<li>preceptor-reporter: <a href="https://github.com/yahoo/preceptor-reporter">https://github.com/yahoo/preceptor-reporter</a>
+</li>
+<li>promise: <a href="https://github.com/then/promise">https://github.com/then/promise</a>
+</li>
+<li>underscore: <a href="http://underscorejs.org">http://underscorejs.org</a>
+</li>
+<li>uuid: <a href="https://github.com/shtylman/node-uuid">https://github.com/shtylman/node-uuid</a>
+</li>
+</ul>
+
+<h3>
+<a id="dev-dependencies" class="anchor" href="#dev-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dev-Dependencies</h3>
+
+<ul>
+<li>chai: <a href="http://chaijs.com">http://chaijs.com</a>
+</li>
+<li>cucumber: <a href="http://github.com/cucumber/cucumber-js">http://github.com/cucumber/cucumber-js</a>
+</li>
+<li>mocha: <a href="https://github.com/visionmedia/mocha">https://github.com/visionmedia/mocha</a>
+</li>
+<li>cabbie: <a href="https://github.com/ForbesLindesay/cabbie">https://github.com/ForbesLindesay/cabbie</a>
+</li>
+<li>kobold: <a href="https://github.com/yahoo/kobold">https://github.com/yahoo/kobold</a>
+</li>
+<li>preceptor-webdriver: <a href="https://github.com/yahoo/preceptor-webdriver">https://github.com/yahoo/preceptor-webdriver</a>
+</li>
+<li>yuidocjs: <a href="https://github.com/yui/yuidoc">https://github.com/yui/yuidoc</a>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License</p>
+
+<p>Copyright 2014 Yahoo Inc.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Preceptor maintained by <a href="https://github.com/yahoo">yahoo</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-56408730-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
