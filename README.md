@@ -10,6 +10,11 @@ Preceptor is a test-runner and test-aggregator that runs multiple tests and test
 [![NPM](https://nodei.co/npm/preceptor.png?downloads=true)](https://nodei.co/npm/preceptor/)
 
 
+[API-Documentation](http://yahoo.github.io/preceptor/docs/)
+
+[Coverage Report](http://yahoo.github.io/preceptor/coverage/lcov-report/)
+
+
 **Table of Contents**
 * [Installation](#installation)
 * [What is Preceptor?](#what-is-preceptor)
