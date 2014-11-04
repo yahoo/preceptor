@@ -47,7 +47,7 @@
     "cucumber": "0.4.2",
     "coveralls": "2.11.2",
     "mocha": "1.21.4",
-    "cabbie": "https://github.com/marcelerz/cabbie/tarball/master",
+    "cabbie": "git://github.com/marcelerz/cabbie#master",
     "kobold": "~0.9.0",
     "preceptor-webdriver": "~0.9.0",
     "yuidocjs": "0.3.50"
