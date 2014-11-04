@@ -45,6 +45,7 @@
   "devDependencies": {
     "chai": "1.9.1",
     "cucumber": "0.4.2",
+    "coveralls": "2.11.2",
     "mocha": "1.21.4",
     "cabbie": "git+ssh://git@github.com:marcelerz/cabbie.git#master",
     "kobold": "~0.9.0",
