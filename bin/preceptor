@@ -6,6 +6,7 @@ var PreceptorManager = require('../');
 var path = require('path');
 var _ = require('underscore');
 var utils = require('preceptor-core').utils;
+var fs = require('fs');
 
 Error.stackTraceLimit = Infinity;
 
@@ -82,11 +83,6 @@ function parseArgs (argv) {
 					configFile = path.resolve(path.join(process.cwd(), argv[i]));
 				}
 
-				configFile = require(configFile);
-				if (_.isFunction(configFile)) {
-					configFile = configFile();
-				}
-
 			} else {
 				console.log('Warning: parameter "' + argv[i] + '" ignored. Unknown.');
 			}
@@ -95,6 +91,15 @@ function parseArgs (argv) {
 			var reason = (exception.message !== '') ? "; " + exception.message : '';
 			throw new Error("Invalid argument '" + argv[i] + "' for " + argv[i - 1] + reason);
 		}
+	}
+
+	if (!configFile) {
+		configFile = path.resolve(path.join(process.cwd(), 'rule-book'));
+	}
+
+	configFile = require(configFile);
+	if (_.isFunction(configFile)) {
+		configFile = configFile();
 	}
 
 	config = utils.deepExtend({}, [configFile || {}, configLine || {}]);
