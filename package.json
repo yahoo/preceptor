@@ -1,6 +1,6 @@
 {
   "name": "preceptor",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Preceptor testrunner and aggregator",
   "license": "MIT",
   "main": "index.js",
