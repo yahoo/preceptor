@@ -733,7 +733,7 @@ Tasks have a common set of configuration options that can be set on the root of 
 
 #####Object and List Configuration
 * ```configuration``` - Custom configuration for task-specific options. See below for the task options.
-* ```decorator``` - List of client decorators that should be loaded on the client. See "Client Decorators" section for more information.
+* ```decorators``` - List of client decorators that should be loaded on the client. See "Client Decorators" section for more information.
 
 #####Flag Configuration
 * ```active``` - Flag that defines if task is active or inactive. Inactive tasks will be ignored by Preceptor, skipping any tests and results from the task. (default: true)

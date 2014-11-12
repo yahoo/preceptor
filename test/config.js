@@ -14,7 +14,7 @@ module.exports = {
 			"type": "mocha",
 			"name": "First Mocha Task",
 			"suite": true,
-			"decorator":[{
+			"decorators":[{
 				"type": "webDriver",
 				"configuration": {
 					"isolation": false,
