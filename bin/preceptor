@@ -36,6 +36,8 @@ function printHelp () {
 	console.log("");
 	console.log("  Options:");
 	console.log("    --config <json>     Inline configuration in JSON");
+	console.log("    --profile <p>       Profile of configuration");
+	console.log("    --subprofile <p>    Sub-profile of configuration");
 	console.log("    --version           Print version");
 	console.log("    --help              This help");
 	console.log("");
@@ -52,7 +54,8 @@ function parseArgs (argv) {
 
 	var i, argLength = argv.length,
 		config,
-		configLine, configFile;
+		configLine, configFile,
+		profile, subProfile;
 
 	if (argLength <= 1) {
 		printHelp();
@@ -73,6 +76,22 @@ function parseArgs (argv) {
 			} else if (argv[i] == "--config") {
 				i++;
 				configLine = JSON.parse(argv[i]);
+
+			} else if (argv[i] == "--profile") {
+				i++;
+				profile = argv[i];
+
+			} else if (argv[i] == "-p") {
+				i++;
+				profile = argv[i];
+
+			} else if (argv[i] == "--subprofile") {
+				i++;
+				subProfile = argv[i];
+
+			} else if (argv[i] == "-s") {
+				i++;
+				subProfile = argv[i];
 
 			} else if (!configFile) {
 
@@ -103,6 +122,24 @@ function parseArgs (argv) {
 	}
 
 	config = utils.deepExtend({}, [configFile || {}, configLine || {}]);
+
+	// Profile
+	if (profile) {
+		if (config[profile]) {
+			config = config[profile];
+		} else {
+			throw new Error('Could not find profile "' + profile + '"');
+		}
+	}
+
+	// Sub-Profile
+	if (subProfile) {
+		if (config.tasks[subProfile]) {
+			config.tasks = config.tasks[subProfile];
+		} else {
+			throw new Error('Could not find sub-profile "' + subProfile + '"');
+		}
+	}
 
 	return config;
 }
