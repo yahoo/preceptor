@@ -31,8 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-<a id="preceptor" class="anchor" href="#preceptor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preceptor</h1>
+        <p><img src="https://raw.githubusercontent.com/yahoo/preceptor/master/images/logo1.png" alt="Preceptor Logo"></p>
 
 <p>Preceptor is a test-runner and test-aggregator that runs multiple tests and testing frameworks in parallel, sequential, or a combination there of, aggregating all of the test-results and coverage-reports.</p>
 
@@ -110,23 +109,19 @@
 
 <p>Install this module with the following command:</p>
 
-<div class="highlight highlight-shell"><pre>npm install preceptor
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm install preceptor</pre></div>
 
 <p>Or install it globally:</p>
 
-<div class="highlight highlight-shell"><pre>npm install -g preceptor
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm install -g preceptor</pre></div>
 
 <p>To add the module to your <code>package.json</code> dependencies:</p>
 
-<div class="highlight highlight-shell"><pre>npm install --save preceptor
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm install --save preceptor</pre></div>
 
 <p>To add the module to your <code>package.json</code> dev-dependencies:</p>
 
-<div class="highlight highlight-shell"><pre>npm install --save-dev preceptor
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm install --save-dev preceptor</pre></div>
 
 <h2>
 <a id="what-is-preceptor" class="anchor" href="#what-is-preceptor" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Preceptor?</h2>
@@ -177,27 +172,26 @@
 
 <p>To get started, create the following file with the name <code>config.js</code>:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>List<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> }
+            ]
+        }
+    },
 
-    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span> <span class="c1">// Task</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span> <span class="c1">// Just giving the task a title</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">};</span>
-</pre></div>
+    <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        { <span class="pl-c">// Task</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Everything<span class="pl-pds">"</span></span>, <span class="pl-c">// Just giving the task a title</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test1.js<span class="pl-pds">"</span></span>]
+            }
+        }
+    ]
+};</pre></div>
 
 <p>This configuration adds a Mocha task and two reports:</p>
 
@@ -210,67 +204,63 @@
 
 <p>As SUT, add the following <code>lib.js</code> file to the same folder:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Mostly Harmless'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>Mostly Harmless<span class="pl-pds">'</span></span>);
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
 
-  <span class="nx">answerToLifeTheUniverseAndEverything</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">42</span><span class="p">;</span>
-  <span class="p">},</span>
+  <span class="pl-en">answerToLifeTheUniverseAndEverything</span>: <span class="pl-st">function</span> () {
+    <span class="pl-k">return</span> <span class="pl-c1">42</span>;
+  },
 
-  <span class="nx">whatToDo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">phrase</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span><span class="nx">phrase</span> <span class="o">==</span> <span class="s2">"don't panic"</span><span class="p">);</span>
-  <span class="p">},</span>
+  <span class="pl-en">whatToDo</span>: <span class="pl-st">function</span> (<span class="pl-vpf">phrase</span>) {
+    <span class="pl-k">return</span> (phrase <span class="pl-k">==</span> <span class="pl-s1"><span class="pl-pds">"</span>don't panic<span class="pl-pds">"</span></span>);
+  },
 
-  <span class="nx">allThereIs</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">9</span><span class="p">;</span>
-  <span class="p">},</span>
+  <span class="pl-en">allThereIs</span>: <span class="pl-st">function</span> () {
+    <span class="pl-k">return</span> <span class="pl-c1">6</span> <span class="pl-k">*</span> <span class="pl-c1">9</span>;
+  },
 
-  <span class="nx">worstFirstMillionYears</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
-  <span class="p">},</span>
+  <span class="pl-en">worstFirstMillionYears</span>: <span class="pl-st">function</span> () {
+    <span class="pl-k">return</span> <span class="pl-c1">10</span> <span class="pl-k">+</span> <span class="pl-c1">10</span> <span class="pl-k">+</span> <span class="pl-c1">10</span>;
+  },
 
-  <span class="nx">message</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"So Long, and Thanks for All the Fish."</span><span class="p">);</span>
-  <span class="p">},</span>
+  <span class="pl-en">message</span>: <span class="pl-st">function</span> () {
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">"</span>So Long, and Thanks for All the Fish.<span class="pl-pds">"</span></span>);
+  },
 
-  <span class="nx">startInfiniteImprobabilityDriver</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"infinitely improbable"</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
+  <span class="pl-en">startInfiniteImprobabilityDriver</span>: <span class="pl-st">function</span> () {
+    <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-en">Error</span>(<span class="pl-s1"><span class="pl-pds">"</span>infinitely improbable<span class="pl-pds">"</span></span>);
+  }
+};</pre></div>
 
 <p>The tests live in a subfolder with the name <code>mocha</code>. For now, let's add a couple of simple tests that give you a glimpse on how test-results will look.</p>
 
 <p>Copy the following content into <code>mocha/test1.js</code>:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">lib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> assert <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>assert<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> lib <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>../lib<span class="pl-pds">'</span></span>);
 
-<span class="nx">it</span><span class="p">(</span><span class="s1">'should know the answer to life, the universe, and everything'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">answerToLifeTheUniverseAndEverything</span><span class="p">(),</span> <span class="mi">42</span><span class="p">);</span>
-<span class="p">});</span>
+it(<span class="pl-s1"><span class="pl-pds">'</span>should know the answer to life, the universe, and everything<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
+    assert.equal(lib.answerToLifeTheUniverseAndEverything(), <span class="pl-c1">42</span>);
+});
 
-<span class="nx">describe</span><span class="p">(</span><span class="s1">'The End'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+describe(<span class="pl-s1"><span class="pl-pds">'</span>The End<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
 
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'should print something'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="nx">lib</span><span class="p">.</span><span class="nx">message</span><span class="p">();</span>
-    <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
+    it(<span class="pl-s1"><span class="pl-pds">'</span>should print something<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
+        lib.message();
+    });
+});</pre></div>
 
 <p>Preceptor adds a command-line tool that can be executed by calling <code>preceptor</code> in the shell (when installed globally). Run Preceptor with the above created configuration file:</p>
 
-<div class="highlight highlight-shell"><pre>preceptor config.js
-</pre></div>
+<div class="highlight highlight-shell"><pre>preceptor config.js</pre></div>
 
 <p>The result should look something like this (colors are not shown):</p>
 
 <div class="highlight highlight-shell"><pre>  ✓ should know the answer to life, the universe, and everything
 
   The End
-    ✓ should print something
-</pre></div>
+    ✓ should print something</pre></div>
 
 <p>You can see that the output that was created in <code>lib.js</code> isn't visible anywhere. By default, Preceptor will hide any output created by tests, the SUT, and the testing-framework, displaying only the output of loaded reporters. This behavior can be changed by modifying values in the task-options for each individual tasks. For more information on how to do this, please refer to the API documentation or see below.</p>
 
@@ -278,69 +268,66 @@
 
 <p><strong>mocha/test2.js</strong></p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">lib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> assert <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>assert<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> lib <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>../lib<span class="pl-pds">'</span></span>);
 
-<span class="nx">it</span><span class="p">(</span><span class="s1">'should find all there is'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">allThereIs</span><span class="p">(),</span> <span class="mi">42</span><span class="p">);</span>
-<span class="p">});</span>
+it(<span class="pl-s1"><span class="pl-pds">'</span>should find all there is<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
+    assert.equal(lib.allThereIs(), <span class="pl-c1">42</span>);
+});
 
-<span class="nx">it</span><span class="p">(</span><span class="s1">'should calculate the worst first million years for marvin'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">worstFirstMillionYears</span><span class="p">(),</span> <span class="mi">30</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
+it(<span class="pl-s1"><span class="pl-pds">'</span>should calculate the worst first million years for marvin<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
+    assert.equal(lib.worstFirstMillionYears(), <span class="pl-c1">30</span>);
+});</pre></div>
 
 <p><strong>mocha/test3.js</strong></p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">lib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> assert <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>assert<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> lib <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>../lib<span class="pl-pds">'</span></span>);
 
-<span class="nx">it</span><span class="p">(</span><span class="s1">'should not panic'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">whatToDo</span><span class="p">(</span><span class="s2">"don't panic"</span><span class="p">));</span>
-<span class="p">});</span>
+it(<span class="pl-s1"><span class="pl-pds">'</span>should not panic<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
+    assert.ok(lib.whatToDo(<span class="pl-s1"><span class="pl-pds">"</span>don't panic<span class="pl-pds">"</span></span>));
+});
 
-<span class="nx">it</span><span class="p">(</span><span class="s1">'should panic'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="o">!</span><span class="nx">lib</span><span class="p">.</span><span class="nx">whatToDo</span><span class="p">(</span><span class="s2">"do not panic"</span><span class="p">));</span>
-<span class="p">});</span>
-</pre></div>
+it(<span class="pl-s1"><span class="pl-pds">'</span>should panic<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
+    assert.ok(<span class="pl-k">!</span>lib.whatToDo(<span class="pl-s1"><span class="pl-pds">"</span>do not panic<span class="pl-pds">"</span></span>));
+});</pre></div>
 
 <p>Let's run them all sequentially. Simply add them to the task-list:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>List<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> }
+            ]
+        }
+    },
 
-    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Calculations"</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test2.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Phrasing"</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test3.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">};</span>
-</pre></div>
+    <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Everything<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test1.js<span class="pl-pds">"</span></span>]
+            }
+        },
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Calculations<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test2.js<span class="pl-pds">"</span></span>]
+            }
+        },
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Phrasing<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test3.js<span class="pl-pds">"</span></span>]
+            }
+        }
+    ]
+};</pre></div>
 
 <p>Run Preceptor:</p>
 
@@ -348,60 +335,58 @@
 
   The End
     ✓ should print something
-  1<span class="o">)</span> should find all there is
-  ✓ should calculate the worst first million years <span class="k">for</span> marvin
+  1) should find all there is
+  ✓ should calculate the worst first million years <span class="pl-k">for</span> <span class="pl-vo">marvin</span>
   ✓ should not panic
   ✓ should panic
 
-  1<span class="o">)</span> Root should find all there is
-     <span class="nv">54</span> <span class="o">==</span> 42
-AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
-    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
-    ... // Abbreviated
-</pre></div>
+  1) Root should find all there is
+     54 == 42
+AssertionError: 54 == 42
+    at Context.<span class="pl-k">&lt;</span>anonymous<span class="pl-k">&gt;</span> (.../mocha/test2.js:5:9)
+    ... // Abbreviated</pre></div>
 
 <p>This example shows a failed test, displaying some details and the stack-trace that is abbreviated here in the output for our examples. Let's keep this failing test around for now.</p>
 
 <p>Great! However, now, the tests appear to run all in the same top-level test-suite - we cannot easily distinguish which tests were run in which task. Let's change this. Add a <code>suite:true</code> to each task, turning each task into a virtual test-suite that creates a new level of test-suites in the test-results using the <code>title</code> given.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>List<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> }
+            ]
+        }
+    },
 
-    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span>
-            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Calculations"</span><span class="p">,</span>
-            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test2.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Phrasing"</span><span class="p">,</span>
-            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test3.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">};</span>
-</pre></div>
+    <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Everything<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test1.js<span class="pl-pds">"</span></span>]
+            }
+        },
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Calculations<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test2.js<span class="pl-pds">"</span></span>]
+            }
+        },
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Phrasing<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test3.js<span class="pl-pds">"</span></span>]
+            }
+        }
+    ]
+};</pre></div>
 
 <p>The output for this configuration is:</p>
 
@@ -412,62 +397,60 @@ AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
       ✓ should print something
 
   Calculations
-    1<span class="o">)</span> should find all there is
-    ✓ should calculate the worst first million years <span class="k">for</span> marvin
+    1) should find all there is
+    ✓ should calculate the worst first million years <span class="pl-k">for</span> <span class="pl-vo">marvin</span>
 
   Phrasing
     ✓ should not panic
     ✓ should panic
 
-  1<span class="o">)</span> Calculations should find all there is
-     <span class="nv">54</span> <span class="o">==</span> 42
-AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
-    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
-    ... // Abbreviated
-</pre></div>
+  1) Calculations should find all there is
+     54 == 42
+AssertionError: 54 == 42
+    at Context.<span class="pl-k">&lt;</span>anonymous<span class="pl-k">&gt;</span> (.../mocha/test2.js:5:9)
+    ... // Abbreviated</pre></div>
 
 <p>Great! That looks already a lot better.</p>
 
 <p>But now, I want to run the first tests in parallel, and the last test should run when the first two tests are both completed. Simply wrap the first two tasks in an array literal. This will group the tasks together.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>List<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> }
+            ]
+        }
+    },
 
-    <span class="s2">"tasks"</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">[{</span> <span class="c1">// &lt;-----</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Everything"</span><span class="p">,</span>
-            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test1.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Calculations"</span><span class="p">,</span>
-            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test2.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">}],</span> <span class="c1">// &lt;-----</span>
-        <span class="p">{</span>
-            <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"mocha"</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"Phrasing"</span><span class="p">,</span>
-            <span class="s2">"suite"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">"paths"</span><span class="o">:</span> <span class="p">[</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/mocha/test3.js"</span><span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">};</span>
-
+    <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        [{ <span class="pl-c">// &lt;-----</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Everything<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test1.js<span class="pl-pds">"</span></span>]
+            }
+        },
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Calculations<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test2.js<span class="pl-pds">"</span></span>]
+            }
+        }], <span class="pl-c">// &lt;-----</span>
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Phrasing<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test3.js<span class="pl-pds">"</span></span>]
+            }
+        }
+    ]
+};
 </pre></div>
 
 <p>Let's run it again:</p>
@@ -479,38 +462,36 @@ AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
 
     The End
       ✓ should print something
-    1<span class="o">)</span> should find all there is
-    ✓ should calculate the worst first million years <span class="k">for</span> marvin
+    1) should find all there is
+    ✓ should calculate the worst first million years <span class="pl-k">for</span> <span class="pl-vo">marvin</span>
 
   Phrasing
     ✓ should not panic
     ✓ should panic
 
-  1<span class="o">)</span> Calculations should find all there is
-     <span class="nv">54</span> <span class="o">==</span> 42
-AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
-    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
-    ... // Abbreviated
-</pre></div>
+  1) Calculations should find all there is
+     54 == 42
+AssertionError: 54 == 42
+    at Context.<span class="pl-k">&lt;</span>anonymous<span class="pl-k">&gt;</span> (.../mocha/test2.js:5:9)
+    ... // Abbreviated</pre></div>
 
 <p>You can see that the tests are running in parallel now. However, the <code>Spec</code> reporter prints the test-results as soon as it receives them from the test-clients, turning the output into a mess. This is the default behavior of most of the console reporters. We can change this behavior by setting the <code>progress</code> property to <code>false</code>. When this flag is set to <code>false</code>, the reporter will organize all test-results in a tree, printing them in an ordered manner just when Preceptor completes all tests.</p>
 
 <p>To make it a little bit more interesting, let's add also the <code>Duration</code> reporter; it will print the total duration. The value of <code>progress</code> for the <code>Duration</code> reporter is by default <code>false</code>, so no need to set this explicitly.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Duration"</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>List<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Duration<span class="pl-pds">"</span></span> }
+            ]
+        }
+    },
 
-    <span class="c1">// ...</span>
-<span class="p">};</span>
-</pre></div>
+    <span class="pl-c">// ...</span>
+};</pre></div>
 
 <p>The output is now:</p>
 
@@ -521,21 +502,20 @@ AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
       ✓ should print something
 
   Calculations
-    1<span class="o">)</span> should find all there is
-    ✓ should calculate the worst first million years <span class="k">for</span> marvin
+    1) should find all there is
+    ✓ should calculate the worst first million years <span class="pl-k">for</span> <span class="pl-vo">marvin</span>
 
   Phrasing
     ✓ should not panic
     ✓ should panic
 
-  1<span class="o">)</span> Calculations should find all there is
-     <span class="nv">54</span> <span class="o">==</span> 42
-AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
-    at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
+  1) Calculations should find all there is
+     54 == 42
+AssertionError: 54 == 42
+    at Context.<span class="pl-k">&lt;</span>anonymous<span class="pl-k">&gt;</span> (.../mocha/test2.js:5:9)
     ... // Abbreviated
 
-Time: <span class="m">531</span> milliseconds
-</pre></div>
+Time: 531 milliseconds</pre></div>
 
 <p>The test-results are printed correctly now. Also, the duration is printed just as we wanted it.</p>
 
@@ -543,51 +523,49 @@ Time: <span class="m">531</span> milliseconds
 
 <p>Let's add some file reporters: JUnit and TAP</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Duration"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Junit"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"junit.xml"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Tap"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"tap.txt"</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>List<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Duration<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Junit<span class="pl-pds">"</span></span>, path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>junit.xml<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Tap<span class="pl-pds">"</span></span>, path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>tap.txt<span class="pl-pds">"</span></span> }
+            ]
+        }
+    },
 
-    <span class="c1">// ...</span>
-<span class="p">};</span>
-</pre></div>
+    <span class="pl-c">// ...</span>
+};</pre></div>
 
 <p>When running this configuration, two files will be created in the current working directory called <code>junit.xml</code> and <code>tap.txt</code>, holding JUnit and TAP results respectively.</p>
 
 <p>Now, I want to collect code-coverage reports from all the tests that were run. For that, add a <code>coverage</code> section to the global Preceptor configuration, activating it with <code>active:true</code>, and may be supply additional configuration options.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"configuration"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"reportManager"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"reporter"</span><span class="o">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Spec"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"List"</span><span class="p">,</span> <span class="s2">"progress"</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Duration"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Junit"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"junit.xml"</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"Tap"</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">"tap.txt"</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">},</span>
-        <span class="s2">"coverage"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"active"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// Activate coverage</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>List<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Duration<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Junit<span class="pl-pds">"</span></span>, path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>junit.xml<span class="pl-pds">"</span></span> },
+                { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Tap<span class="pl-pds">"</span></span>, path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>tap.txt<span class="pl-pds">"</span></span> }
+            ]
+        },
+        <span class="pl-s1"><span class="pl-pds">"</span>coverage<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>active<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// Activate coverage</span>
 
-            <span class="s2">"path"</span><span class="o">:</span> <span class="s2">"./coverage"</span> <span class="c1">// This is the default path</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>path<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>./coverage<span class="pl-pds">"</span></span> <span class="pl-c">// This is the default path</span>
 
-            <span class="c1">// Add here any other coverage options.</span>
-            <span class="c1">// See below for more information</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
+            <span class="pl-c">// Add here any other coverage options.</span>
+            <span class="pl-c">// See below for more information</span>
+        }
+    },
 
-  <span class="c1">// ...</span>
-<span class="p">};</span>
-</pre></div>
+  <span class="pl-c">// ...</span>
+};</pre></div>
 
 <p>The output is now:</p>
 
@@ -598,29 +576,28 @@ Time: <span class="m">531</span> milliseconds
     ✓ should print something
 
 Calculations
-  1<span class="o">)</span> should find all there is
-  ✓ should calculate the worst first million years <span class="k">for</span> marvin
+  1) should find all there is
+  ✓ should calculate the worst first million years <span class="pl-k">for</span> <span class="pl-vo">marvin</span>
 
 Phrasing
   ✓ should not panic
   ✓ should panic
 
-1<span class="o">)</span> Calculations should find all there is
-   <span class="nv">54</span> <span class="o">==</span> 42
-AssertionError: <span class="nv">54</span> <span class="o">==</span> 42
-  at Context.&lt;anonymous&gt; <span class="o">(</span>.../mocha/test2.js:5:9<span class="o">)</span>
+1) Calculations should find all there is
+   54 == 42
+AssertionError: 54 == 42
+  at Context.<span class="pl-k">&lt;</span>anonymous<span class="pl-k">&gt;</span> (.../mocha/test2.js:5:9)
   ... // Abbreviated
 
-Time: <span class="m">572</span> <span class="nv">milliseconds</span>
+Time: 572 milliseconds
 
 
-<span class="o">===============================</span> Coverage <span class="nv">summary</span> <span class="o">===============================</span>
-Statements   : 96.3% <span class="o">(</span> 26/27 <span class="o">)</span>
-Branches     : 100% <span class="o">(</span> 0/0 <span class="o">)</span>
-Functions    : 92.31% <span class="o">(</span> 12/13 <span class="o">)</span>
-Lines        : 96.3% <span class="o">(</span> 26/27 <span class="o">)</span>
-<span class="o">================================================================================</span>
-</pre></div>
+=============================== Coverage summary ===============================
+Statements   <span class="pl-s3">:</span> 96.3% ( 26/27 )
+Branches     <span class="pl-s3">:</span> 100% ( 0/0 )
+Functions    <span class="pl-s3">:</span> 92.31% ( 12/13 )
+Lines        <span class="pl-s3">:</span> 96.3% ( 26/27 )
+================================================================================</pre></div>
 
 <p>By default, the coverage reporter creates three reports:</p>
 
@@ -963,7 +940,7 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 <li>
 <code>configuration</code> - Custom configuration for task-specific options. See below for the task options.</li>
 <li>
-<code>decorator</code> - List of client decorators that should be loaded on the client. See "Client Decorators" section for more information.</li>
+<code>decorators</code> - List of client decorators that should be loaded on the client. See "Client Decorators" section for more information.</li>
 </ul>
 
 <h5>
@@ -1229,8 +1206,7 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 
 <p>Generate the documentation with following command:</p>
 
-<div class="highlight highlight-shell"><pre>npm run docs
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm run docs</pre></div>
 
 <p>The documentation will be generated in the <code>docs</code> folder of the module root.</p>
 
@@ -1239,8 +1215,7 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 
 <p>Run the tests with the following command:</p>
 
-<div class="highlight highlight-shell"><pre>npm run <span class="nb">test</span>
-</pre></div>
+<div class="highlight highlight-shell"><pre>npm run <span class="pl-s3">test</span></pre></div>
 
 <p>The code-coverage will be written to the <code>coverage</code> folder in the module root.</p>
 
