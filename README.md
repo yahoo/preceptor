@@ -1,5 +1,4 @@
-Preceptor
-=========
+![Preceptor Logo](https://raw.githubusercontent.com/yahoo/preceptor/master/images/logo1.png)
 
 Preceptor is a test-runner and test-aggregator that runs multiple tests and testing frameworks in parallel, sequential, or a combination there of, aggregating all of the test-results and coverage-reports.
 
