@@ -47,7 +47,7 @@
     "cucumber": "0.4.2",
     "coveralls": "2.11.2",
     "mocha": "1.21.4",
-    "cabbie": "git://github.com/marcelerz/cabbie#master",
+    "cabbie-alpha": "~1.0.0",
     "kobold": "~0.9.0",
     "preceptor-webdriver": "~0.9.0",
     "yuidocjs": "0.3.50"
