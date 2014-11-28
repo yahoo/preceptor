@@ -749,7 +749,7 @@ Tasks have a common set of configuration options that can be set on the root of 
 * ```verbose``` - Prints every step taken by Preceptor. This adds a lot of output and might be overwhelming at first. (default: false)
 * ```failOnError``` - Flag that defines if task should skip all other tests and fail Preceptor. (default: false)
 * ```echoStdOut``` - Flag that defines if task should echo all std-out data.
-* ```echoStdIn``` - Flag that defines if task should echo all std-err data.
+* ```echoStdErr``` - Flag that defines if task should echo all std-err data.
 
 
 ####Cucumber Task
