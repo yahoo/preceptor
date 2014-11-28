@@ -13,6 +13,18 @@ Preceptor is a test-runner and test-aggregator that runs multiple tests and test
 
 [Coverage Report](http://yahoo.github.io/preceptor/coverage/lcov-report/)
 
+##Quick Look
+Main-Features:
+* Runs tests sequentially, in parallel, or a combination thereof.
+* Support of multiple commonly used testing frameworks including: Mocha, Cucumber, and Kobold.
+* Test-report aggregation, combining all of the test-results in one place, supporting a big list of commonly used reporters, including display reporters such as “Spec” and “Dot” and file-format reporters such as “JUnit” and “TAP”, all of which can be used at the same time.
+* Centralized collection of code-coverage metrics for every test that ran, merging all of the results in one place, giving the developers and testers a complete picture of what has been tested, and what might needs more tests.
+
+Features through plugins:
+* Selenium test management, starting-up and tearing-down Selenium servers transparently for the developers and testers, injecting code to the test-client, reducing with it the boilerplate code needed to run Selenium tests. This will also help simplify the configuration of the Selenium test system.
+* Client-side code-coverage collection, merging the code-coverage reports of an application that ran in a browser.
+
+
 
 **Table of Contents**
 * [Installation](#installation)
@@ -52,10 +64,6 @@ Preceptor is a test-runner and test-aggregator that runs multiple tests and test
 Install this module with the following command:
 ```shell
 npm install preceptor
-```
-Or install it globally:
-```shell
-npm install -g preceptor
 ```
 
 To add the module to your ```package.json``` dependencies:
