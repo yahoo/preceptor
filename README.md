@@ -31,6 +31,7 @@ Features through plugins:
 * [What is Preceptor?](#what-is-preceptor)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
+    * [Command-Line Usage](#command-line-usage)
     * [Testing Lifecycle](#testing-lifecycle)
         * [Administrative states](#administrative-states)
         * [Suite management](#suite-management)
@@ -167,7 +168,7 @@ module.exports = {
 };
 ```
 
-The tests live in a subfolder with the name ```mocha```. For now, let's add a couple of simple tests that give you a glimpse on how test-results will look.
+The tests live in a sub-folder with the name ```mocha```. For now, let's add a couple of simple tests that give you a glimpse on how test-results will look.
 
 Copy the following content into ```mocha/test1.js```:
 ```javascript
@@ -547,6 +548,30 @@ This concludes the introduction of Preceptor. Please read the general overview t
 
 ## Usage
 
+###Command-Line usage
+
+Preceptor is started through the command-line that can be found in the ```bin``` folder. You can run the application with
+
+```shell
+preceptor [options] [config-file]
+```
+
+The ```config-file``` is by default ```rule-book.js``` or ```rule-book.json``` when left-off, where by the first one has priority over the second.
+
+The command-line tool exposes a couple of flags and parameters:
+```
+--config j          Inline JSON configuration or configuration overwrites
+--profile p         Profile of configuration
+--subprofile p      Sub-profile of configuration
+--version           Print version
+--help              This help
+```
+
+For profiles, see the profile section below.
+
+The ```config``` options adds the possibility to create or overwrite configuration directly from the console. The inline configuration-options are applied after the profile selection. 
+Objects are merged if a configuration file was selected, and arrays will be appended to already available lists.
+
 ###Testing Lifecycle
 To understand how Preceptor works, we have to understand first what the testing lifecycle is. Tests are run usually through a common set of states that can be defined as the testing lifecycle.
 
@@ -680,6 +705,179 @@ The configuration file has three top-level properties:
 * ```configuration``` - Global Preceptor configuration that describes Preceptor behavior.
 * ```shared``` - Shared task options.
 * ```tasks``` - Individual task options which are run by default in sequence.
+
+####Profiles
+The configuration file supports multiple layers of profiles:
+ * Global Profile
+ * Tasks Profile
+
+As an example, let's use the following abbreviated configuration:
+
+__config.js__
+```javascript
+module.exports = {
+
+	"configuration": {
+		"reportManager": { "reporter": [ { "type": "Spec" } ] }
+	},
+
+	"tasks": [
+		{
+			"type": "mocha",
+			"configuration": {
+				"paths": [__dirname + "/mocha/test1.js"]
+			}
+		}
+	]
+};
+```
+
+#####Global Profile
+Global profiles can be used to toggle between full-configurations:
+
+```javascript
+module.exports = {
+
+	"profile1": {
+		"configuration": {
+			"reportManager": { "reporter": [ { "type": "Spec" } ] }
+		},
+	
+		"tasks": [
+			{
+				"type": "mocha",
+				"configuration": {
+					"paths": [__dirname + "/mocha/test1.js"]
+				}
+			}
+		]
+	},
+
+	"profile2": {
+		"configuration": {
+			"reportManager": { "reporter": [ { "type": "Dot" } ] }
+		},
+	
+		"tasks": [
+			{
+				"type": "mocha",
+				"configuration": {
+					"paths": [__dirname + "/mocha/test2.js"]
+				}
+			}
+		]
+	}
+};
+```
+
+To select the second profile, call Preceptor as follows:
+```shell
+preceptor --profile profile2 config.js
+```
+
+The first profile can be selected by supplying ```profile1``` instead, or whatever name you give the corresponding profiles.
+Be sure to always supply a profile when it is available since the default behavior is to not look for a profile.
+
+#####Tasks Profile
+Task profiles are very similar to global profiles, but are there for toggling task-lists. This can be very useful, when global configurations are shared between multiple profiles. Task profiles are also called sub-profiles since they toggle configuration below the global profile selection.
+
+An example looks like this:
+```javascript
+module.exports = {
+
+	"configuration": {
+		"reportManager": { "reporter": [ { "type": "Spec" } ] }
+	},
+
+	"tasks": {
+	 	"sub-profile1": [
+			{
+				"type": "mocha",
+				"configuration": {
+					"paths": [__dirname + "/mocha/test1.js"]
+				}
+			}
+		],
+		"sub-profile2": [
+			{
+				"type": "mocha",
+				"configuration": {
+					"paths": [__dirname + "/mocha/test2.js"]
+				}
+			}
+		]
+	}
+};
+```
+
+To select the first sub-profile, call Preceptor as follows:
+```shell
+preceptor --subprofile sub-profile1 config.js
+```
+
+Be sure to always supply a sub-profile when it is available since the default behavior is to not look for a sub-profile.
+
+#####Combine Profiles
+It is also possible to combine both profile methods.
+
+```javascript
+module.exports = {
+
+	"ci": {
+		"configuration": {
+			"reportManager": { "reporter": [ { "type": "Dot" } ] }
+		},
+	
+		"tasks": {
+			"acceptance": [
+				{
+					"type": "mocha",
+					"configuration": {
+						"paths": [__dirname + "/build/mocha/test1.js"]
+					}
+				}
+			],
+			"integration": [
+				{
+					"type": "mocha",
+					"configuration": {
+						"paths": [__dirname + "/build/mocha/test2.js"]
+					}
+				}
+			]
+		}
+	},
+	"dev": {
+		"configuration": {
+			"reportManager": { "reporter": [ { "type": "Spec" } ] }
+		},
+	
+		"tasks": {
+			"acceptance": [
+				{
+					"type": "mocha",
+					"configuration": {
+						"paths": [__dirname + "/../mocha/test1.js"]
+					}
+				}
+			],
+			"integration": [
+				{
+					"type": "mocha",
+					"configuration": {
+						"paths": [__dirname + "/../mocha/test2.js"]
+					}
+				}
+			]
+		}
+	}
+};
+```
+
+With this example, you could run the acceptance tests from your local machine with:
+```shell
+preceptor --profile dev --subprofile acceptance config.js
+```
 
 ####Global configuration
 Preceptors task-independent behavior is configured in this section. It has the following properties:
