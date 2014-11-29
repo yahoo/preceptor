@@ -46,6 +46,14 @@ module.exports = {
 			"configuration": {
 				"paths": [__dirname + "/mocha/test3.js"]
 			}
+		},
+		{
+			"type": "loader",
+			"title": "JUnit Test Import",
+			"suite": true,
+			"configuration": {
+				"path": __dirname + "/*.xml"
+			}
 		}
 	]
 };

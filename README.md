@@ -47,6 +47,7 @@ Features through plugins:
         * [Cucumber Task](#cucumber-task)
         * [Mocha Task](#mocha-task)
         * [Kobold Task](#kobold-task)
+        * [Loader Task](#loader-task)
         * [Node Task](#node-task)
         * [Shell Task](#shell-task)
         * [Group Task](#group-task)
@@ -1009,6 +1010,32 @@ The storage configuration has also the following values by default:
 * ```options.buildFolderName``` - 'build'
 * ```options.highlightFolderName``` - 'highlight'
 
+
+####Loader Task
+
+This task imports already available test-report files, including JUnit and TAP files. The ```type```-value for this task is ```loader```.
+
+Task options:
+* ```format``` - Format of file-import (i.e. ```junit``` or ```tap```). See the Preceptor-Reporter project for all available options.
+* ```path``` - Glob to select files that should be imported
+* ```configuration``` - Custom configuration for each file-format type
+
+__Example:__
+```javascript
+	{
+		"type": "loader",
+		"title": "JUnit import",
+		"suite": true, // Wrap it in a suite using the title from above
+		
+		"configuration": { // Loader-task specific configuration
+			"format": "junit", // Use "junit" as the format (is default)
+			"path": "junit-*.xml", // Glob to select import files
+			"configuration": {
+				// Any JUnit specific configurations
+			}
+		}
+	}
+```
 
 ####Node Task
 
