@@ -121,7 +121,7 @@ function parseArgs (argv) {
 		configFile = configFile();
 	}
 
-	config = utils.deepExtend({}, [configFile || {}, configLine || {}]);
+	config = utils.deepExtend({}, [configFile || {}]);
 
 	// Profile
 	if (profile) {
@@ -140,6 +140,8 @@ function parseArgs (argv) {
 			throw new Error('Could not find sub-profile "' + subProfile + '"');
 		}
 	}
+
+	config = utils.deepExtend({}, [config, configLine || {}]);
 
 	return config;
 }
