@@ -18,6 +18,10 @@ module.exports = {
 		}
 	},
 
+	"shared": {
+		"echoStdErr": true
+	},
+
 	"tasks": [
 		[{
 			"type": "mocha",
