@@ -944,6 +944,7 @@ Tasks have a common set of configuration options that can be set on the root of 
 * ```active``` - Flag that defines if task is active or inactive. Inactive tasks will be ignored by Preceptor, skipping any tests and results from the task. (default: true)
 * ```suite``` - Flag that defines if task should be used as a virtual test-suite. A virtual test-suite injects itself into the test-results. This makes it possible to compose the test-results however it is needed. (default: false)
 * ```debug``` - Flag that defines if task is run in debug mode. In debug-mode, the client is run directly in the Preceptor process. Output is not caught by Preceptor and directly printed to std-out, and a breakpoint will stop the Preceptor process. Avoid using this flag long-term. (default: false)
+* ```report``` - Flag that determines if task uses the globally configured reporter. (default: true) If deactivated, testing life-cycle events will be muted. 
 * ```verbose``` - Prints every step taken by Preceptor. This adds a lot of output and might be overwhelming at first. (default: false)
 * ```failOnError``` - Flag that defines if task should skip all other tests and fail Preceptor. (default: false)
 * ```echoStdOut``` - Flag that defines if task should echo all std-out data.
