@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.0</em>
+            <em>API Docs for: 0.9.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -61,11 +61,15 @@
             
                 <li><a href="../classes/CucumberTask.html">CucumberTask</a></li>
             
+                <li><a href="../classes/DecoratorTaskDecorator.html">DecoratorTaskDecorator</a></li>
+            
                 <li><a href="../classes/GroupTask.html">GroupTask</a></li>
             
                 <li><a href="../classes/GroupTaskDecorator.html">GroupTaskDecorator</a></li>
             
                 <li><a href="../classes/IdentifierTaskDecorator.html">IdentifierTaskDecorator</a></li>
+            
+                <li><a href="../classes/JUnitTask.html">JUnitTask</a></li>
             
                 <li><a href="../classes/KoboldClient.html">KoboldClient</a></li>
             
@@ -191,7 +195,7 @@ var AbstractForkTask = AbstractTask.extend(
 				parentId: parentId,
 				globalConfig: this.getGlobalConfig().toObject(),
 				configuration: this.getConfiguration(),
-				decorator: this.getDecorator(),
+				decorators: this.getDecorators(),
 				decoratorPlugins: this.getClientDecoratorPlugins()
 			};
 
@@ -204,11 +208,18 @@ var AbstractForkTask = AbstractTask.extend(
 					logger.debug(&#x27;Fork task-client in debug mode&#x27;, clientPath);
 
 					ClientClass = require(clientPath);
-					clientInstance = new ClientClass(options.decorator, options.decoratorPlugins, options.configuration);
+					clientInstance = new ClientClass(options.decorators, options.decoratorPlugins, options.configuration);
 
 					clientInstance.on(&#x27;reportMessage&#x27;, function (messageType, data) {
-						this.getReportManager().processMessage(messageType, data);
+						if (this.shouldReport()) {
+							this.getReportManager().processMessage(messageType, data);
+						}
 					}.bind(this));
+
+					// Make global configuration available
+					global.PRECEPTOR = {
+						config: options.globalConfig
+					};
 
 					clientInstance.run(parentId).then(function () {
 						this.getCoverageCollector().add(global.__preceptorCoverage__ || {});
@@ -217,6 +228,8 @@ var AbstractForkTask = AbstractTask.extend(
 					}, function (err) {
 						this.getCoverageCollector().add(global.__preceptorCoverage__ || {});
 						global.__preceptorCoverage__ = {};
+						throw err;
+					}).then(null, function (err) {
 						if (shouldFailOnError) {
 							reject(err);
 						} else {
@@ -264,22 +277,28 @@ var AbstractForkTask = AbstractTask.extend(
 								break;
 
 							case &#x27;reportMessage&#x27;:
-								this.getReportManager().processMessage(dataPackage.messageType, dataPackage.data);
+								if (this.shouldReport()) {
+									this.getReportManager().processMessage(dataPackage.messageType, dataPackage.data);
+								}
 								break;
 						}
 					}.bind(this));
 
 					clientInstance.stdout.on(&#x27;data&#x27;, function (data) {
-						data = this.getReportManager().parse(data.toString(&#x27;utf-8&#x27;), { &quot;#TASK#&quot;: parentId });
-						if (this.shouldEchoStdOut()) {
-							process.stdout.write((this.isVerbose() ? this.getName() + &quot;: &quot; : &#x27;&#x27;) + data);
+						if (this.shouldReport()) {
+							data = this.getReportManager().parse(data.toString(&#x27;utf-8&#x27;), { &quot;#TASK#&quot;: parentId });
+							if (this.shouldEchoStdOut()) {
+								process.stdout.write((this.isVerbose() ? this.getName() + &quot;: &quot; : &#x27;&#x27;) + data);
+							}
 						}
 					}.bind(this));
 
 					clientInstance.stderr.on(&#x27;data&#x27;, function (data) {
-						data = this.getReportManager().parse(data.toString(&#x27;utf-8&#x27;), { &quot;#TASK#&quot;: parentId });
-						if (this.shouldEchoStdErr()) {
-							process.stderr.write((this.isVerbose() ? this.getName() + &quot;: &quot; : &#x27;&#x27;) + data);
+						if (this.shouldReport()) {
+							data = this.getReportManager().parse(data.toString(&#x27;utf-8&#x27;), { &quot;#TASK#&quot;: parentId });
+							if (this.shouldEchoStdErr()) {
+								process.stderr.write((this.isVerbose() ? this.getName() + &quot;: &quot; : &#x27;&#x27;) + data);
+							}
 						}
 					}.bind(this));
 

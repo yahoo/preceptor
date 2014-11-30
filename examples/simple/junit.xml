@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<testsuites name="Tests" time="0" tests="15" failures="4" disabled="5" errors="2">
+  <testsuite name="All Tests" time="0" tests="15" failures="4" disabled="2" skipped="3" errors="2" hostname="stoketoday-lm" timestamp="2014-11-29T09:51:24.742Z">
+    <testcase name="1. Test - success" time="0"/>
+    <testcase name="2. Test - skipped" time="0">
+      <skipped type="I guess DB wasn't there" message="I guess DB wasn't there"/>
+    </testcase>
+    <testsuite name="Sub-Group 1" time="0" tests="7" failures="2" disabled="1" skipped="1" errors="1" hostname="stoketoday-lm" timestamp="2014-11-29T09:51:24.742Z">
+      <testcase name="3. Test - success" time="0"/>
+      <testsuite name="Sub-Group 1.1" time="0" tests="6" failures="2" disabled="1" skipped="1" errors="1" hostname="stoketoday-lm" timestamp="2014-11-29T09:51:24.742Z">
+        <testcase name="4. Test - success" time="0"/>
+        <testcase name="5. Test - failed" time="0">
+          <failure type="Is not equal to something" message="Because it is not equal"/>
+        </testcase>
+        <testcase name="6. Test - error" time="0">
+          <error type="Some kind of exception" message="For whatever reason"/>
+        </testcase>
+        <testcase name="7. Test - undefined" time="0">
+          <skipped type="undefined" message="undefined"/>
+        </testcase>
+        <testcase name="8. Test - skipped" time="0">
+          <skipped type="I guess DB wasn't there" message="I guess DB wasn't there"/>
+        </testcase>
+        <testcase name="9. Test - incomplete" time="0">
+          <skipped type="incomplete" message="incomplete"/>
+        </testcase>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Sub-Group 2" time="0" tests="1" failures="0" disabled="0" skipped="0" errors="0" hostname="stoketoday-lm" timestamp="2014-11-29T09:51:24.742Z">
+      <testcase name="10. Test - success" time="0"/>
+    </testsuite>
+    <testcase name="11. Test - failed" time="0">
+      <failure type="Is not equal to something" message="Because it is not equal"/>
+    </testcase>
+    <testcase name="12. Test - error" time="0">
+      <error type="Some kind of exception" message="For whatever reason"/>
+    </testcase>
+    <testcase name="13. Test - undefined" time="0">
+      <skipped type="undefined" message="undefined"/>
+    </testcase>
+    <testcase name="14. Test - skipped" time="0">
+      <skipped type="I guess DB wasn't there" message="I guess DB wasn't there"/>
+    </testcase>
+    <testcase name="15. Test - incomplete" time="0">
+      <skipped type="incomplete" message="incomplete"/>
+    </testcase>
+  </testsuite>
+</testsuites>

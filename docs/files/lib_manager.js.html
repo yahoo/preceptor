@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.0</em>
+            <em>API Docs for: 0.9.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -61,11 +61,15 @@
             
                 <li><a href="../classes/CucumberTask.html">CucumberTask</a></li>
             
+                <li><a href="../classes/DecoratorTaskDecorator.html">DecoratorTaskDecorator</a></li>
+            
                 <li><a href="../classes/GroupTask.html">GroupTask</a></li>
             
                 <li><a href="../classes/GroupTaskDecorator.html">GroupTaskDecorator</a></li>
             
                 <li><a href="../classes/IdentifierTaskDecorator.html">IdentifierTaskDecorator</a></li>
+            
+                <li><a href="../classes/JUnitTask.html">JUnitTask</a></li>
             
                 <li><a href="../classes/KoboldClient.html">KoboldClient</a></li>
             
@@ -238,7 +242,8 @@ var PreceptorManager = Base.extend(
 		_initializeTaskDecoratorRegistry: function () {
 			var defaultElements = [
 				{ name: &#x27;group&#x27;, fileName: &#x27;group&#x27; },
-				{ name: &#x27;identifier&#x27;, fileName: &#x27;identifier&#x27; }
+				{ name: &#x27;identifier&#x27;, fileName: &#x27;identifier&#x27; },
+				{ name: &#x27;decorator&#x27;, fileName: &#x27;decorator&#x27; }
 			];
 
 			_.each(defaultElements, function (entry) {
@@ -278,6 +283,7 @@ var PreceptorManager = Base.extend(
 				{ name: &#x27;cucumber&#x27;, fileName: &#x27;cucumber&#x27; },
 				{ name: &#x27;group&#x27;, fileName: &#x27;group&#x27; },
 				{ name: &#x27;kobold&#x27;, fileName: &#x27;kobold&#x27; },
+				{ name: &#x27;loader&#x27;, fileName: &#x27;loader&#x27; },
 				{ name: &#x27;mocha&#x27;, fileName: &#x27;mocha&#x27; },
 				{ name: &#x27;node&#x27;, fileName: &#x27;node&#x27; },
 				{ name: &#x27;shell&#x27;, fileName: &#x27;shell&#x27; }
@@ -392,7 +398,7 @@ var PreceptorManager = Base.extend(
 		 * @return {boolean}
 		 */
 		hasTaskDecorator: function (name) {
-			return !!this._taskDecoratorList[name];
+			return !!this._taskDecoratorList[name.toLowerCase()];
 		},
 
 		/**
@@ -403,7 +409,7 @@ var PreceptorManager = Base.extend(
 		 * @return {function}
 		 */
 		getTaskDecorator: function (name) {
-			return this._taskDecoratorList[name];
+			return this._taskDecoratorList[name.toLowerCase()];
 		},
 
 		/**
@@ -414,7 +420,7 @@ var PreceptorManager = Base.extend(
 		 * @param {function} contr
 		 */
 		registerTaskDecorator: function (name, contr) {
-			this._taskDecoratorList[name] = contr;
+			this._taskDecoratorList[name.toLowerCase()] = contr;
 		},
 
 		/**
@@ -448,7 +454,7 @@ var PreceptorManager = Base.extend(
 		 * @return {boolean}
 		 */
 		hasClientDecorator: function (name) {
-			return !!this._clientDecoratorList[name];
+			return !!this._clientDecoratorList[name.toLowerCase()];
 		},
 
 		/**
@@ -459,7 +465,7 @@ var PreceptorManager = Base.extend(
 		 * @return {function}
 		 */
 		getClientDecorator: function (name) {
-			return this._clientDecoratorList[name];
+			return this._clientDecoratorList[name.toLowerCase()];
 		},
 
 		/**
@@ -470,7 +476,7 @@ var PreceptorManager = Base.extend(
 		 * @param {string} path
 		 */
 		registerClientDecorator: function (name, path) {
-			this._clientDecoratorList[name] = path;
+			this._clientDecoratorList[name.toLowerCase()] = path;
 		},
 
 		/**
@@ -504,7 +510,7 @@ var PreceptorManager = Base.extend(
 		 * @return {boolean}
 		 */
 		hasTask: function (name) {
-			return !!this._taskList[name];
+			return !!this._taskList[name.toLowerCase()];
 		},
 
 		/**
@@ -515,7 +521,7 @@ var PreceptorManager = Base.extend(
 		 * @return {function}
 		 */
 		getTask: function (name) {
-			return this._taskList[name];
+			return this._taskList[name.toLowerCase()];
 		},
 
 		/**
@@ -526,7 +532,7 @@ var PreceptorManager = Base.extend(
 		 * @param {function} contr
 		 */
 		registerTask: function (name, contr) {
-			this._taskList[name] = contr;
+			this._taskList[name.toLowerCase()] = contr;
 		},
 
 		/**
@@ -578,7 +584,8 @@ var PreceptorManager = Base.extend(
 				var task = new GroupTask(config, coverageCollector, reportManager, {
 					taskDecorator: this.getTaskDecoratorList(),
 					clientDecorator: this.getClientDecoratorList(),
-					task: this.getTaskList()
+					task: this.getTaskList(),
+					sharedOptions: this.getSharedTaskOptions()
 				}, {
 					type: &#x27;group&#x27;,
 					taskId: &#x27;root-task&#x27;,

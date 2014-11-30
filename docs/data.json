@@ -2,7 +2,7 @@
     "project": {
         "name": "preceptor",
         "description": "Preceptor testrunner and aggregator",
-        "version": "0.9.0"
+        "version": "0.9.3"
     },
     "files": {
         "lib/clientDecorator/plain.js": {
@@ -77,6 +77,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "lib/task/loader.js": {
+            "name": "lib/task/loader.js",
+            "modules": {},
+            "classes": {
+                "JUnitTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "lib/task/mocha.js": {
             "name": "lib/task/mocha.js",
             "modules": {},
@@ -100,6 +109,15 @@
             "modules": {},
             "classes": {
                 "ShellTask": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/taskDecorator/decorator.js": {
+            "name": "lib/taskDecorator/decorator.js",
+            "modules": {},
+            "classes": {
+                "DecoratorTaskDecorator": 1
             },
             "fors": {},
             "namespaces": {}
@@ -310,6 +328,19 @@
             "extends": "MochaTask",
             "is_constructor": 1
         },
+        "JUnitTask": {
+            "name": "JUnitTask",
+            "shortname": "JUnitTask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/task/loader.js",
+            "line": 10,
+            "extends": "AbstractTask",
+            "is_constructor": 1
+        },
         "MochaTask": {
             "name": "MochaTask",
             "shortname": "MochaTask",
@@ -348,6 +379,21 @@
             "line": 10,
             "extends": "AbstractTask",
             "is_constructor": 1
+        },
+        "DecoratorTaskDecorator": {
+            "name": "DecoratorTaskDecorator",
+            "shortname": "DecoratorTaskDecorator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/taskDecorator/decorator.js",
+            "line": 6,
+            "extends": "AbstractTaskDecorator",
+            "is_constructor": 1,
+            "itemtype": "property",
+            "type": "Driver"
         },
         "GroupTaskDecorator": {
             "name": "GroupTaskDecorator",
@@ -394,7 +440,7 @@
             "type": "Object",
             "params": [
                 {
-                    "name": "_decorator",
+                    "name": "decorators",
                     "description": "",
                     "type": "AbstractClientDecorator[]"
                 },
@@ -882,7 +928,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 63,
+            "line": 67,
             "description": "Gets the cucumber configuration\nOverwrite this function if the cucumber configuration is found somewhere else.",
             "itemtype": "method",
             "name": "getCucumberConfiguration",
@@ -894,7 +940,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 74,
+            "line": 78,
             "description": "Sets the cucumber configuration\nOverwrite this function if the cucumber configuration is found somewhere else.",
             "itemtype": "method",
             "name": "setCucumberConfiguration",
@@ -909,7 +955,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 86,
+            "line": 90,
             "description": "Gets the path to the text files\nCucumber Option: <Last parameter>",
             "itemtype": "method",
             "name": "getPath",
@@ -921,7 +967,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 97,
+            "line": 101,
             "description": "Gets the tags to include/exclude\nCucumber Option: tags",
             "itemtype": "method",
             "name": "getTags",
@@ -933,7 +979,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 108,
+            "line": 112,
             "description": "Gets the required file before running the tests\nCucumber Option: require",
             "itemtype": "method",
             "name": "getRequires",
@@ -945,7 +991,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 119,
+            "line": 123,
             "description": "Gets the functions to execute as part of files to execute\nCucumber Option: <does not exist>",
             "itemtype": "method",
             "name": "getFunctions",
@@ -957,7 +1003,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 130,
+            "line": 134,
             "description": "Should output in coffee-script?\nCucumber Option: coffee",
             "itemtype": "method",
             "name": "shouldOutputCoffeeScript",
@@ -969,7 +1015,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 141,
+            "line": 145,
             "description": "Gets the output format for cucumber\nCucumber Option: format",
             "itemtype": "method",
             "name": "getFormat",
@@ -981,7 +1027,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 153,
+            "line": 157,
             "description": "Execute client",
             "itemtype": "method",
             "name": "run",
@@ -1000,7 +1046,7 @@
         },
         {
             "file": "lib/task/client/cucumber.js",
-            "line": 190,
+            "line": 194,
             "description": "Runs the cucumber tests, self-contained",
             "itemtype": "method",
             "name": "_runCucumber",
@@ -1107,7 +1153,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 68,
+            "line": 72,
             "description": "Gets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
             "itemtype": "method",
             "name": "getMochaConfiguration",
@@ -1119,7 +1165,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 79,
+            "line": 83,
             "description": "Sets the mocha configuration\nOverwrite this function if the mocha configuration is found somewhere else.",
             "itemtype": "method",
             "name": "setMochaConfiguration",
@@ -1134,7 +1180,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 91,
+            "line": 95,
             "description": "Gets the reporter\nMocha Option: reporter",
             "itemtype": "method",
             "name": "getReporter",
@@ -1146,7 +1192,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 102,
+            "line": 106,
             "description": "Gets the UI interface ('tdd', 'bdd')\nMocha Option: ui",
             "itemtype": "method",
             "name": "getUi",
@@ -1158,7 +1204,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 113,
+            "line": 117,
             "description": "Should colors be used in output?\nMocha Option: colors",
             "itemtype": "method",
             "name": "useColors",
@@ -1170,7 +1216,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 124,
+            "line": 128,
             "description": "Output inline diffs\nMocha Option: inline-diffs",
             "itemtype": "method",
             "name": "useInlineDiffs",
@@ -1182,7 +1228,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 135,
+            "line": 139,
             "description": "Gets the threshold for slow tests\nMocha Option: slow",
             "itemtype": "method",
             "name": "getSlowThreshold",
@@ -1194,7 +1240,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 146,
+            "line": 150,
             "description": "Should time-outs be observed?\nMocha Option: [no-]timeouts",
             "itemtype": "method",
             "name": "useTimeOuts",
@@ -1206,7 +1252,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 157,
+            "line": 161,
             "description": "Gets the threshold for too slow test-suites\nMocha Option: timeout",
             "itemtype": "method",
             "name": "getTimeOut",
@@ -1218,7 +1264,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 168,
+            "line": 172,
             "description": "Should mocha bail on first error?\nMocha Option: bail",
             "itemtype": "method",
             "name": "shouldBail",
@@ -1230,7 +1276,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 179,
+            "line": 183,
             "description": "Gets the test filter\nMocha Option: grep",
             "itemtype": "method",
             "name": "getGrep",
@@ -1242,7 +1288,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 190,
+            "line": 194,
             "description": "Should the test sequence inverted?\nMocha Option: invert",
             "itemtype": "method",
             "name": "shouldInvert",
@@ -1254,7 +1300,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 201,
+            "line": 205,
             "description": "Should mocha check for leaks\nMocha Option: check-leaks",
             "itemtype": "method",
             "name": "shouldCheckLeaks",
@@ -1266,7 +1312,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 212,
+            "line": 216,
             "description": "Gets the reporter\nMocha Option: async-only",
             "itemtype": "method",
             "name": "useAsyncOnly",
@@ -1278,7 +1324,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 223,
+            "line": 227,
             "description": "Gets the list of defined globals\nMocha Option: globals",
             "itemtype": "method",
             "name": "getGlobals",
@@ -1290,7 +1336,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 234,
+            "line": 238,
             "description": "Gets the path of all tests\nMocha Option: <last parameters>",
             "itemtype": "method",
             "name": "getPaths",
@@ -1302,7 +1348,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 245,
+            "line": 249,
             "description": "Gets a list of functions to execute before the tests\nMocha Option: <does not exist>",
             "itemtype": "method",
             "name": "getFunctions",
@@ -1314,7 +1360,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 256,
+            "line": 260,
             "description": "Should the test-search be recursive?\nMocha Option: recursive",
             "itemtype": "method",
             "name": "getRecursive",
@@ -1326,7 +1372,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 267,
+            "line": 271,
             "description": "List of files to be required before the tests are run\nMocha Option: require",
             "itemtype": "method",
             "name": "getRequire",
@@ -1338,7 +1384,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 278,
+            "line": 282,
             "description": "Should tests be sorted after gathering and before executing?\nMocha Option: sort",
             "itemtype": "method",
             "name": "shouldSort",
@@ -1350,7 +1396,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 290,
+            "line": 294,
             "description": "Execute client",
             "itemtype": "method",
             "name": "run",
@@ -1369,7 +1415,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 325,
+            "line": 329,
             "description": "Runs mocha tests, self-contained",
             "itemtype": "method",
             "name": "_runMocha",
@@ -1494,7 +1540,7 @@
         },
         {
             "file": "lib/task/client/mocha.js",
-            "line": 489,
+            "line": 493,
             "description": "Lookup all files in the path given",
             "itemtype": "method",
             "name": "lookupFiles",
@@ -1847,6 +1893,67 @@
             "access": "private",
             "tagname": "",
             "class": "KoboldTask"
+        },
+        {
+            "file": "lib/task/loader.js",
+            "line": 18,
+            "description": "Initializes the instance",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "JUnitTask"
+        },
+        {
+            "file": "lib/task/loader.js",
+            "line": 36,
+            "description": "Validates the given data",
+            "itemtype": "method",
+            "name": "validate",
+            "class": "JUnitTask"
+        },
+        {
+            "file": "lib/task/loader.js",
+            "line": 53,
+            "description": "Gets the file-format",
+            "itemtype": "method",
+            "name": "getFormat",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "JUnitTask"
+        },
+        {
+            "file": "lib/task/loader.js",
+            "line": 63,
+            "description": "Gets the path to the files",
+            "itemtype": "method",
+            "name": "getPath",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "JUnitTask"
+        },
+        {
+            "file": "lib/task/loader.js",
+            "line": 74,
+            "description": "Run the client",
+            "itemtype": "method",
+            "name": "_run",
+            "params": [
+                {
+                    "name": "parentId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "JUnitTask"
         },
         {
             "file": "lib/task/mocha.js",
@@ -2243,6 +2350,26 @@
             "class": "ShellTask"
         },
         {
+            "file": "lib/taskDecorator/decorator.js",
+            "line": 16,
+            "description": "Run the decorator",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "taskOptions",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "taskIndex",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "class": "DecoratorTaskDecorator"
+        },
+        {
             "file": "lib/taskDecorator/group.js",
             "line": 17,
             "description": "Run the decorator",
@@ -2330,7 +2457,7 @@
             "description": "Abstract client constructor",
             "params": [
                 {
-                    "name": "decorator",
+                    "name": "decorators",
                     "description": "",
                     "type": "Object[]"
                 },
@@ -2353,7 +2480,7 @@
             "line": 50,
             "description": "Setup decorator plugins",
             "itemtype": "method",
-            "name": "_setupDecorator",
+            "name": "_setupDecorators",
             "params": [
                 {
                     "name": "eventReporter",
@@ -2361,7 +2488,7 @@
                     "type": "EventReporter"
                 },
                 {
-                    "name": "decorator",
+                    "name": "decorators",
                     "description": "",
                     "type": "Object[]"
                 },
@@ -2729,7 +2856,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 110,
+            "line": 113,
             "description": "Augments the data with default values",
             "itemtype": "method",
             "name": "augment",
@@ -2737,7 +2864,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 120,
+            "line": 123,
             "description": "Gets the options",
             "itemtype": "method",
             "name": "getOptions",
@@ -2749,7 +2876,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 130,
+            "line": 133,
             "description": "Gets the client configuration",
             "itemtype": "method",
             "name": "getConfiguration",
@@ -2761,10 +2888,10 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 140,
-            "description": "Gets the decorator",
+            "line": 143,
+            "description": "Gets the decorator list",
             "itemtype": "method",
-            "name": "getDecorator",
+            "name": "getDecorators",
             "return": {
                 "description": "",
                 "type": "Object[]"
@@ -2773,7 +2900,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 150,
+            "line": 153,
             "description": "Gets the global configuration",
             "itemtype": "method",
             "name": "getGlobalConfig",
@@ -2785,7 +2912,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 160,
+            "line": 163,
             "description": "Gets the coverage collector",
             "itemtype": "method",
             "name": "getCoverageCollector",
@@ -2797,7 +2924,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 170,
+            "line": 173,
             "description": "Gets the type of the preceptor task",
             "itemtype": "method",
             "name": "getType",
@@ -2809,7 +2936,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 180,
+            "line": 183,
             "description": "Gets a unique id for the task",
             "itemtype": "method",
             "name": "getTaskId",
@@ -2821,7 +2948,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 190,
+            "line": 193,
             "description": "Gets the name of the preceptor task",
             "itemtype": "method",
             "name": "getName",
@@ -2833,7 +2960,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 200,
+            "line": 203,
             "description": "Gets the title of the preceptor task",
             "itemtype": "method",
             "name": "getTitle",
@@ -2845,7 +2972,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 210,
+            "line": 213,
             "description": "Run tasks in a suite?",
             "itemtype": "method",
             "name": "isSuite",
@@ -2857,7 +2984,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 220,
+            "line": 223,
             "description": "Is the task in debug-mode?",
             "itemtype": "method",
             "name": "inDebug",
@@ -2869,7 +2996,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 230,
+            "line": 233,
             "description": "Is the task active?",
             "itemtype": "method",
             "name": "isActive",
@@ -2881,7 +3008,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 240,
+            "line": 243,
             "description": "Is the task verbose?",
             "itemtype": "method",
             "name": "isVerbose",
@@ -2893,7 +3020,19 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 250,
+            "line": 253,
+            "description": "Should report?",
+            "itemtype": "method",
+            "name": "shouldReport",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "AbstractTask"
+        },
+        {
+            "file": "lib/abstractTask.js",
+            "line": 263,
             "description": "Echo std-out output of child-process?",
             "itemtype": "method",
             "name": "shouldEchoStdOut",
@@ -2905,7 +3044,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 260,
+            "line": 273,
             "description": "Echo std-err output of child-process?",
             "itemtype": "method",
             "name": "shouldEchoStdErr",
@@ -2917,7 +3056,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 271,
+            "line": 284,
             "description": "Gets all plugins",
             "itemtype": "method",
             "name": "getPlugins",
@@ -2929,7 +3068,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 281,
+            "line": 294,
             "description": "Gets all options-decorator plugins",
             "itemtype": "method",
             "name": "getTaskDecoratorPlugins",
@@ -2941,7 +3080,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 291,
+            "line": 304,
             "description": "Gets all client-decorator plugins",
             "itemtype": "method",
             "name": "getClientDecoratorPlugins",
@@ -2953,7 +3092,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 301,
+            "line": 314,
             "description": "Gets a specific task plugin",
             "itemtype": "method",
             "name": "getTaskPlugin",
@@ -2972,7 +3111,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 313,
+            "line": 326,
             "description": "Gets the report manager",
             "itemtype": "method",
             "name": "getReportManager",
@@ -2984,7 +3123,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 324,
+            "line": 337,
             "description": "Gets the label of the task",
             "itemtype": "method",
             "name": "getLabel",
@@ -2996,7 +3135,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 335,
+            "line": 348,
             "description": "Run the task",
             "itemtype": "method",
             "name": "run",
@@ -3015,7 +3154,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 376,
+            "line": 389,
             "description": "Run the task",
             "itemtype": "method",
             "name": "_run",
@@ -3036,7 +3175,7 @@
         },
         {
             "file": "lib/abstractTask.js",
-            "line": 390,
+            "line": 403,
             "itemtype": "property",
             "name": "TYPE",
             "type": "{string}",
@@ -3436,7 +3575,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 122,
+            "line": 123,
             "description": "Initializes the client-decorator registry",
             "itemtype": "method",
             "name": "_initializeClientDecoratorRegistry",
@@ -3446,7 +3585,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 140,
+            "line": 141,
             "description": "Initializes the task registry",
             "itemtype": "method",
             "name": "_initializeTaskRegistry",
@@ -3456,7 +3595,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 165,
+            "line": 167,
             "description": "Gets the options",
             "itemtype": "method",
             "name": "getOptions",
@@ -3468,7 +3607,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 175,
+            "line": 177,
             "description": "Gets the configuration object",
             "itemtype": "method",
             "name": "getConfig",
@@ -3480,7 +3619,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 185,
+            "line": 187,
             "description": "Gets all the shared options for tasks",
             "itemtype": "method",
             "name": "getSharedTaskOptions",
@@ -3492,7 +3631,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 195,
+            "line": 197,
             "description": "Gets a list of task options",
             "itemtype": "method",
             "name": "getTasks",
@@ -3504,7 +3643,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 206,
+            "line": 208,
             "description": "Gets the report-manager",
             "itemtype": "method",
             "name": "getReportManager",
@@ -3516,7 +3655,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 217,
+            "line": 219,
             "description": "Validate data given",
             "itemtype": "method",
             "name": "validate",
@@ -3524,7 +3663,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 234,
+            "line": 236,
             "description": "Augment data with default values",
             "itemtype": "method",
             "name": "augment",
@@ -3532,7 +3671,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 247,
+            "line": 249,
             "description": "Gets a dictionary of registered options-decorator",
             "itemtype": "method",
             "name": "getTaskDecoratorList",
@@ -3544,7 +3683,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 257,
+            "line": 259,
             "description": "Checks if a options-decorator is registered",
             "itemtype": "method",
             "name": "hasTaskDecorator",
@@ -3563,7 +3702,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 268,
+            "line": 270,
             "description": "Gets a specific registered options-decorator",
             "itemtype": "method",
             "name": "getTaskDecorator",
@@ -3582,7 +3721,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 279,
+            "line": 281,
             "description": "Registers a options-decorator",
             "itemtype": "method",
             "name": "registerTaskDecorator",
@@ -3602,7 +3741,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 290,
+            "line": 292,
             "description": "Registers a list of options-decorators",
             "itemtype": "method",
             "name": "registerTaskDecoratorRange",
@@ -3617,7 +3756,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 303,
+            "line": 305,
             "description": "Gets a dictionary of registered client-decorator",
             "itemtype": "method",
             "name": "getClientDecoratorList",
@@ -3629,7 +3768,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 313,
+            "line": 315,
             "description": "Checks if a client-decorator is registered",
             "itemtype": "method",
             "name": "hasClientDecorator",
@@ -3648,7 +3787,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 324,
+            "line": 326,
             "description": "Gets a specific registered client-decorator",
             "itemtype": "method",
             "name": "getClientDecorator",
@@ -3667,7 +3806,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 335,
+            "line": 337,
             "description": "Registers a client-decorator",
             "itemtype": "method",
             "name": "registerClientDecorator",
@@ -3687,7 +3826,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 346,
+            "line": 348,
             "description": "Registers a list of client-decorators",
             "itemtype": "method",
             "name": "registerClientDecoratorRange",
@@ -3702,7 +3841,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 359,
+            "line": 361,
             "description": "Gets a dictionary of registered tasks",
             "itemtype": "method",
             "name": "getTaskList",
@@ -3714,7 +3853,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 369,
+            "line": 371,
             "description": "Checks if a task is registered",
             "itemtype": "method",
             "name": "hasTask",
@@ -3733,7 +3872,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 380,
+            "line": 382,
             "description": "Gets a specific registered task",
             "itemtype": "method",
             "name": "getTask",
@@ -3752,7 +3891,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 391,
+            "line": 393,
             "description": "Registers a task",
             "itemtype": "method",
             "name": "registerTask",
@@ -3772,7 +3911,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 402,
+            "line": 404,
             "description": "Registers a list of task",
             "itemtype": "method",
             "name": "registerTaskRange",
@@ -3787,7 +3926,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 415,
+            "line": 417,
             "description": "Run the preceptor application",
             "itemtype": "method",
             "name": "run",
@@ -3799,7 +3938,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 485,
+            "line": 488,
             "description": "Write the coverage report collected",
             "itemtype": "method",
             "name": "_writeCoverage",
@@ -3816,7 +3955,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 534,
+            "line": 537,
             "itemtype": "property",
             "name": "TYPE",
             "type": "{string}",
@@ -3825,7 +3964,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 544,
+            "line": 547,
             "itemtype": "property",
             "name": "AbstractClient",
             "type": "{AbstractClient}",
@@ -3834,7 +3973,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 551,
+            "line": 554,
             "itemtype": "property",
             "name": "AbstractClientDecorator",
             "type": "{AbstractClientDecorator}",
@@ -3843,7 +3982,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 558,
+            "line": 561,
             "itemtype": "property",
             "name": "AbstractForkTask",
             "type": "{AbstractForkTask}",
@@ -3852,7 +3991,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 565,
+            "line": 568,
             "itemtype": "property",
             "name": "AbstractTaskDecorator",
             "type": "{AbstractTaskDecorator}",
@@ -3861,7 +4000,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 572,
+            "line": 575,
             "itemtype": "property",
             "name": "AbstractTask",
             "type": "{AbstractTask}",
@@ -3870,7 +4009,7 @@
         },
         {
             "file": "lib/manager.js",
-            "line": 579,
+            "line": 582,
             "itemtype": "property",
             "name": "version",
             "type": "{string}",
@@ -3881,11 +4020,11 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " lib/abstractTask.js:150"
+            "line": " lib/abstractTask.js:153"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " lib/abstractTask.js:160"
+            "line": " lib/abstractTask.js:163"
         },
         {
             "message": "Missing item type\nAbstract client constructor",

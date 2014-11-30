@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.0</em>
+            <em>API Docs for: 0.9.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -61,11 +61,15 @@
             
                 <li><a href="../classes/CucumberTask.html">CucumberTask</a></li>
             
+                <li><a href="../classes/DecoratorTaskDecorator.html">DecoratorTaskDecorator</a></li>
+            
                 <li><a href="../classes/GroupTask.html">GroupTask</a></li>
             
                 <li><a href="../classes/GroupTaskDecorator.html">GroupTaskDecorator</a></li>
             
                 <li><a href="../classes/IdentifierTaskDecorator.html">IdentifierTaskDecorator</a></li>
+            
+                <li><a href="../classes/JUnitTask.html">JUnitTask</a></li>
             
                 <li><a href="../classes/KoboldClient.html">KoboldClient</a></li>
             
@@ -148,7 +152,7 @@ var defaultTask = require(&#x27;./defaults/defaultTask&#x27;);
  * @property {object} _plugins
  * @property {object} _options
  * @property {object} _config
- * #property {Collector} _coverageCollector
+ * @property {Collector} _coverageCollector
  */
 var AbstractTask = Base.extend(
 
@@ -172,7 +176,7 @@ var AbstractTask = Base.extend(
 		this._coverageCollector = coverageCollector;
 		this._reportManager = reportManager;
 		this._plugins = plugins;
-		this._options = utils.deepExtend({}, [defaultTask, options || {}]);
+		this._options = utils.deepExtend({}, [defaultTask, plugins.sharedOptions || {}, options || {}]);
 
 		this.initialize();
 	},
@@ -205,8 +209,8 @@ var AbstractTask = Base.extend(
 			if (!_.isObject(this.getConfiguration())) {
 				throw new Error(&#x27;The &quot;configuration&quot; parameter is not an object.&#x27;);
 			}
-			if (!_.isObject(this.getDecorator())) {
-				throw new Error(&#x27;The &quot;decorator&quot; parameter is not an object.&#x27;);
+			if (!_.isObject(this.getDecorators())) {
+				throw new Error(&#x27;The &quot;decorators&quot; parameter is not an object.&#x27;);
 			}
 			if (!_.isString(this.getType())) {
 				throw new Error(&#x27;The &quot;type&quot; parameter is not a string.&#x27;);
@@ -228,6 +232,9 @@ var AbstractTask = Base.extend(
 			}
 			if (!_.isBoolean(this.isVerbose())) {
 				throw new Error(&#x27;The &quot;verbose&quot; parameter is not a boolean.&#x27;);
+			}
+			if (!_.isBoolean(this.shouldReport())) {
+				throw new Error(&#x27;The &quot;report&quot; parameter is not a boolean.&#x27;);
 			}
 			if (!_.isBoolean(this.shouldEchoStdOut())) {
 				throw new Error(&#x27;The &quot;echoStdOut&quot; parameter is not a boolean.&#x27;);
@@ -268,13 +275,13 @@ var AbstractTask = Base.extend(
 		},
 
 		/**
-		 * Gets the decorator
+		 * Gets the decorator list
 		 *
-		 * @method getDecorator
+		 * @method getDecorators
 		 * @return {object[]}
 		 */
-		getDecorator: function () {
-			return this.getOptions().decorator;
+		getDecorators: function () {
+			return this.getOptions().decorators;
 		},
 
 		/**
@@ -378,6 +385,16 @@ var AbstractTask = Base.extend(
 		},
 
 		/**
+		 * Should report?
+		 *
+		 * @method shouldReport
+		 * @return {boolean}
+		 */
+		shouldReport: function () {
+			return this.getOptions().report;
+		},
+
+		/**
 		 * Echo std-out output of child-process?
 		 *
 		 * @method shouldEchoStdOut
@@ -436,7 +453,7 @@ var AbstractTask = Base.extend(
 		 * @return {AbstractTask}
 		 */
 		getTaskPlugin: function (name) {
-			return this.getPlugins().task[name];
+			return this.getPlugins().task[name.toLowerCase()];
 		},
 
 

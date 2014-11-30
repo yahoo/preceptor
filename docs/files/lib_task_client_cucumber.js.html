@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.0</em>
+            <em>API Docs for: 0.9.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -61,11 +61,15 @@
             
                 <li><a href="../classes/CucumberTask.html">CucumberTask</a></li>
             
+                <li><a href="../classes/DecoratorTaskDecorator.html">DecoratorTaskDecorator</a></li>
+            
                 <li><a href="../classes/GroupTask.html">GroupTask</a></li>
             
                 <li><a href="../classes/GroupTaskDecorator.html">GroupTaskDecorator</a></li>
             
                 <li><a href="../classes/IdentifierTaskDecorator.html">IdentifierTaskDecorator</a></li>
+            
+                <li><a href="../classes/JUnitTask.html">JUnitTask</a></li>
             
                 <li><a href="../classes/KoboldClient.html">KoboldClient</a></li>
             
@@ -161,6 +165,7 @@ var CucumberClient = AbstractClient.extend(
 					self.processBefore().then(function () {
 						callback();
 					}, function (err) {
+						console.error(err.stack);
 						callback(err);
 					});
 				});
@@ -168,6 +173,7 @@ var CucumberClient = AbstractClient.extend(
 					self.processAfter().then(function () {
 						callback();
 					}, function (err) {
+						console.error(err.stack);
 						callback(err);
 					});
 				});
@@ -176,6 +182,7 @@ var CucumberClient = AbstractClient.extend(
 					self.processBeforeTest().then(function () {
 						callback();
 					}, function (err) {
+						console.error(err.stack);
 						callback(err);
 					});
 				});
@@ -183,6 +190,7 @@ var CucumberClient = AbstractClient.extend(
 					self.processAfterTest().then(function () {
 						callback();
 					}, function (err) {
+						console.error(err.stack);
 						callback(err);
 					});
 				});
