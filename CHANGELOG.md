@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-v0.9.3
+v0.9.3 11/29/14
 * Added loader task
 * Changed 'rule-book.js' and 'rule-book.json' as default values for a configuration file
 * Renamed "decorator" to "decorators" in the task-options
