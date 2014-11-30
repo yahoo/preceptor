@@ -44,6 +44,25 @@
 
 <p><a href="http://yahoo.github.io/preceptor/coverage/lcov-report/">Coverage Report</a></p>
 
+<h2>
+<a id="quick-look" class="anchor" href="#quick-look" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Look</h2>
+
+<p>Main-Features:</p>
+
+<ul>
+<li>Runs tests sequentially, in parallel, or a combination thereof.</li>
+<li>Support of multiple commonly used testing frameworks including: Mocha, Cucumber, and Kobold.</li>
+<li>Test-report aggregation, combining all of the test-results in one place, supporting a big list of commonly used reporters, including display reporters such as “Spec” and “Dot” and file-format reporters such as “JUnit” and “TAP”, all of which can be used at the same time.</li>
+<li>Centralized collection of code-coverage metrics for every test that ran, merging all of the results in one place, giving the developers and testers a complete picture of what has been tested, and what might needs more tests.</li>
+</ul>
+
+<p>Features through plugins:</p>
+
+<ul>
+<li>Selenium test management, starting-up and tearing-down Selenium servers transparently for the developers and testers, injecting code to the test-client, reducing with it the boilerplate code needed to run Selenium tests. This will also help simplify the configuration of the Selenium test system.</li>
+<li>Client-side code-coverage collection, merging the code-coverage reports of an application that ran in a browser.</li>
+</ul>
+
 <p><strong>Table of Contents</strong></p>
 
 <ul>
@@ -54,6 +73,7 @@
 <a href="#usage">Usage</a>
 
 <ul>
+<li><a href="#command-line-usage">Command-Line Usage</a></li>
 <li>
 <a href="#testing-lifecycle">Testing Lifecycle</a>
 
@@ -87,6 +107,7 @@
 <li><a href="#cucumber-task">Cucumber Task</a></li>
 <li><a href="#mocha-task">Mocha Task</a></li>
 <li><a href="#kobold-task">Kobold Task</a></li>
+<li><a href="#loader-task">Loader Task</a></li>
 <li><a href="#node-task">Node Task</a></li>
 <li><a href="#shell-task">Shell Task</a></li>
 <li><a href="#group-task">Group Task</a></li>
@@ -110,10 +131,6 @@
 <p>Install this module with the following command:</p>
 
 <div class="highlight highlight-shell"><pre>npm install preceptor</pre></div>
-
-<p>Or install it globally:</p>
-
-<div class="highlight highlight-shell"><pre>npm install -g preceptor</pre></div>
 
 <p>To add the module to your <code>package.json</code> dependencies:</p>
 
@@ -233,7 +250,7 @@
   }
 };</pre></div>
 
-<p>The tests live in a subfolder with the name <code>mocha</code>. For now, let's add a couple of simple tests that give you a glimpse on how test-results will look.</p>
+<p>The tests live in a sub-folder with the name <code>mocha</code>. For now, let's add a couple of simple tests that give you a glimpse on how test-results will look.</p>
 
 <p>Copy the following content into <code>mocha/test1.js</code>:</p>
 
@@ -616,6 +633,29 @@ Lines        <span class="pl-s3">:</span> 96.3% ( 26/27 )
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <h3>
+<a id="command-line-usage" class="anchor" href="#command-line-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command-Line usage</h3>
+
+<p>Preceptor is started through the command-line that can be found in the <code>bin</code> folder. You can run the application with</p>
+
+<div class="highlight highlight-shell"><pre>preceptor [options] [config-file]</pre></div>
+
+<p>The <code>config-file</code> is by default <code>rule-book.js</code> or <code>rule-book.json</code> when left-off, where by the first one has priority over the second.</p>
+
+<p>The command-line tool exposes a couple of flags and parameters:</p>
+
+<pre><code>--config j          Inline JSON configuration or configuration overwrites
+--profile p         Profile of configuration
+--subprofile p      Sub-profile of configuration
+--version           Print version
+--help              This help
+</code></pre>
+
+<p>For profiles, see the profile section below.</p>
+
+<p>The <code>config</code> options adds the possibility to create or overwrite configuration directly from the console. The inline configuration-options are applied after the profile selection. 
+Objects are merged if a configuration file was selected, and arrays will be appended to already available lists.</p>
+
+<h3>
 <a id="testing-lifecycle" class="anchor" href="#testing-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing Lifecycle</h3>
 
 <p>To understand how Preceptor works, we have to understand first what the testing lifecycle is. Tests are run usually through a common set of states that can be defined as the testing lifecycle.</p>
@@ -833,6 +873,181 @@ Lines        <span class="pl-s3">:</span> 96.3% ( 26/27 )
 </ul>
 
 <h4>
+<a id="profiles" class="anchor" href="#profiles" aria-hidden="true"><span class="octicon octicon-link"></span></a>Profiles</h4>
+
+<p>The configuration file supports multiple layers of profiles:</p>
+
+<ul>
+<li>Global Profile</li>
+<li>Tasks Profile</li>
+</ul>
+
+<p>As an example, let's use the following abbreviated configuration:</p>
+
+<p><strong>config.js</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> } ] }
+    },
+
+    <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        {
+            <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test1.js<span class="pl-pds">"</span></span>]
+            }
+        }
+    ]
+};</pre></div>
+
+<h5>
+<a id="global-profile" class="anchor" href="#global-profile" aria-hidden="true"><span class="octicon octicon-link"></span></a>Global Profile</h5>
+
+<p>Global profiles can be used to toggle between full-configurations:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+
+    <span class="pl-s1"><span class="pl-pds">"</span>profile1<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> } ] }
+        },
+
+        <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                    <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test1.js<span class="pl-pds">"</span></span>]
+                }
+            }
+        ]
+    },
+
+    <span class="pl-s1"><span class="pl-pds">"</span>profile2<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Dot<span class="pl-pds">"</span></span> } ] }
+        },
+
+        <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                    <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test2.js<span class="pl-pds">"</span></span>]
+                }
+            }
+        ]
+    }
+};</pre></div>
+
+<p>To select the second profile, call Preceptor as follows:</p>
+
+<div class="highlight highlight-shell"><pre>preceptor --profile profile2 config.js</pre></div>
+
+<p>The first profile can be selected by supplying <code>profile1</code> instead, or whatever name you give the corresponding profiles.
+Be sure to always supply a profile when it is available since the default behavior is to not look for a profile.</p>
+
+<h5>
+<a id="tasks-profile" class="anchor" href="#tasks-profile" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tasks Profile</h5>
+
+<p>Task profiles are very similar to global profiles, but are there for toggling task-lists. This can be very useful, when global configurations are shared between multiple profiles. Task profiles are also called sub-profiles since they toggle configuration below the global profile selection.</p>
+
+<p>An example looks like this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+
+    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> } ] }
+    },
+
+    <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>sub-profile1<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                    <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test1.js<span class="pl-pds">"</span></span>]
+                }
+            }
+        ],
+        <span class="pl-s1"><span class="pl-pds">"</span>sub-profile2<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {
+                <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                    <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/mocha/test2.js<span class="pl-pds">"</span></span>]
+                }
+            }
+        ]
+    }
+};</pre></div>
+
+<p>To select the first sub-profile, call Preceptor as follows:</p>
+
+<div class="highlight highlight-shell"><pre>preceptor --subprofile sub-profile1 config.js</pre></div>
+
+<p>Be sure to always supply a sub-profile when it is available since the default behavior is to not look for a sub-profile.</p>
+
+<h5>
+<a id="combine-profiles" class="anchor" href="#combine-profiles" aria-hidden="true"><span class="octicon octicon-link"></span></a>Combine Profiles</h5>
+
+<p>It is also possible to combine both profile methods.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> {
+
+    <span class="pl-s1"><span class="pl-pds">"</span>ci<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Dot<span class="pl-pds">"</span></span> } ] }
+        },
+
+        <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>acceptance<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                {
+                    <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                        <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/build/mocha/test1.js<span class="pl-pds">"</span></span>]
+                    }
+                }
+            ],
+            <span class="pl-s1"><span class="pl-pds">"</span>integration<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                {
+                    <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                        <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/build/mocha/test2.js<span class="pl-pds">"</span></span>]
+                    }
+                }
+            ]
+        }
+    },
+    <span class="pl-s1"><span class="pl-pds">"</span>dev<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>reportManager<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-s1"><span class="pl-pds">"</span>reporter<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ { <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>Spec<span class="pl-pds">"</span></span> } ] }
+        },
+
+        <span class="pl-s1"><span class="pl-pds">"</span>tasks<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s1"><span class="pl-pds">"</span>acceptance<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                {
+                    <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                        <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/../mocha/test1.js<span class="pl-pds">"</span></span>]
+                    }
+                }
+            ],
+            <span class="pl-s1"><span class="pl-pds">"</span>integration<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                {
+                    <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>mocha<span class="pl-pds">"</span></span>,
+                    <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                        <span class="pl-s1"><span class="pl-pds">"</span>paths<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-sv">__dirname</span> <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>/../mocha/test2.js<span class="pl-pds">"</span></span>]
+                    }
+                }
+            ]
+        }
+    }
+};</pre></div>
+
+<p>With this example, you could run the acceptance tests from your local machine with:</p>
+
+<div class="highlight highlight-shell"><pre>preceptor --profile dev --subprofile acceptance config.js</pre></div>
+
+<h4>
 <a id="global-configuration" class="anchor" href="#global-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Global configuration</h4>
 
 <p>Preceptors task-independent behavior is configured in this section. It has the following properties:</p>
@@ -954,13 +1169,15 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 <li>
 <code>debug</code> - Flag that defines if task is run in debug mode. In debug-mode, the client is run directly in the Preceptor process. Output is not caught by Preceptor and directly printed to std-out, and a breakpoint will stop the Preceptor process. Avoid using this flag long-term. (default: false)</li>
 <li>
+<code>report</code> - Flag that determines if task uses the globally configured reporter. (default: true) If deactivated, testing life-cycle events will be muted. </li>
+<li>
 <code>verbose</code> - Prints every step taken by Preceptor. This adds a lot of output and might be overwhelming at first. (default: false)</li>
 <li>
 <code>failOnError</code> - Flag that defines if task should skip all other tests and fail Preceptor. (default: false)</li>
 <li>
 <code>echoStdOut</code> - Flag that defines if task should echo all std-out data.</li>
 <li>
-<code>echoStdIn</code> - Flag that defines if task should echo all std-err data.</li>
+<code>echoStdErr</code> - Flag that defines if task should echo all std-err data.</li>
 </ul>
 
 <h4>
@@ -1069,6 +1286,38 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 <li>
 <code>options.highlightFolderName</code> - 'highlight'</li>
 </ul>
+
+<h4>
+<a id="loader-task" class="anchor" href="#loader-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loader Task</h4>
+
+<p>This task imports already available test-report files, including JUnit and TAP files. The <code>type</code>-value for this task is <code>loader</code>.</p>
+
+<p>Task options:</p>
+
+<ul>
+<li>
+<code>format</code> - Format of file-import (i.e. <code>junit</code> or <code>tap</code>). See the Preceptor-Reporter project for all available options.</li>
+<li>
+<code>path</code> - Glob to select files that should be imported</li>
+<li>
+<code>configuration</code> - Custom configuration for each file-format type</li>
+</ul>
+
+<p><strong>Example:</strong></p>
+
+<div class="highlight highlight-javascript"><pre>    {
+        <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>loader<span class="pl-pds">"</span></span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>JUnit import<span class="pl-pds">"</span></span>,
+        <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// Wrap it in a suite using the title from above</span>
+
+        <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-c">// Loader-task specific configuration</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>format<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>junit<span class="pl-pds">"</span></span>, <span class="pl-c">// Use "junit" as the format (is default)</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>path<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>junit-*.xml<span class="pl-pds">"</span></span>, <span class="pl-c">// Glob to select import files</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                <span class="pl-c">// Any JUnit specific configurations</span>
+            }
+        }
+    }</pre></div>
 
 <h4>
 <a id="node-task" class="anchor" href="#node-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>Node Task</h4>
