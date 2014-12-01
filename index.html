@@ -1296,7 +1296,7 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 
 <ul>
 <li>
-<code>format</code> - Format of file-import (i.e. <code>junit</code> or <code>tap</code>). See the Preceptor-Reporter project for all available options.</li>
+<code>format</code> - Format of file-import (i.e. <code>junit</code> or <code>tap</code>). See the <a href="http://yahoo.github.io/preceptor-reporter/#loader">Preceptor-Reporter</a> project for all available options.</li>
 <li>
 <code>path</code> - Glob to select files that should be imported</li>
 <li>
@@ -1311,10 +1311,13 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
         <span class="pl-s1"><span class="pl-pds">"</span>suite<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// Wrap it in a suite using the title from above</span>
 
         <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> { <span class="pl-c">// Loader-task specific configuration</span>
+
             <span class="pl-s1"><span class="pl-pds">"</span>format<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>junit<span class="pl-pds">"</span></span>, <span class="pl-c">// Use "junit" as the format (is default)</span>
             <span class="pl-s1"><span class="pl-pds">"</span>path<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>junit-*.xml<span class="pl-pds">"</span></span>, <span class="pl-c">// Glob to select import files</span>
+
             <span class="pl-s1"><span class="pl-pds">"</span>configuration<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
-                <span class="pl-c">// Any JUnit specific configurations</span>
+                <span class="pl-c">// Custom JUnit loader configuration</span>
+                <span class="pl-s1"><span class="pl-pds">"</span>topLevel<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span>
             }
         }
     }</pre></div>
