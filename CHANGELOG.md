@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+v0.9.4 11/30/14
+* Update of reporter version adding custom loader configuration option (topLevel)
+
 v0.9.3 11/29/14
 * Added loader task
 * Changed 'rule-book.js' and 'rule-book.json' as default values for a configuration file
