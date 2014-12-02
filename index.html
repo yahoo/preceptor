@@ -1171,6 +1171,8 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 <li>
 <code>report</code> - Flag that determines if task uses the globally configured reporter. (default: true) If deactivated, testing life-cycle events will be muted. </li>
 <li>
+<code>coverage</code> - Flag that determines if task uses the globally configured coverage collector. (default: false) If deactivated, collected coverage won't be merged </li>
+<li>
 <code>verbose</code> - Prints every step taken by Preceptor. This adds a lot of output and might be overwhelming at first. (default: false)</li>
 <li>
 <code>failOnError</code> - Flag that defines if task should skip all other tests and fail Preceptor. (default: false)</li>
@@ -1296,7 +1298,7 @@ Preceptor adds the <code>file</code> report to the list of reports to be able to
 
 <ul>
 <li>
-<code>format</code> - Format of file-import (i.e. <code>junit</code> or <code>tap</code>). See the <a href="http://yahoo.github.io/preceptor-reporter/#loader">Preceptor-Reporter</a> project for all available options.</li>
+<code>format</code> - Format of file-import (i.e. <code>junit</code>, <code>tap</code> or <code>istanbul</code>). See the <a href="http://yahoo.github.io/preceptor-reporter/#loader">Preceptor-Reporter</a> project for all available options.</li>
 <li>
 <code>path</code> - Glob to select files that should be imported</li>
 <li>
