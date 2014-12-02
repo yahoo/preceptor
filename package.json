@@ -1,6 +1,6 @@
 {
   "name": "preceptor",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Preceptor testrunner and aggregator",
   "license": "MIT",
   "main": "index.js",
@@ -37,7 +37,7 @@
     "minimatch": "1.0.0",
     "mkdirp": "0.5.0",
     "preceptor-core": "0.9.3",
-    "preceptor-reporter": "0.9.4",
+    "preceptor-reporter": "0.9.5",
     "promise": "6.0.0",
     "underscore": "1.7.0",
     "uuid": "2.0.1"

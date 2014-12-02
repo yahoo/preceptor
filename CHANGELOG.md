@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+v0.9.7 - 12/02/14
+* Updated dependencies
+
 v0.9.6 - 12/02/14
 * Updated dependencies
 
