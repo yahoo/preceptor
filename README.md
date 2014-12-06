@@ -507,6 +507,12 @@ module.exports = {
   // ...
 };
 ```
+
+Also, add the following line to all tasks that should collect coverage reports:
+```javascript
+		"coverage": true
+```
+
 The output is now:
 ```shell
 Everything
