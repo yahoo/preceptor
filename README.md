@@ -1005,7 +1005,7 @@ Task options:
 * ```failForOrphans``` - Flag that defines if Kobold should fail tests when Orphans are encountered. Orphans are screens that were previously approved, but are missing in the most recent test-run. This can be the case when tests are removed, or when the testing-framework was interrupted. (default: true)
 * ```failOnAdditions``` - Flag that defines if Kobold should fail tests when Additions are encountered. Additions are screens that have never been seen (approved) before, but that are available during the most recent test-run. These usually happen when tests are added; these screens should be reviewed before approving. (default: true)
 * ```build``` - Identifier for the current build. This can be an identifier from a CI or a random generated one. This value is used to distinguish multiple test-runs from each-other, and is given to the remote storage. (default: process.env.BUILD_NUMBER or process.env.USER + <timestamp>)
-* ```blinkDiff``` - Configuration for the blink-diff tool.
+* ```comparison``` - Configuration for the comparison tool.
 * ```mocha``` - Mocha options for Kobold tests since it is build on-top of Mocha. (See above)
 * ```storage``` - Storage configuration for Kobold. See the project website for more information.
 * ```source``` - Source of screens. Uses ```storage``` as default. See the project website for more information.
