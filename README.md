@@ -570,6 +570,7 @@ The command-line tool exposes a couple of flags and parameters:
 --config j          Inline JSON configuration or configuration overwrites
 --profile p         Profile of configuration
 --subprofile p      Sub-profile of configuration
+--log-level l       Log-level (ALL, TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF) (default: INFO)
 --version           Print version
 --help              This help
 ```
@@ -578,6 +579,8 @@ For profiles, see the profile section below.
 
 The ```config``` options adds the possibility to create or overwrite configuration directly from the console. The inline configuration-options are applied after the profile selection. 
 Objects are merged if a configuration file was selected, and arrays will be appended to already available lists.
+
+The log-level is using the [log4js](https://github.com/stritti/log4js) scheme. See the projects [website](https://github.com/stritti/log4js) for more information.
 
 ###Testing Lifecycle
 To understand how Preceptor works, we have to understand first what the testing lifecycle is. Tests are run usually through a common set of states that can be defined as the testing lifecycle.
@@ -1151,7 +1154,7 @@ The following third-party libraries are used by this module:
 ###Dependencies
 * glob: https://github.com/isaacs/node-glob
 * istanbul: https://github.com/gotwarlost/istanbul
-* log4js: https://github.com/nomiddlename/log4js-node
+* log4js: https://github.com/stritti/log4js
 * minimatch: https://github.com/isaacs/minimatch
 * mkdirp: https://github.com/substack/node-mkdirp
 * preceptor-core: https://github.com/yahoo/preceptor-core

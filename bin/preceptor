@@ -6,20 +6,22 @@ var PreceptorManager = require('../');
 var path = require('path');
 var _ = require('underscore');
 var utils = require('preceptor-core').utils;
-var fs = require('fs');
+
+var logger = PreceptorManager.log.getLogger(__filename);
 
 Error.stackTraceLimit = Infinity;
 
 process.on('uncaughtException', function (err) {
-	console.log(err.stack);
+	logger.fatal("Uncaught exception:", err.stack);
 });
 
 var manager = new PreceptorManager(parseArgs(process.argv));
 manager.run().then(function () {
+	logger.trace("Exit with success.");
 	process.exit(0);
 
 }, function (err) {
-	console.log("Error: ", err.stack, "\n");
+	logger.error(err.stack);
 	process.exit(1);
 });
 
@@ -30,7 +32,8 @@ manager.run().then(function () {
  * @method printHelp
  */
 function printHelp () {
-	console.log("Usage: preceptor [<options>] <config-path>");
+	logger.trace("Print help");
+	console.log("Usage: preceptor [<options>] [<config-path>]");
 	console.log("");
 	console.log("  Runs tests defined in the config.");
 	console.log("");
@@ -38,12 +41,13 @@ function printHelp () {
 	console.log("    --config <json>     Inline configuration in JSON");
 	console.log("    --profile <p>       Profile of configuration");
 	console.log("    --subprofile <p>    Sub-profile of configuration");
+	console.log("    --log-level <l>     Log-level (ALL, TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF) (default: INFO)");
 	console.log("    --version           Print version");
 	console.log("    --help              This help");
 	console.log("");
 }
 
-/**
+	/**
  * Parses the arguments and returns the configuration
  *
  * @method parseArgs
@@ -57,6 +61,8 @@ function parseArgs (argv) {
 		configLine, configFile,
 		profile, subProfile;
 
+	logger.trace("Parse arguments:", argv);
+
 	if (argLength <= 1) {
 		printHelp();
 		process.exit(1);
@@ -64,17 +70,24 @@ function parseArgs (argv) {
 
 	for (i = 2; i < argLength; i++) {
 
+		logger.trace("Parse argument number:", i);
 		try {
 
 			if (argv[i] == "--help") {
 				printHelp();
 				process.exit(0);
 
+			} else if (argv[i] == "--log-level") {
+				i++;
+				PreceptorManager.log.setLevel(argv[i]);
+				PreceptorManager.log.flush();
+
 			} else if (argv[i] == "--version") {
-				console.log("preceptor " + manager.version);
+				console.log("Preceptor " + PreceptorManager.version);
 
 			} else if (argv[i] == "--config") {
 				i++;
+				logger.debug("Parse JSON:", argv[i]);
 				configLine = JSON.parse(argv[i]);
 
 			} else if (argv[i] == "--profile") {
@@ -103,7 +116,7 @@ function parseArgs (argv) {
 				}
 
 			} else {
-				console.log('Warning: parameter "' + argv[i] + '" ignored. Unknown.');
+				logger.warn('Parameter ignored - unknown:', argv[i]);
 			}
 
 		} catch (exception) {
@@ -111,20 +124,26 @@ function parseArgs (argv) {
 			throw new Error("Invalid argument '" + argv[i] + "' for " + argv[i - 1] + reason);
 		}
 	}
+	logger.trace("Done parsing arguments.");
 
 	if (!configFile) {
+		logger.info("Resolve default config file in folder: ", process.cwd());
 		configFile = path.resolve(path.join(process.cwd(), 'rule-book'));
 	}
 
+	logger.debug("Load config file: ", configFile);
 	configFile = require(configFile);
 	if (_.isFunction(configFile)) {
+		logger.trace("Config is a function - evaluate.");
 		configFile = configFile();
 	}
 
+	logger.trace("Loaded config: ", configFile);
 	config = utils.deepExtend({}, [configFile || {}]);
 
 	// Profile
 	if (profile) {
+		logger.info("Selected profile: ", profile);
 		if (config[profile]) {
 			config = config[profile];
 		} else {
@@ -134,6 +153,7 @@ function parseArgs (argv) {
 
 	// Sub-Profile
 	if (subProfile) {
+		logger.info("Selected sub-profile: ", subProfile);
 		if (config.tasks[subProfile]) {
 			config.tasks = config.tasks[subProfile];
 		} else {
@@ -141,8 +161,10 @@ function parseArgs (argv) {
 		}
 	}
 
+	logger.trace("Merging config.");
 	config = utils.deepExtend({}, [config, configLine || {}]);
 
+	logger.debug("Loaded configuration: ", config);
 	return config;
 }
 

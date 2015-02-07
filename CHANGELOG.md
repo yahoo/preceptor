@@ -3,6 +3,7 @@ CHANGELOG
 
 v0.9.8
 * Use "comparison" instead of "blinkDiff" for custom configurations in Kobold
+* Major logging refactor
 
 v0.9.7 - 12/02/14
 * Updated dependencies

@@ -19,7 +19,7 @@ module.exports = {
 	},
 
 	"shared": {
-		"echoStdErr": true
+		"echoStdErr": false
 	},
 
 	"tasks": [
