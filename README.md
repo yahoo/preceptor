@@ -1005,6 +1005,7 @@ The ```type```-value for this task is ```kobold```.
 
 Task options:
 * ```verbose``` - Verbose output (default: true)
+* ```highlightOnSuccess``` - When this flag is set, then Kobold will create a highlight-image even if the threshold did not trigger during comparison (default: false)
 * ```failForOrphans``` - Flag that defines if Kobold should fail tests when Orphans are encountered. Orphans are screens that were previously approved, but are missing in the most recent test-run. This can be the case when tests are removed, or when the testing-framework was interrupted. (default: true)
 * ```failOnAdditions``` - Flag that defines if Kobold should fail tests when Additions are encountered. Additions are screens that have never been seen (approved) before, but that are available during the most recent test-run. These usually happen when tests are added; these screens should be reviewed before approving. (default: true)
 * ```build``` - Identifier for the current build. This can be an identifier from a CI or a random generated one. This value is used to distinguish multiple test-runs from each-other, and is given to the remote storage. (default: process.env.BUILD_NUMBER or process.env.USER + <timestamp>)
