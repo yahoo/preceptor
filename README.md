@@ -956,7 +956,6 @@ Tasks have a common set of configuration options that can be set on the root of 
 * ```debug``` - Flag that defines if task is run in debug mode. In debug-mode, the client is run directly in the Preceptor process. Output is not caught by Preceptor and directly printed to std-out, and a breakpoint will stop the Preceptor process. Avoid using this flag long-term. (default: false)
 * ```report``` - Flag that determines if task uses the globally configured reporter. (default: true) If deactivated, testing life-cycle events will be muted. 
 * ```coverage``` - Flag that determines if task uses the globally configured coverage collector. (default: false) If deactivated, collected coverage won't be merged 
-* ```verbose``` - Prints every step taken by Preceptor. This adds a lot of output and might be overwhelming at first. (default: false)
 * ```failOnError``` - Flag that defines if task should skip all other tests and fail Preceptor. (default: false)
 * ```echoStdOut``` - Flag that defines if task should echo all std-out data.
 * ```echoStdErr``` - Flag that defines if task should echo all std-err data.
@@ -970,7 +969,7 @@ Task options:
 * ```path``` - Path to the tests (required)
 * ```tags``` - List of tags to accept. These can be strings with one tag, or an array of tags. These tags should have an '@' and may be the '~' if required. See Cucumber.js documentation for more information.
 * ```format``` - Output format for test results (default: 'progress')
-* ```functions``` - A list of functions to import (still WIP). The function can have a ```name``` property to be used in verbose logging.
+* ```functions``` - A list of functions to import.
 * ```coffeScript``` - Flag that defines that output should be in coffee-script.
 
 
@@ -993,7 +992,7 @@ Task options:
 * ```asyncOnly``` - Enforce all tests to be asynchronous (default: false)
 * ```globals``` - List of defined globals
 * ```paths``` - A list of paths to the tests (default: ['test'])
-* ```functions``` - A list of functions to import as tests. The function can have a ```name``` property to be used in verbose logging.
+* ```functions``` - A list of functions to import as tests.
 * ```recursive``` - Recursive search in the test paths (default: false)
 * ```require``` - List of files to be require'd before tests run.
 * ```sort``` - Sort tests before running the tests (default: false)

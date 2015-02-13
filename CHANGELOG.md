@@ -4,6 +4,8 @@ CHANGELOG
 v0.9.8
 * Use "comparison" instead of "blinkDiff" for custom configurations in Kobold
 * Major logging refactor
+* Deprecate "subprofile" parameter in favor of "sub-profile" for more consistency in parameters
+* Remove "verbose" flag on task
 
 v0.9.7 - 12/02/14
 * Updated dependencies
