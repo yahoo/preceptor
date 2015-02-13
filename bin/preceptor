@@ -101,6 +101,11 @@ function parseArgs (argv) {
 			} else if (argv[i] == "--subprofile") {
 				i++;
 				subProfile = argv[i];
+				logger.info("'subprofile' is deprecated. Use 'sub-profile'.");
+
+			} else if (argv[i] == "--sub-profile") {
+				i++;
+				subProfile = argv[i];
 
 			} else if (argv[i] == "-s") {
 				i++;

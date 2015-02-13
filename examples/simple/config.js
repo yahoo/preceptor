@@ -13,8 +13,6 @@ module.exports = {
 			"active": true, // Activate coverage
 
 			"path": "./coverage" // This is the default path
-			// Add here any other coverage configuration.
-			// See below for more information
 		}
 	},
 

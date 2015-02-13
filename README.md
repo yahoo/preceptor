@@ -569,7 +569,7 @@ The command-line tool exposes a couple of flags and parameters:
 ```
 --config j          Inline JSON configuration or configuration overwrites
 --profile p         Profile of configuration
---subprofile p      Sub-profile of configuration
+--sub-profile p     Sub-profile of configuration
 --log-level l       Log-level (ALL, TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF) (default: INFO)
 --version           Print version
 --help              This help
