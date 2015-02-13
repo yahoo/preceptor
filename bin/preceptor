@@ -11,6 +11,9 @@ var logger = PreceptorManager.log.getLogger(__filename);
 
 Error.stackTraceLimit = Infinity;
 
+logger.debug("Preceptor v" + PreceptorManager.version);
+
+
 process.on('uncaughtException', function (err) {
 	logger.fatal("Uncaught exception:", err.stack);
 });
@@ -83,7 +86,7 @@ function parseArgs (argv) {
 				PreceptorManager.log.flush();
 
 			} else if (argv[i] == "--version") {
-				console.log("Preceptor " + PreceptorManager.version);
+				console.log("Preceptor v" + PreceptorManager.version);
 
 			} else if (argv[i] == "--config") {
 				i++;
