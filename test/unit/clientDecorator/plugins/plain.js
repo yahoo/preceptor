@@ -6,6 +6,15 @@ function testProcess (name) {
 		var result = this.instance[name]();
 		expect(result.then).to.be.not.undefined;
 	});
+
+	it(name + ' should eventually complete', function (done) {
+		var result = this.instance[name]();
+		result.then(function () {
+			done();
+		}, function (err) {
+			done(err);
+		});
+	});
 }
 
 function testEvent (name) {
@@ -22,13 +31,12 @@ function testEvent (name) {
 			this.instance[name]();
 		});
 	});
-
 }
 
-describe('Plain-Plugin', function () {
+describe('Plain', function () {
 
 	beforeEach(function () {
-		var Plugin = require('../../../lib/clientDecorator/plain');
+		var Plugin = require('../../../../lib/clientDecorator/plain');
 		this.instance = new Plugin(this.eventReporter, {});
 	});
 

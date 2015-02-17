@@ -26,7 +26,7 @@ describe('Abstract', function () {
 		describe('Simple', function () {
 
 			beforeEach(function () {
-				this.instance = new this.Class(this.eventReporter, null);
+				this.instance = new this.Class(this.eventReporter);
 			});
 
 			helpers.addBaseTests(function () {
