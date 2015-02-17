@@ -43,13 +43,15 @@
     "uuid": "2.0.1"
   },
   "devDependencies": {
-    "chai": "1.9.1",
-    "cucumber": "0.4.2",
+    "cabbie-alpha": "1.0.1",
+    "chai": "1.9.2",
     "coveralls": "2.11.2",
+    "cucumber": "0.4.2",
+    "kobold": "0.9.4",
     "mocha": "1.21.4",
-    "cabbie-alpha": "~1.0.0",
-    "kobold": "~0.9.4",
-    "preceptor-webdriver": "~0.9.0",
+    "preceptor-webdriver": "0.9.0",
+    "sinon": "1.12.2",
+    "sinon-chai": "2.7.0",
     "yuidocjs": "0.3.50"
   }
 }

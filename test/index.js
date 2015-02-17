@@ -1,4 +1,4 @@
-describe('Test', function () {
-	it('should', function () {
-	});
+describe('All Tests', function () {
+	require('./unit');
+	require('./integration');
 });
