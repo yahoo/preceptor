@@ -6,6 +6,7 @@ var PreceptorManager = require('../');
 var path = require('path');
 var _ = require('underscore');
 var utils = require('preceptor-core').utils;
+var fs = require('fs');
 
 var logger = PreceptorManager.log.getLogger(__filename);
 
@@ -19,11 +20,14 @@ process.on('uncaughtException', function (err) {
 });
 
 var manager = new PreceptorManager(parseArgs(process.argv));
+
 manager.run().then(function () {
+
 	logger.trace("Exit with success.");
 	process.exit(0);
 
 }, function (err) {
+
 	logger.error(err.stack);
 	process.exit(1);
 });
@@ -35,7 +39,9 @@ manager.run().then(function () {
  * @method printHelp
  */
 function printHelp () {
+
 	logger.trace("Print help");
+
 	console.log("Usage: preceptor [<options>] [<config-path>]");
 	console.log("");
 	console.log("  Runs tests defined in the config.");
@@ -74,6 +80,7 @@ function parseArgs (argv) {
 	for (i = 2; i < argLength; i++) {
 
 		logger.trace("Parse argument number:", i);
+
 		try {
 
 			if (argv[i] == "--help") {
@@ -140,6 +147,9 @@ function parseArgs (argv) {
 	}
 
 	logger.debug("Load config file: ", configFile);
+	if (!fs.existsSync(configFile) && !fs.existsSync(configFile + '.js')) {
+		throw new Error("Could not load the config file: " + configFile);
+	}
 	configFile = require(configFile);
 	if (_.isFunction(configFile)) {
 		logger.trace("Config is a function - evaluate.");
@@ -152,6 +162,7 @@ function parseArgs (argv) {
 	// Profile
 	if (profile) {
 		logger.info("Selected profile: ", profile);
+
 		if (config[profile]) {
 			config = config[profile];
 		} else {
@@ -162,6 +173,7 @@ function parseArgs (argv) {
 	// Sub-Profile
 	if (subProfile) {
 		logger.info("Selected sub-profile: ", subProfile);
+
 		if (config.tasks[subProfile]) {
 			config.tasks = config.tasks[subProfile];
 		} else {
