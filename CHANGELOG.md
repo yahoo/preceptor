@@ -9,6 +9,7 @@ v0.9.8
 * Remove "bail" from group-task - use default "failOnError"
 * Hardening of Preceptor
 * Add helpful error messages before failing
+* Use safe require for optional modules
 
 v0.9.7 - 12/02/14
 * Updated dependencies

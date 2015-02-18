@@ -6,7 +6,6 @@ var PreceptorManager = require('../');
 var path = require('path');
 var _ = require('underscore');
 var utils = require('preceptor-core').utils;
-var fs = require('fs');
 
 var logger = PreceptorManager.log.getLogger(__filename);
 
@@ -147,10 +146,7 @@ function parseArgs (argv) {
 	}
 
 	logger.debug("Load config file: ", configFile);
-	if (!fs.existsSync(configFile) && !fs.existsSync(configFile + '.js')) {
-		throw new Error("Could not load the config file: " + configFile);
-	}
-	configFile = require(configFile);
+	configFile = utils.require(configFile);
 	if (_.isFunction(configFile)) {
 		logger.trace("Config is a function - evaluate.");
 		configFile = configFile();
