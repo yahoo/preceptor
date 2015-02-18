@@ -7,6 +7,8 @@ v0.9.8
 * Deprecate "subprofile" parameter in favor of "sub-profile" for more consistency in parameters
 * Remove "verbose" flag on task
 * Remove "bail" from group-task - use default "failOnError"
+* Hardening of Preceptor
+* Add helpful error messages before failing
 
 v0.9.7 - 12/02/14
 * Updated dependencies
