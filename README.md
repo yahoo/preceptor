@@ -1164,12 +1164,15 @@ The following third-party libraries are used by this module:
 * uuid: https://github.com/shtylman/node-uuid
 
 ###Dev-Dependencies
-* chai: http://chaijs.com
-* cucumber: http://github.com/cucumber/cucumber-js
-* mocha: https://github.com/visionmedia/mocha
 * cabbie: https://github.com/ForbesLindesay/cabbie
+* chai: http://chaijs.com
+* coveralls: https://github.com/cainus/node-coveralls
+* cucumber: http://github.com/cucumber/cucumber-js
 * kobold: https://github.com/yahoo/kobold
+* mocha: https://github.com/visionmedia/mocha
 * preceptor-webdriver: https://github.com/yahoo/preceptor-webdriver
+* sinon: http://sinonjs.org
+* sinon-chai: https://github.com/domenic/sinon-chai
 * yuidocjs: https://github.com/yui/yuidoc
 
 ##License

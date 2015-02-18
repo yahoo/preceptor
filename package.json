@@ -36,7 +36,7 @@
     "log4js": "0.6.20",
     "minimatch": "1.0.0",
     "mkdirp": "0.5.0",
-    "preceptor-core": "0.9.3",
+    "preceptor-core": "0.9.4",
     "preceptor-reporter": "0.9.5",
     "promise": "6.0.0",
     "underscore": "1.7.0",
@@ -49,7 +49,7 @@
     "cucumber": "0.4.2",
     "kobold": "0.9.4",
     "mocha": "1.21.4",
-    "preceptor-webdriver": "0.9.0",
+    "preceptor-webdriver": "0.9.7",
     "sinon": "1.12.2",
     "sinon-chai": "2.7.0",
     "yuidocjs": "0.3.50"
