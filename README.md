@@ -2,16 +2,20 @@
 
 Preceptor is a test-runner and test-aggregator that runs multiple tests and testing frameworks in parallel, sequential, or a combination there of, aggregating all of the test-results and coverage-reports.
 
+[![Build Status](https://img.shields.io/travis/yahoo/preceptor.svg)](http://travis-ci.org/yahoo/preceptor)
+[![Coveralls Coverage](https://img.shields.io/coveralls/yahoo/preceptor.svg)](https://coveralls.io/r/yahoo/preceptor)
+[![Code Climate Grade](https://img.shields.io/codeclimate/github/yahoo/preceptor.svg)](https://codeclimate.com/github/yahoo/preceptor)
 
-[![Build Status](https://secure.travis-ci.org/yahoo/preceptor.png)](http://travis-ci.org/yahoo/preceptor)
-[![npm version](https://badge.fury.io/js/preceptor.svg)](http://badge.fury.io/js/preceptor)
+[![NPM version](https://badge.fury.io/js/preceptor.svg)](https://www.npmjs.com/package/preceptor)
+[![NPM License](https://img.shields.io/npm/l/preceptor.svg)](https://www.npmjs.com/package/preceptor)
 
-[![NPM](https://nodei.co/npm/preceptor.png?downloads=true)](https://nodei.co/npm/preceptor/)
+[![NPM](https://nodei.co/npm/preceptor.png?downloads=true&stars=true)](https://www.npmjs.com/package/preceptor)
+[![NPM](https://nodei.co/npm-dl/preceptor.png?months=3&height=2)](https://www.npmjs.com/package/preceptor)
 
+[![Coverage Report](https://img.shields.io/badge/Coverage_Report-Available-blue.svg)](http://yahoo.github.io/preceptor/coverage/lcov-report/)
+[![API Documentation](https://img.shields.io/badge/API_Documentation-Available-blue.svg)](http://yahoo.github.io/preceptor/docs/)
 
-[API-Documentation](http://yahoo.github.io/preceptor/docs/)
-
-[Coverage Report](http://yahoo.github.io/preceptor/coverage/lcov-report/)
+[![Gitter Support](https://img.shields.io/badge/Support-Gitter_IM-yellow.svg)](https://gitter.im/preceptorjs/support)
 
 ##Quick Look
 Main-Features:
