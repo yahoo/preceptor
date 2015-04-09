@@ -2,7 +2,6 @@ coverage/
 artifacts/
 node_modules/
 **/npm-debug.log
-**/ynpm-debug.log
 tmp/
 CVS/
 .DS_Store
