@@ -31,6 +31,7 @@ Features through plugins:
 * [What is Preceptor?](#what-is-preceptor)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
+    * [Client-API](#client-api)
     * [Command-Line Usage](#command-line-usage)
     * [Testing Lifecycle](#testing-lifecycle)
         * [Administrative states](#administrative-states)
@@ -572,6 +573,50 @@ For profiles, see the profile section below.
 
 The ```config``` options adds the possibility to create or overwrite configuration directly from the console. The inline configuration-options are applied after the profile selection. 
 Objects are merged if a configuration file was selected, and arrays will be appended to already available lists.
+
+###Client-API
+
+Preceptor injects an object (```PRECEPTOR```) into the gloabl scope.
+* ```PRECEPTOR.config``` - Global configuration object from the Preceptor configuration
+
+####Examples
+
+The supplied configuration information is very helpful for test customization. 
+For example, you might want to supply a different base-url for tests run locally or on a CI system, or you would want to customize browser window sizes. 
+
+Here is an example for a Precpetor configuration file:
+```javascript
+
+module.exports = {
+
+	"configuration": {
+		"reportManager": {
+			"reporter": [ { "type": "Spec", "progress": true } ]
+		},
+		"plugins": [ "preceptor-webdriver" ],
+
+		"settings": { // Settings needed by the test-client
+			"windowWidth": 1280, // Width of browser window
+			"windowHeight": 768, // Height of browser window
+			"webBaseUrl": "http://localhost" // Url of website
+			// May be some other options - add whatever you want here. Preceptor will ignore unknown options.
+		}
+	},
+
+	"tasks": [
+		...
+	]
+};
+```
+
+In the client code then, you can gather this information like this:
+```javascript
+var settings = PRECEPTOR.config.settings;
+var activeWindow = browser.activeWindow();
+
+activeWindow.resize(settings.windowWidth, settings.windowHeight);
+activeWindow.navigator.navigateTo(settings.webBaseUrl + '/order/324';
+```
 
 ###Testing Lifecycle
 To understand how Preceptor works, we have to understand first what the testing lifecycle is. Tests are run usually through a common set of states that can be defined as the testing lifecycle.
