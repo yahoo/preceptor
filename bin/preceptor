@@ -20,7 +20,12 @@ manager.run().then(function () {
 
 }, function (err) {
 	console.log("Error: ", err.stack, "\n");
-	process.exit(1);
+
+	if (manager.getConfig().shouldIgnoreErrors()) {
+		process.exit(0);
+	} else {
+		process.exit(1);
+	}
 });
 
 

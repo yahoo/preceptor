@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+v0.9.9 - 09/22/15
+* Add ignoreErrors flag on global config to avoid tests error propagation
+
 v0.9.8 - 04/08/15
 * Update versions
 * Remove Node 0.8 support
