@@ -889,6 +889,7 @@ Preceptors task-independent behavior is configured in this section. It has the f
 * ```reportManager.listener``` - List of loaded listeners
 * ```coverage``` - Coverage option
 * ```plugins``` - List of plugin modules to load
+* ```ignoreErrors``` - When set, errors that occur during testing will not be triggered on the Preceptor process (default: false)
 
 ######Reporting
 The report manager describes what reporters should be used and what it should listen for to receive testing lifecycle events from unsupported clients.
